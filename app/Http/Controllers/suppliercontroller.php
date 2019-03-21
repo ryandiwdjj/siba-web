@@ -14,7 +14,9 @@ class suppliercontroller extends Controller
      */
     public function index()
     {
-        return supplier::all();
+        $suppliers = Supplier::all();
+
+        return response()->json($suppliers, 200);
     }
 
     /**
@@ -24,14 +26,7 @@ class suppliercontroller extends Controller
      */
     public function create(Request $request)
     {
-        $supllier = new supplier;
-        $supplier->nama_supplier = $request->nama_supplier;
-        $supplier->sales_supplier = $request->sales_supplier;
-        $supplier->no_telp_supplier = $request->no_telp_supplier;
-        $supplier->alamat_supplier = $request->alamat_supplier;
-        $supplier->save();
-
-        return "Berhasil Menambahkan Data";
+        //
     }
 
     /**
@@ -42,7 +37,20 @@ class suppliercontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //post
+        $supplier = new supplier;
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->sales_supplier = $request->sales_supplier;
+        $supplier->no_telp_supplier = $request->no_telp_supplier;
+        $supplier->alamat_supplier = $request->alamat_supplier;
+
+        $success = $supplier->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -51,9 +59,14 @@ class suppliercontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_supplier)
+    public function showByName($nama_supplier) //show by nama supplier (partial show)
     {
-        return supplier::where('nama_supplier', $nama_supplier)->first();
+        $result = Supplier::where('nama_supplier', 'like', "%".$nama_supplier."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -74,21 +87,29 @@ class suppliercontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_supplier)
+    public function update(Request $request, $id)
     {
-        $nama_supplier = $request->nama_supplier;
-        $sales_supplier = $request->sales_supplier;
-        $no_telp_supplier = $request->no_telp_supplier;
-        $alamat_supplier = $request->alamat_supplier;
+        $supplier = Supplier::where('id', $id)->first();
 
-        $supplier = supplier::find($id_supplier);
-        $supplier->nama_supplier = $nama_supplier;
-        $supplier->sales_supplier = $sales_supplier;
-        $supplier->no_telp_supplier = $no_telp_supplier;
-        $supplier->alamat_supplier = $alamat_supplier;
-        $supplier->save();
+        if (is_null($supplier)) {
+            return response()->json('Supplier not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $supplier->nama_supplier = $request->nama_supplier;
+            $supplier->sales_supplier = $request->sales_supplier;
+            $supplier->no_telp_supplier = $request->no_telp_supplier;
+            $supplier->alamat_supplier = $request->alamat_supplier;
+
+
+            $success = $supplier->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -99,9 +120,19 @@ class suppliercontroller extends Controller
      */
     public function destroy($id_supplier)
     {
-        $supplier = supplier::find($id_supplier);
-        $supplier->delete();
+        $supplier = Supplier::find($id_supplier);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($supplier)) {
+            return response()->json('Supplier Not Found', 404);
+        }
+        
+        else {
+            $success = $supplier->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }
