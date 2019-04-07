@@ -14,7 +14,9 @@ class kendaraancontroller extends Controller
      */
     public function index()
     {
-        return kendaraan::all();
+        $kendaraans = Kendaraan::all();
+
+        return response()->json($kendaraans, 200);
     }
 
     /**
@@ -24,12 +26,7 @@ class kendaraancontroller extends Controller
      */
     public function create(Request $request)
     {
-        $kendaraan = new kendaraan;
-        $kendaraan->merk_kendaraan = $request->merk_kendaraan;
-        $kendaraan->tipe_kendaraan = $request->tipe_kendaraan;
-        $kendaraan->save();
-
-        return "Berhasil Menambahkan Data";
+        //
     }
 
     /**
@@ -40,7 +37,17 @@ class kendaraancontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kendaraan = new kendaraan;
+        $kendaraan->merk_kendaraan = $request->merk_kendaraan;
+        $kendaraan->tipe_kendaraan = $request->tipe_kendaraan;
+
+        $success = $kendaraan->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -49,9 +56,16 @@ class kendaraancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($merk_kendaraan)
+    public function showByMerk($merk_kendaraan)
     {
-        return kendaraan::where('merk_kendaraan', $merk_kendaraan)->first();
+        //return kendaraan::where('merk_kendaraan', $merk_kendaraan)->first();
+
+        $result = Kendaraan::where('merk_kendaraan', 'like', "%".$merk_kendaraan."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -72,17 +86,26 @@ class kendaraancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_kendaraan)
+    public function update(Request $request, $id)
     {
-        $merk_kendaraan = $request->merk_kendaraan;
-        $tipe_kendaraan = $request->tipe_kendaraan;
+        $kendaraan = Kendaraan::where('id', $id)->first();
 
-        $kendaraan = kendaraan::find($id_kendaraan);
-        $kendaraan->merk_kendaraan = $merk_kendaraan;
-        $kendaraan->tipe_kendaraan = $tipe_kendaraan;
-        $kendaraan->save();
+        if (is_null($kendaraan)) {
+            return response()->json('Kendaraan not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $kendaraan->merk_kendaraan = $request->merk_kendaraan;
+            $kendaraan->tipe_kendaraan = $request->tipe_kendaraan;
+
+            $success = $kendaraan->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -91,11 +114,21 @@ class kendaraancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_kendaraan)
+    public function destroy($id)
     {
-        $kendaraan = kendaraan::find($id_kendaraan);
-        $kendaraan->delete();
+        $kendaraan = Kendaraan::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($kendaraan)) {
+            return response()->json('Kendaraan Not Found', 404);
+        }
+        
+        else {
+            $success = $kendaraan->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

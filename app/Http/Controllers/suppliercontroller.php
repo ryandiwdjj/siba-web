@@ -49,7 +49,7 @@ class suppliercontroller extends Controller
         if (!$success) {
             return response()->json('Error Saving', 500);
         } else {
-            return response()->json('Success', 201);
+            return response()->json('Success', 204);
         }
     }
 
@@ -118,9 +118,9 @@ class suppliercontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_supplier)
+    public function destroy($id)
     {
-        $supplier = Supplier::find($id_supplier);
+        $supplier = Supplier::find($id);
 
         if(is_null($supplier)) {
             return response()->json('Supplier Not Found', 404);
@@ -129,7 +129,7 @@ class suppliercontroller extends Controller
         else {
             $success = $supplier->delete();
             if($success)
-                return response()->json('Success Delete', 200);
+                return response()->json('Success Delete', 204);
             else {
                 return response()->json('Error Delete', 500);
             }

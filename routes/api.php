@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, enctype');
+header('Access-Control-Allow-Methods: GET, PATCH, POST, DELETE');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -41,17 +45,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::put('/cabang/{id_cabang}','cabangcontroller@update');
 // Route::delete('/cabang/{id_cabang}','cabangcontroller@destroy');
 
-Route::get('supplier','suppliercontroller@index');
+Route::get('/suppliers','suppliercontroller@index');
 Route::get('/supplier/showByName/{nama_supplier}','suppliercontroller@showByName');
 Route::post('/supplier/store','suppliercontroller@store');
-Route::put('/supplier/{id_supplier}','suppliercontroller@update');
-Route::delete('/supplier/{id_supplier}','suppliercontroller@destroy');
+Route::put('/supplier/update/{id}','suppliercontroller@update');
+Route::delete('/supplier/{id}','suppliercontroller@destroy');
 
-// Route::get('sparepart','sparepartcontroller@index');
-// Route::get('/sparepart/{nama_sparepart}','sparepartcontroller@show');
-// Route::post('sparepart','sparepartcontroller@create');
-// Route::put('/sparepart/{id_sparepart}','sparepartcontroller@update');
-// Route::delete('/sparepart/{id_sparepart}','sparepartcontroller@destroy');
+Route::get('sparepart','sparepartcontroller@index');
+Route::get('/sparepart/{nama_sparepart}','sparepartcontroller@show');
+Route::post('sparepart','sparepartcontroller@create');
+Route::put('/sparepart/update/{id_sparepart}','sparepartcontroller@update');
+Route::delete('/sparepart/{id_sparepart}','sparepartcontroller@destroy');
 
 // Route::get('pelanggan','pelanggancontroller@index');
 // Route::get('/pelanggan/{no_telp_pelanggan}','pelanggancontroller@show');
