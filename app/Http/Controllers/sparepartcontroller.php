@@ -51,7 +51,7 @@ class sparepartcontroller extends Controller
 
         if($request->hasFile('gambar_sparepart')){
             $dir = 'uploads/';
-            $path = 'https://192.168.1.12:80/uploads/';
+            $path = 'https://192.168.1.12/uploads/';
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
             $file = $path . $fileName;
