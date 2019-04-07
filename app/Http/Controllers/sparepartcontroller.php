@@ -37,28 +37,6 @@ class sparepartcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(), [
-            'kode_sparepart' => 'required',
-            'nama_sparepart' => 'required',
-            'merk_sparepart' => 'required',
-            'tipe_sparepart' => 'required',
-            'gambar_sparepart' => 'required|image',
-            'jumlah_stok_sparepart' => 'required|numeric',
-            'harga_beli_sparepart' => 'required|numeric',
-            'harga_jual_sparepart' => 'required|numeric',
-            'jumlah_minimal' => 'required|numeric',
-        ]);
-
-        if ($v->fails())
-        {
-            return response()->json([
-                'status' => 'error',
-                'errors' => $v->errors()
-            ], 422);
-        }
-
-
-
         $sparepart = new sparepart;
 
         $sparepart->kode_sparepart = $request->kode_sparepart;
@@ -73,7 +51,7 @@ class sparepartcontroller extends Controller
 
         if($request->hasFile('gambar_sparepart')){
             $dir = 'uploads/';
-            $path = 'https://localhost:8000/uploads/';
+            $path = 'https://192.168.1.12:80/uploads/';
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
             $file = $path . $fileName;
@@ -81,9 +59,13 @@ class sparepartcontroller extends Controller
             $sparepart->gambar_sparepart = $file;
         }
 
-        $sparepart->save();
+        $success = $sparepart->save();
 
-        return response()->json(['status' => 'success creating sparepart'], 201);
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
     }
 
     /**

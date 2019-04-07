@@ -52,9 +52,9 @@ Route::post('/supplier/store','suppliercontroller@store');
 Route::put('/supplier/update/{id}','suppliercontroller@update');
 Route::delete('/supplier/{id}','suppliercontroller@destroy');
 
-Route::get('sparepart','sparepartcontroller@index');
+Route::get('spareparts','sparepartcontroller@index');
 Route::get('/sparepart/{nama_sparepart}','sparepartcontroller@show');
-Route::post('sparepart','sparepartcontroller@create');
+Route::post('sparepart/store','sparepartcontroller@store');
 Route::put('/sparepart/update/{id_sparepart}','sparepartcontroller@update');
 Route::delete('/sparepart/{id_sparepart}','sparepartcontroller@destroy');
 
