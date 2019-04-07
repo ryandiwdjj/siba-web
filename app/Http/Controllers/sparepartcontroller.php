@@ -14,7 +14,9 @@ class sparepartcontroller extends Controller
      */
     public function index()
     {
-        return sparepart::all();
+        $spareparts = Sparepart::all();
+
+        return response()->json($spareparts, 200);
     }
 
     /**
@@ -23,6 +25,17 @@ class sparepartcontroller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $sparepart = new sparepart;
         $sparepart->kode_sparepart = $request->kode_sparepart;
@@ -34,20 +47,14 @@ class sparepartcontroller extends Controller
         $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
         $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
         $sparepart->jumlah_minimal = $request->jumlah_minimal;
-        $sparepart->save();
 
-        return "Berhasil Menambahkan Data";
-    }
+        $success = $sparepart->save();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
     }
 
     /**
@@ -56,9 +63,16 @@ class sparepartcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_sparepart)
+    public function showByName($nama_sparepart)
     {
-        return sparepart::where('nama_sparepart', $nama_sparepart)->first();
+        //return sparepart::where('nama_sparepart', $nama_sparepart)->first();
+
+        $result = Sparepart::where('nama_sparepart', 'like', "%".$nama_sparepart."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -79,31 +93,33 @@ class sparepartcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_sparepart)
+    public function update(Request $request, $id)
     {
-        $kode_sparepart = $request->kode_sparepart;
-        $nama_sparepart = $request->nama_sparepart;
-        $merk_sparepart = $request->merk_sparepart;
-        $tipe_sparepart = $request->tipe_sparepart;
-        $gambar_sparepart = $request->gambar_sparepart;
-        $jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
-        $harga_beli_sparepart = $request->harga_beli_sparepart;
-        $harga_jual_sparepart = $request->harga_jual_sparepart;
-        $jumlah_minimal = $request->jumlah_minimal;
+        $sparepart = Sparepart::where('id', $id)->first();
 
-        $sparepart = sparepart::find($id_sparepart);
-        $sparepart->kode_sparepart = $kode_sparepart;
-        $sparepart->nama_sparepart = $nama_sparepart;
-        $sparepart->merk_sparepart = $merk_sparepart;
-        $sparepart->tipe_sparepart = $tipe_sparepart;
-        $sparepart->gambar_sparepart = $gambar_sparepart;
-        $sparepart->jumlah_stok_sparepart = $jumlah_stok_sparepart;
-        $sparepart->harga_beli_sparepart = $harga_beli_sparepart;
-        $sparepart->harga_jual_sparepart = $harga_jual_sparepart;
-        $sparepart->jumlah_minimal = $jumlah_minimal;
-        $sparepart->save();
+        if (is_null($sparepart)) {
+            return response()->json('Sparepart not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $sparepart->kode_sparepart = $request->kode_sparepart;
+            $sparepart->nama_sparepart = $request->nama_sparepart;
+            $sparepart->merk_sparepart = $request->merk_sparepart;
+            $sparepart->tipe_sparepart = $request->tipe_sparepart;
+            $sparepart->gambar_sparepart = $request->gambar_sparepart;
+            $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
+            $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
+            $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
+            $sparepart->jumlah_minimal = $request->jumlah_minimal;
+
+            $success = $sparepart->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -112,11 +128,21 @@ class sparepartcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_sparepart)
+    public function destroy($id)
     {
-        $sparepart = sparepart::find($id_sparepart);
-        $sparepart->delete();
+        $sparepart = Sparepart::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($sparepart)) {
+            return response()->json('Sparepart Not Found', 404);
+        }
+        
+        else {
+            $success = $sparepart->delete();
+            if($success)
+                return response()->json('Success Delete', 204);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

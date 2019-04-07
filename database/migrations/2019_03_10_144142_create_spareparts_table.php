@@ -14,7 +14,7 @@ class CreateSparepartsTable extends Migration
     public function up()
     {
         Schema::create('spareparts', function (Blueprint $table) {
-            $table->bigIncrements('id_sparepart');
+            $table->bigIncrements('id');
             $table->string('kode_sparepart');
             $table->string('nama_sparepart');
             $table->string('merk_sparepart');

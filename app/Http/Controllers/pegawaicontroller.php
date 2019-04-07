@@ -14,7 +14,9 @@ class pegawaicontroller extends Controller
      */
     public function index()
     {
-        return pegawai::all();
+        $pegawais = Pegawai::all();
+
+        return response()->json($pegawais, 200);
     }
 
     /**
@@ -24,17 +26,7 @@ class pegawaicontroller extends Controller
      */
     public function create(Request $request)
     {
-        $pegawai = new pegawai;
-        $pegawai->id_role = $request->id_role;
-        $pegawai->nama_pegawai = $request->nama_pegawai;
-        $pegawai->alamat_pegawai = $request->alamat_pegawai;
-        $pegawai->no_telp_pegawai = $request->no_telp_pegawai;
-        $pegawai->gaji_perminggu = $request->gaji_perminggu;
-        $pegawai->password_pegawai = $request->password_pegawai;
-        $pegawai->id_cabang = $request->id_cabang;
-        $pegawai->save();
-
-        return "Berhasil Menambahkan Data";
+        //
     }
 
     /**
@@ -45,7 +37,22 @@ class pegawaicontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pegawai = new pegawai;
+        $pegawai->id_role = $request->id_role;
+        $pegawai->nama_pegawai = $request->nama_pegawai;
+        $pegawai->alamat_pegawai = $request->alamat_pegawai;
+        $pegawai->no_telp_pegawai = $request->no_telp_pegawai;
+        $pegawai->gaji_perminggu = $request->gaji_perminggu;
+        $pegawai->password_pegawai = $request->password_pegawai;
+        $pegawai->id_cabang = $request->id_cabang;
+
+        $success = $pegawai->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -54,9 +61,16 @@ class pegawaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_pegawai)
+    public function showByName($nama_pegawai)
     {
-        return pegawai::where('nama_pegawai', $nama_pegawai)->first();
+        //return pegawai::where('nama_pegawai', $nama_pegawai)->first();
+
+        $result = Pegawai::where('nama_pegawai', 'like', "%".$nama_pegawai."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -77,28 +91,31 @@ class pegawaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_pegawai)
+    public function update(Request $request, $id)
     {
-        $id_role = $request->id_role;
-        $nama_pegawai = $request->nama_pegawai;
-        $alamat_pegawai = $request->alamat_pegawai;
-        $no_telp_pegawai = $request->no_telp_pegawai;
-        $gaji_perminggu = $request->gaji_perminggu;
-        $password_pegawai = $request->password_pegawai;
-        $id_cabang = $request->id_cabang;
+        $pegawai = Pegawai::where('id', $id)->first();
 
+        if (is_null($pegawai)) {
+            return response()->json('Pegawai not found', 404);
+        }
 
-        $pegawai = pegawai::find($id_pegawai);
-        $pegawai->id_role = $id_role;
-        $pegawai->nama_pegawai = $nama_pegawai;
-        $pegawai->alamat_pegawai = $alamat_pegawai;
-        $pegawai->no_telp_pegawai = $no_telp_pegawai;
-        $pegawai->gaji_perminggu = $gaji_perminggu;
-        $pegawai->password_pegawai = $password_pegawai;
-        $pegawai->id_cabang = $id_cabang;
-        $pegawai->save();
+        else {
+            $pegawai->id_role = $request->id_role;
+            $pegawai->nama_pegawai = $request->nama_pegawai;
+            $pegawai->alamat_pegawai = $request->alamat_pegawai;
+            $pegawai->no_telp_pegawai = $request->no_telp_pegawai;
+            $pegawai->gaji_perminggu = $request->gaji_perminggu;
+            $pegawai->password_pegawai = $request->password_pegawai;
+            $pegawai->id_cabang = $request->id_cabang;
 
-        return "Berhasil Mengubah Data";
+            $success = $pegawai->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -107,11 +124,21 @@ class pegawaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_pegawai)
+    public function destroy($id)
     {
-        $pegawai = pegawai::find($id_pegawai);
-        $pegawai->delete();
+        $pegawai = Pegawai::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($pegawai)) {
+            return response()->json('Pegawai Not Found', 404);
+        }
+        
+        else {
+            $success = $pegawai->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

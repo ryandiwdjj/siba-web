@@ -14,7 +14,9 @@ class rolecontroller extends Controller
      */
     public function index()
     {
-        return role::all();
+        $roles = Role::all();
+
+        return response()->json($roles, 200);
     }
 
     /**
@@ -24,11 +26,7 @@ class rolecontroller extends Controller
      */
     public function create(Request $request)
     {
-        $role = new role;
-        $role->nama_role = $request->nama_role;
-        $role->save();
-
-        return "Berhasil Menambahkan Data";
+        //
     }
 
     /**
@@ -39,7 +37,16 @@ class rolecontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = new role;
+        $role->nama_role = $request->nama_role;
+
+        $success = $role->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -48,9 +55,16 @@ class rolecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_role)
+    public function showByName($nama_role)
     {
-        return role::where('nama_role', $nama_role)->first();
+        //return role::where('nama_role', $nama_role)->first();
+
+        $result = Role::where('nama_role', 'like', "%".$nama_role."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -71,15 +85,25 @@ class rolecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_role)
+    public function update(Request $request, $id)
     {
-        $nama_role = $request->nama_role;
+        $role = Role::where('id', $id)->first();
 
-        $role = role::find($id_role);
-        $role->nama_role = $nama_role;
-        $role->save();
+        if (is_null($role)) {
+            return response()->json('Role not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $role->nama_role = $request->nama_role;
+
+            $success = $role->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -88,11 +112,21 @@ class rolecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_role)
+    public function destroy($id)
     {
-        $role = role::find($id_role);
-        $role->delete();
+        $role = Role::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($role)) {
+            return response()->json('Role Not Found', 404);
+        }
+        
+        else {
+            $success = $role->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

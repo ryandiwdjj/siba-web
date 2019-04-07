@@ -14,7 +14,9 @@ class jasaservicecontroller extends Controller
      */
     public function index()
     {
-        return jasa_service::all();
+        $jasas = jasa_service::all();
+
+        return response()->json($jasas, 200);
     }
 
     /**
@@ -24,12 +26,7 @@ class jasaservicecontroller extends Controller
      */
     public function create(request $request)
     {
-        $jasa = new jasa_service;
-        $jasa->nama_jasa = $request->nama_jasa;
-        $jasa->harga_jasa = $request->harga_jasa;
-        $jasa->save();
-
-        return "Berhasil Menambahkan Data";
+       //
     }
 
     /**
@@ -40,7 +37,17 @@ class jasaservicecontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jasa = new jasa_service;
+        $jasa->nama_jasa = $request->nama_jasa;
+        $jasa->harga_jasa = $request->harga_jasa;
+        
+        $success = $jasa->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -49,9 +56,16 @@ class jasaservicecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_jasa)
+    public function showByName($nama_jasa)
     {
-        return jasa_service::where('nama_jasa', $nama_jasa)->first();
+        //return jasa_service::where('nama_jasa', $nama_jasa)->first();
+
+        $result = jasa_service::where('nama_jasa', 'like', "%".$nama_jasa."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -72,17 +86,26 @@ class jasaservicecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_jasa)
+    public function update(Request $request, $id)
     {
-        $nama_jasa = $request->nama_jasa;
-        $harga_jasa = $request->harga_jasa;
+        $jasa = jasa_service::where('id', $id)->first();
 
-        $jasa = jasa_service::find($id_jasa);
-        $jasa->nama_jasa = $nama_jasa;
-        $jasa->harga_jasa = $harga_jasa;
-        $jasa->save();
+        if (is_null($jasa)) {
+            return response()->json('Jasa Service not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $jasa->nama_jasa = $request->nama_jasa;
+            $jasa->harga_jasa = $request->harga_jasa;
+
+            $success = $jasa->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -91,11 +114,21 @@ class jasaservicecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_jasa)
+    public function destroy($id)
     {
-        $jasa = jasa_service::find($id_jasa);
-        $jasa->delete();
+        $jasa = jasa_service::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($jasa)) {
+            return response()->json('Jasa Service Not Found', 404);
+        }
+        
+        else {
+            $success = $jasa->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

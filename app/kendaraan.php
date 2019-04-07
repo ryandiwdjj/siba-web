@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class kendaraan extends Model
 {
-    protected $primaryKey = 'id_kendaraan';
+    protected $table = 'kendaraans';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+    protected $fillable = ['merk_kendaraan',
+                            'tipe_kendaraan'];
 }

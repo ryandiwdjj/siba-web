@@ -14,7 +14,9 @@ class cabangcontroller extends Controller
      */
     public function index()
     {
-        return cabang::all();
+        $cabangs = Cabang::all();
+
+        return response()->json($cabangs, 200);
     }
 
     /**
@@ -24,13 +26,7 @@ class cabangcontroller extends Controller
      */
     public function create(Request $request)
     {
-        $cabang = new cabang;
-        $cabang->nama_cabang = $request->nama_cabang;
-        $cabang->alamat_cabang = $request->alamat_cabang;
-        $cabang->no_telp_cabang = $request->no_telp_cabang;
-        $cabang->save();
-
-        return "Berhasil Menambahkan Data";
+        //
     }
 
     /**
@@ -41,7 +37,18 @@ class cabangcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cabang = new cabang;
+        $cabang->nama_cabang = $request->nama_cabang;
+        $cabang->alamat_cabang = $request->alamat_cabang;
+        $cabang->no_telp_cabang = $request->no_telp_cabang;
+        
+        $success = $cabang->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -50,9 +57,16 @@ class cabangcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($nama_cabang)
+    public function showByName($nama_cabang)
     {
-        return cabang::where('nama_cabang', $nama_cabang)->first();
+        //return cabang::where('nama_cabang', $nama_cabang)->first();
+
+        $result = Cabang::where('nama_cabang', 'like', "%".$nama_cabang."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -73,19 +87,27 @@ class cabangcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_cabang)
+    public function update(Request $request, $id)
     {
-        $nama_cabang = $request->nama_cabang;
-        $alamat_cabang = $request->alamat_cabang;
-        $no_telp_cabang = $request->no_telp_cabang;
+        $cabang = Cabang::where('id', $id)->first();
 
-        $cabang = cabang::find($id_cabang);
-        $cabang->nama_cabang = $nama_cabang;
-        $cabang->alamat_cabang = $alamat_cabang;
-        $cabang->no_telp_cabang = $no_telp_cabang;
-        $cabang->save();
+        if (is_null($cabang)) {
+            return response()->json('Cabang not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $cabang->nama_cabang = $request->nama_cabang;
+            $cabang->alamat_cabang = $request->alamat_cabang;
+            $cabang->no_telp_cabang = $request->no_telp_cabang;
+            
+            $success = $cabang->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -94,11 +116,21 @@ class cabangcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_cabang)
+    public function destroy($id)
     {
-        $cabang = cabang::find($id_cabang);
-        $cabang->delete();
+        $cabang = Cabang::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($cabang)) {
+            return response()->json('Cabang Not Found', 404);
+        }
+        
+        else {
+            $success = $cabang->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

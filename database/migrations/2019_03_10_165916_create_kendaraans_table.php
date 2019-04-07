@@ -14,7 +14,7 @@ class CreateKendaraansTable extends Migration
     public function up()
     {
         Schema::create('kendaraans', function (Blueprint $table) {
-            $table->bigIncrements('id_kendaraan');
+            $table->bigIncrements('id');
             $table->string('merk_kendaraan');
             $table->string('tipe_kendaraan');
             $table->timestamps();

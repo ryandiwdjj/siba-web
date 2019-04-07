@@ -14,7 +14,9 @@ class pelanggancontroller extends Controller
      */
     public function index()
     {
-        return pelanggan::all();
+        $pelanggans = Pelanggan::all();
+
+        return response()->json($pelanggans, 200);
     }
 
     /**
@@ -24,13 +26,7 @@ class pelanggancontroller extends Controller
      */
     public function create(Request $request)
     {
-        $pelanggan = new pelanggan;
-        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
-        $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
-        $pelanggan->no_telp_pelanggan = $request->no_telp_pelanggan;
-        $pelanggan->save();
-
-        return "Berhasil Menambahkan Data";
+        //
     }
 
     /**
@@ -41,7 +37,18 @@ class pelanggancontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelanggan = new pelanggan;
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
+        $pelanggan->no_telp_pelanggan = $request->no_telp_pelanggan;
+
+        $success = $pelanggan->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 201);
+        }
     }
 
     /**
@@ -50,9 +57,16 @@ class pelanggancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($no_telp_pelanggan)
+    public function showByNo($no_telp_pelanggan)
     {
-        return pelanggan::where('no_telp_pelanggan', $no_telp_pelanggan)->first();
+        //return pelanggan::where('no_telp_pelanggan', $no_telp_pelanggan)->first();
+
+        $result = Pelanggan::where('no_telp_pelanggan', 'like', "%".$no_telp_pelanggan."%")->get();
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**
@@ -73,19 +87,27 @@ class pelanggancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_pelanggan)
+    public function update(Request $request, $id)
     {
-        $nama_pelanggan = $request->nama_pelanggan;
-        $alamat_pelanggan = $request->alamat_pelanggan;
-        $no_telp_pelanggan = $request->no_telp_pelanggan;
+        $pelanggan = Pelanggan::where('id', $id)->first();
 
-        $pelanggan = pelanggan::find($id_pelanggan);
-        $pelanggan->nama_pelanggan = $nama_pelanggan;
-        $pelanggan->alamat_pelanggan = $alamat_pelanggan;
-        $pelanggan->no_telp_pelanggan = $no_telp_pelanggan;
-        $pelanggan->save();
+        if (is_null($pelanggan)) {
+            return response()->json('Pelanggan not found', 404);
+        }
 
-        return "Berhasil Mengubah Data";
+        else {
+            $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+            $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
+            $pelanggan->no_telp_pelanggan = $request->no_telp_pelanggan;
+
+            $success = $pelanggan->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
     }
 
     /**
@@ -94,11 +116,21 @@ class pelanggancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_pelanggan)
+    public function destroy($id)
     {
-        $pelanggan = pelanggan::find($id_pelanggan);
-        $pelanggan->delete();
+        $pelanggan = Pelanggan::find($id);
 
-        return "Berhasil Menghapus Data";
+        if(is_null($pelanggan)) {
+            return response()->json('Pelanggan Not Found', 404);
+        }
+        
+        else {
+            $success = $pelanggan->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
     }
 }

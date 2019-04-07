@@ -14,7 +14,7 @@ class CreateJasaServicesTable extends Migration
     public function up()
     {
         Schema::create('jasa_services', function (Blueprint $table) {
-            $table->bigIncrements('id_jasa');
+            $table->bigIncrements('id');
             $table->string('nama_jasa');
             $table->float('harga_jasa');
             $table->timestamps();
