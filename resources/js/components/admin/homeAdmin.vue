@@ -3,7 +3,7 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item">
-        <img src="../../../../public/AA_logo_2.png">
+        
         <router-link to= "/" class="navbar-item"> ATMA AUTO </router-link>
     </a>
 
@@ -56,27 +56,12 @@
         Pemesanan
       </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
+      
+        <a class="navbar-item">
           Laporan
         </a>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
+        
      </div>
     
     
@@ -92,6 +77,9 @@
     </div>
   </div>
 </nav>
+<a>
+<img src="../../../../public/AAlogo.png">
+</a>
         <div id="appPage">
             <main class="pageContent">
             <transition name="fade">

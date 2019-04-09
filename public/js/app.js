@@ -1932,10 +1932,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cariItu: function cariItu() {
-      axios.get('/api/jasa_service/showByName?q=' + this.search).then(function (resp) {
-        this.caris = resp.data;
-        this.showSearch = true;
-        this.search = ''; //this.$forceUpdate();
+      var _this = this;
+
+      axios.get('/api/jasa_service/search?q=' + this.search).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this.caris = resp.data;
+        _this.showSearch = true;
+        _this.search = ''; //this.$forceUpdate();
       }).catch(function (resp) {
         console.log(resp);
         alert("Tidak dapat memuat jasa service");
@@ -3623,18 +3627,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -4222,7 +4214,7 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "button is-warning",
+                          staticClass: "fa fa-edit blue",
                           attrs: {
                             to: {
                               name: "editCabang",
@@ -4240,7 +4232,7 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "button is-danger",
+                          staticClass: "fa fa-trash red",
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
@@ -4388,7 +4380,7 @@ var render = function() {
                           _c(
                             "router-link",
                             {
-                              staticClass: "button is-warning",
+                              staticClass: "fa fa-edit blue",
                               attrs: {
                                 to: {
                                   name: "editJasaService",
@@ -4406,7 +4398,7 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              staticClass: "button is-danger",
+                              staticClass: "fa fa-trash red",
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -4444,7 +4436,7 @@ var render = function() {
                           _c(
                             "router-link",
                             {
-                              staticClass: "button is-warning",
+                              staticClass: "fa fa-edit blue",
                               attrs: {
                                 to: {
                                   name: "editJasaService",
@@ -4462,7 +4454,7 @@ var render = function() {
                           _c(
                             "a",
                             {
-                              staticClass: "button is-danger",
+                              staticClass: "fa fa-trash red",
                               attrs: { href: "#" },
                               on: {
                                 click: function($event) {
@@ -4585,7 +4577,7 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "button is-warning",
+                          staticClass: "fa fa-edit blue",
                           attrs: {
                             to: {
                               name: "editPegawai",
@@ -4603,7 +4595,7 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "button is-danger",
+                          staticClass: "fa fa-trash red",
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
@@ -4720,7 +4712,7 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "button is-warning",
+                          staticClass: "fa fa-edit blue",
                           attrs: {
                             to: { name: "editRole", params: { id: role.id } }
                           }
@@ -4735,7 +4727,7 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "button is-danger",
+                          staticClass: "fa fa-trash red",
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
@@ -4866,7 +4858,7 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "button is-warning",
+                          staticClass: "fa fa-edit blue",
                           attrs: {
                             to: {
                               name: "editSparepart",
@@ -4884,7 +4876,7 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "button is-danger",
+                          staticClass: "fa fa-trash red",
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
@@ -5014,7 +5006,7 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "button is-warning",
+                          staticClass: "fa fa-edit blue",
                           attrs: {
                             to: {
                               name: "editSupplier",
@@ -5032,7 +5024,7 @@ var render = function() {
                       _c(
                         "a",
                         {
-                          staticClass: "button is-danger",
+                          staticClass: "fa fa-trash red",
                           attrs: { href: "#" },
                           on: {
                             click: function($event) {
@@ -7721,10 +7713,6 @@ var render = function() {
             "a",
             { staticClass: "navbar-item" },
             [
-              _c("img", {
-                attrs: { src: __webpack_require__(/*! ../../../../public/AA_logo_2.png */ "./public/AA_logo_2.png") }
-              }),
-              _vm._v(" "),
               _c(
                 "router-link",
                 { staticClass: "navbar-item", attrs: { to: "/" } },
@@ -7886,14 +7874,18 @@ var render = function() {
                 _vm._v("\r\n        Pemesanan\r\n      ")
               ]),
               _vm._v(" "),
-              _vm._m(1)
+              _c("a", { staticClass: "navbar-item" }, [
+                _vm._v("\r\n          Laporan\r\n        ")
+              ])
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]
         )
       ]
     ),
+    _vm._v(" "),
+    _vm._m(2),
     _vm._v(" "),
     _c("div", { attrs: { id: "appPage" } }, [
       _c(
@@ -7936,36 +7928,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-item has-dropdown is-hoverable" }, [
-      _c("a", { staticClass: "navbar-link" }, [
-        _vm._v("\r\n          Laporan\r\n        ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "navbar-dropdown" }, [
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            About\r\n          ")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            Jobs\r\n          ")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            Contact\r\n          ")
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "navbar-divider" }),
-        _vm._v(" "),
-        _c("a", { staticClass: "navbar-item" }, [
-          _vm._v("\r\n            Report an issue\r\n          ")
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "navbar-end" }, [
       _c("div", { staticClass: "navbar-item" }, [
         _c("div", { staticClass: "buttons" }, [
@@ -7974,6 +7936,14 @@ var staticRenderFns = [
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", [
+      _c("img", { attrs: { src: __webpack_require__(/*! ../../../../public/AAlogo.png */ "./public/AAlogo.png") } })
     ])
   },
   function() {
@@ -22753,14 +22723,14 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./public/AA_logo_2.png":
-/*!******************************!*\
-  !*** ./public/AA_logo_2.png ***!
-  \******************************/
+/***/ "./public/AAlogo.png":
+/*!***************************!*\
+  !*** ./public/AAlogo.png ***!
+  \***************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/AA_logo_2.png?f2e8509e44de7938571665d3bd9f35f0";
+module.exports = "/images/AAlogo.png?1abc9c922879bea8ead3d6368b0fc50c";
 
 /***/ }),
 
