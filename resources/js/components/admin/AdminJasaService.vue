@@ -1,41 +1,127 @@
 <template>
-  <div>
-    <h1>Tambah Jasa Service</h1>
-    <form @submit.prevent="addPost">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label>Post Title:</label>
-            <input type="text" class="form-control" v-model="post.title">
-          </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>Post Body:</label>
-              <textarea class="form-control" v-model="post.body" rows="5"></textarea>
-            </div>
-          </div>
-        </div><br />
+    <div>
+        <br>
         <div class="form-group">
-          <button class="btn btn-primary">Create</button>
+            <router-link to="/tambah_jasa" class="button is-success">Tambah Jasa Service</router-link> 
+             
+             <input type="text" placeholder="Cari Nama Service" v-model="search"><button class="button is-primary" @click.prevent="cariItu()">Cari Jasa Service</button> 
         </div>
-    </form>
-  </div>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">List Jasa Service</div>
+            <div class="panel-body">
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                    <tr>
+                        <th>Nama Jasa</th>
+                        <th>Harga Jasa</th>
+                        <th width="100">&nbsp;</th>
+                    </tr>
+                    </thead>
+
+                    
+                    <tbody v-if="showSearch==true">
+                    <tr v-for="(cari,index) in caris" :key="cari.id">
+                        <td>{{ cari.nama_jasa }}</td>
+                        <td>{{ cari.harga_jasa }}</td>
+                        <td>
+                            <router-link :to="{name: 'editJasaService', params: {id: cari.id}}" class="button is-warning">
+                                Edit
+                            </router-link>
+                            <a href="#"
+                               class="button is-danger"
+                               v-on:click="deleteEntry(cari.id, index)">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                    
+                    <tbody v-if="showSearch==false">
+                    <tr v-for="(jasa_service,index) in jasa_services" :key="jasa_service.id">
+                        <td>{{ jasa_service.nama_jasa }}</td>
+                        <td>{{ jasa_service.harga_jasa }}</td>
+                        <td>
+                            <router-link :to="{name: 'editJasaService', params: {id: jasa_service.id}}" class="button is-warning">
+                                Edit
+                            </router-link>
+                            <a href="#"
+                               class="button is-danger"
+                               v-on:click="deleteEntry(jasa_service.id, index)">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    
+                    
+                </table>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
     export default {
-        data(){
-        return {
-          post:{}
+        data: function () {
+            return {
+                
+                jasa_services: [],
+                lookingItem:{
+                        
+                },
+                showSearch: false,
+                search: '',
+                caris: [],
+            }
+        },
+        mounted() {
+            var app = this;
+
+                axios.get('/api/jasa_service')
+                .then(function (resp) {
+                    app.jasa_services = resp.data;
+                })
+                .catch(function (resp) {
+                    console.log(resp);
+                    alert("Tidak dapat memuat jasa service");
+                });
+                
+        },
+        methods: {
+            
+
+            cariItu(){
+                
+                 axios.get('/api/jasa_service/showByName?q=' +this.search)
+                 .then(function (resp) {
+                    this.caris = resp.data;
+                    this.showSearch = true;
+                    this.search = '';
+                    //this.$forceUpdate();
+                })
+                .catch(function (resp) {
+                    console.log(resp);
+                    alert("Tidak dapat memuat jasa service");
+                });
+
+
+            },
+
+
+            deleteEntry(id, index) {
+                if (confirm("Anda yakin ingin menghapus?")) {
+                    var app = this;
+                    axios.delete('/api/jasa_service/' + id)
+                        .then(function (resp) {
+                            app.jasa_services.splice(index, 1);
+                        })
+                        .catch(function (resp) {
+                            alert("Tidak dapat menghapus jasa service");
+                        });
+                }
+            }
         }
-    },
-    methods: {
-      addPost(){
-        console.log(this.post);
-      }
     }
-  }
 </script>

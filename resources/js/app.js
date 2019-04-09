@@ -1,19 +1,14 @@
+window.Vue = require('vue');
 
-
-require('./bootstrap');
+//window.axios = require('axios');
 
 import AppLayout from './components/appLayout.vue'
-import Buefy from 'buefy';
-import VueRouter from 'vue-router';
-import router from './router/routes';
+import router from './router/routes'
+import axios from 'axios'
 
-window.Vue = require('vue');
-window.VueRouter = require('vue-router').default;
-Vue.use(Buefy,{defaultIconPack: 'fa'}, VueRouter, axios);
+window.axios = axios.create()
 
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-Vue.use(VueAxios, axios);
+
 
 
 const app = new Vue({
@@ -22,4 +17,5 @@ const app = new Vue({
         AppLayout,
     },
     router
+    
 });

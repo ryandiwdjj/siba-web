@@ -57,6 +57,17 @@ class cabangcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+       
+        $result = Cabang::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByName($nama_cabang)
     {
         //return cabang::where('nama_cabang', $nama_cabang)->first();

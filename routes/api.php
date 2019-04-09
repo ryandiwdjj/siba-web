@@ -23,40 +23,47 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('/jasa_service','jasaservicecontroller@index');
-Route::get('/jasa_service/showByName/{nama_jasa}','jasaservicecontroller@showByName');
+Route::get('/jasa_service/{id}','jasaservicecontroller@show');
+Route::get('/jasa_service/search','jasaservicecontroller@search');
 Route::post('/jasa_service/store','jasaservicecontroller@store');
 Route::put('/jasa_service/update/{id}','jasaservicecontroller@update');
 Route::delete('/jasa_service/{id}','jasaservicecontroller@destroy');
 
-// Route::get('role','rolecontroller@index');
-// Route::get('/role/{nama_role}','rolecontroller@show');
-// Route::post('role','rolecontroller@create');
-// Route::put('/role/{id_role}','rolecontroller@update');
-// Route::delete('/role/{id_role}','rolecontroller@destroy');
+
+Route::get('/role','rolecontroller@index');
+Route::get('/role/showByName/{nama_role}','rolecontroller@showByName');
+Route::post('/role/store','rolecontroller@store');
+Route::put('/role/update/{id}','rolecontroller@update');
+Route::delete('/role/{id}','rolecontroller@destroy');
+
 
 Route::get('/pegawai','pegawaicontroller@index');
+Route::get('/pegawai/{id}','pegawaicontroller@show');
 Route::get('/pegawai/showByName/{nama_pegawai}','pegawaicontroller@showByName');
 Route::post('/pegawai/store','pegawaicontroller@store');
 Route::put('/pegawai/update/{id}','pegawaicontroller@update');
 Route::delete('/pegawai/{id}','pegawaicontroller@destroy');
 
-// Route::get('cabang','cabangcontroller@index');
-// Route::get('/cabang/{nama_cabang}','cabangcontroller@show');
-// Route::post('cabang','cabangcontroller@create');
-// Route::put('/cabang/{id_cabang}','cabangcontroller@update');
-// Route::delete('/cabang/{id_cabang}','cabangcontroller@destroy');
+Route::get('/cabang','cabangcontroller@index');
+Route::get('/cabang/{id}','cabangcontroller@show');
+Route::get('/cabang/showByName/{nama_cabang}','cabangcontroller@showByName');
+Route::post('/cabang/store','cabangcontroller@store');
+Route::put('/cabang/update/{id}','cabangcontroller@update');
+Route::delete('/cabang/{id}','cabangcontroller@destroy');
 
 Route::get('/suppliers','suppliercontroller@index');
+Route::get('/supplier/{id}','suppliercontroller@show');
 Route::get('/supplier/showByName/{nama_supplier}','suppliercontroller@showByName');
 Route::post('/supplier/store','suppliercontroller@store');
 Route::put('/supplier/update/{id}','suppliercontroller@update');
 Route::delete('/supplier/{id}','suppliercontroller@destroy');
 
-Route::get('spareparts','sparepartcontroller@index');
-Route::get('/sparepart/{nama_sparepart}','sparepartcontroller@show');
+Route::get('sparepart','sparepartcontroller@index');
+Route::get('/sparepart/{id}','sparepartcontroller@show');
+Route::get('/sparepart/showByName/{nama_sparepart}','sparepartcontroller@showByName');
 Route::post('sparepart/store','sparepartcontroller@store');
-Route::put('/sparepart/update/{id_sparepart}','sparepartcontroller@update');
-Route::delete('/sparepart/{id_sparepart}','sparepartcontroller@destroy');
+Route::put('/sparepart/update/{id}','sparepartcontroller@update');
+Route::delete('/sparepart/{id}','sparepartcontroller@destroy');
 
 // Route::get('pelanggan','pelanggancontroller@index');
 // Route::get('/pelanggan/{no_telp_pelanggan}','pelanggancontroller@show');

@@ -56,11 +56,23 @@ class jasaservicecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showByName($nama_jasa)
+    public function show($id)
     {
         //return jasa_service::where('nama_jasa', $nama_jasa)->first();
 
-        $result = jasa_service::where('nama_jasa', 'like', "%".$nama_jasa."%")->get();
+        $result = jasa_service::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
+
+    public function search(Request $request)
+    {
+        //return jasa_service::where('nama_jasa', $nama_jasa)->first();
+        $search = $request->get('q');
+        $result = jasa_service::where('nama_jasa', 'like', '%'.$search.'%')->get();
 
         if (is_null($result)) {
             return response()->json('Not Found', 404);

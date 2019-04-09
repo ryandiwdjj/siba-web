@@ -61,6 +61,18 @@ class pegawaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+        
+
+        $result = Pegawai::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByName($nama_pegawai)
     {
         //return pegawai::where('nama_pegawai', $nama_pegawai)->first();

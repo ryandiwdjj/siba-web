@@ -37,27 +37,40 @@ class sparepartcontroller extends Controller
      */
     public function store(Request $request)
     {
+        $exploded = explode(',', $request->gambar_sparepart);
+        $decoded = base64_decode($exploded[1]);
+        if(str_contains($exploded[0], 'jpeg'))
+          $extention = 'jpg';
+        else
+          $extention = 'png';
+  
+        $fileName = str_random() .'.'. $extention;
+        $path = public_path() . '/images/sparepart/' . $fileName;
+        file_put_contents($path, $decoded);
+
         $sparepart = new sparepart;
 
         $sparepart->kode_sparepart = $request->kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->merk_sparepart = $request->merk_sparepart;  
         $sparepart->tipe_sparepart = $request->tipe_sparepart;
-        //gambar
+        $sparepart->gambar_sparepart = $fileName;
         $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
         $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
         $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
         $sparepart->jumlah_minimal = $request->jumlah_minimal;
 
-        if($request->hasFile('gambar_sparepart')){
+        /*
+        if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
             $dir = 'uploads/';
-            $path = 'https://192.168.1.12/uploads/';
+            $path = 'https://localhost:180/uploads/'; //sesuai path yang dipake
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
             $file = $path . $fileName;
             $request->file('gambar_sparepart')->move($dir, $fileName);
             $sparepart->gambar_sparepart = $file;
         }
+        */
 
         $success = $sparepart->save();
 
@@ -74,6 +87,17 @@ class sparepartcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        
+
+        $result = Sparepart::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByName($nama_sparepart)
     {
         //return sparepart::where('nama_sparepart', $nama_sparepart)->first();
