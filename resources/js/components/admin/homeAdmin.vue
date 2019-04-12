@@ -4,7 +4,7 @@
   <div class="navbar-brand">
     <a class="navbar-item">
         
-        <router-link to= "/" class="navbar-item"> ATMA AUTO </router-link>
+        <router-link to= "/" class="button is-dark"> ATMA AUTO </router-link>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -39,10 +39,10 @@
             <router-link to= "/supplier"  class="navbar-item">Supplier</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/supplier"  class="navbar-item">Pelanggan</router-link>
+            <router-link to= "/pelanggan"  class="navbar-item">Pelanggan</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/supplier"  class="navbar-item">Kendaraan</router-link>
+            <router-link to= "/kendaraan"  class="navbar-item">Kendaraan</router-link>
           </a>
           <a class="navbar-item">
             <router-link to= "/cabang"  class="navbar-item">Cabang</router-link>
@@ -88,8 +88,7 @@
             </main>
         </div>
         <div class="footer">
-            <hr>
-            <p style="text-align: center">Halaman Admin</p>
+            <p style="text-align: center">Halaman Admin SIBA</p>
         </div>
 </div>
 
@@ -101,3 +100,13 @@
     export default{
     }
 </script>
+
+<style>
+  .footer{
+    background-color: silver;
+    height: 100vh;
+  }
+  img{
+    margin-left: 70px;
+  }
+</style>
