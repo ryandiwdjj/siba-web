@@ -145,4 +145,11 @@ class suppliercontroller extends Controller
             }
         }
     }
+
+    public function indexMobile()
+    {
+        $suppliers = Supplier::all();
+
+        return response()->json($suppliers, 200);
+    }
 }

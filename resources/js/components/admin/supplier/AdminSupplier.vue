@@ -159,6 +159,13 @@
         });
       }
     }
+    computed: {
+      filteredList() {
+        return this.suppliers.filter((pencarian) => {
+          return supplier.namaSupplier.title.toLowerCase().include(this.pencarian.toLowerCase());
+        });
+      }
+    },
   }
 
 </script>
