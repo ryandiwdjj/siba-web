@@ -71,7 +71,7 @@ Route::delete('/sparepart/{id}','sparepartcontroller@destroy');
 
 Route::get('/sparepartMobile','sparepartcontroller@indexMobile');
 Route::post('/sparepart/storeMobile','sparepartcontroller@storeMobile');
-Route::put('/sparepart/updateMobile/{id}','sparepartcontroller@updateMobile');
+Route::post('/sparepart/updateMobile/{id}','sparepartcontroller@updateMobile');
 
 
 Route::get('pelanggan','pelanggancontroller@index');

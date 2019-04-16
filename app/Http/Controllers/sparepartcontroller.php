@@ -215,8 +215,8 @@ class sparepartcontroller extends Controller
 
         
         if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
-            $dir = '/images/sparepart/';
-            $path = 'https://localhost/images/sparepart/'; //sesuai path yang dipake
+            $dir = 'images/sparepart/';
+            $path = 'http://192.168.1.14:8000/images/sparepart/'; //sesuai path yang dipake
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
             $file = $path . $fileName;
@@ -254,8 +254,8 @@ class sparepartcontroller extends Controller
             $sparepart->jumlah_minimal = $request->jumlah_minimal;
 
             if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
-                $dir = '/images/sparepart/';
-                $path = 'https://localhost/images/sparepart/'; //sesuai path yang dipake
+                $dir = 'images/sparepart/';
+                $path = 'http://192.168.1.14:8000/images/sparepart/'; //sesuai path yang dipake
                 $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
                 $fileName = str_random() . '.' . $extension;
                 $file = $path . $fileName;
