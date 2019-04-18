@@ -3308,6 +3308,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3320,6 +3332,8 @@ __webpack_require__.r(__webpack_exports__);
         password_pegawai: '',
         id_cabang: ''
       },
+      roles: [],
+      cabangs: [],
       pegawaiId: null,
       errors: [],
       message: ''
@@ -3335,6 +3349,8 @@ __webpack_require__.r(__webpack_exports__);
     }).catch(function (resp) {
       alert("Gagal memuat pegawai");
     });
+    app.getRoles();
+    app.getCabangs();
   },
   methods: {
     alert: function alert(pesan) {
@@ -3342,6 +3358,22 @@ __webpack_require__.r(__webpack_exports__);
         title: "Berhasil Mengubah Pegawai",
         text: pesan,
         icon: "success"
+      });
+    },
+    getRoles: function getRoles() {
+      var app = this;
+      axios.get('/api/role' + '/all').then(function (resp) {
+        app.roles = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getCabangs: function getCabangs() {
+      var app = this;
+      axios.get('/api/cabang' + '/all').then(function (resp) {
+        app.cabangs = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
       });
     },
     saveForm: function saveForm() {
@@ -10398,33 +10430,54 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pegawai.id_role,
-                          expression: "pegawai.id_role"
-                        }
-                      ],
-                      staticClass: "input is-primary",
-                      style: { width: "35%" },
-                      attrs: {
-                        type: "text",
-                        required: "",
-                        placeholder: "ID Role",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.pegawai.id_role },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.pegawai.id_role,
+                            expression: "pegawai.id_role"
                           }
-                          _vm.$set(_vm.pegawai, "id_role", $event.target.value)
+                        ],
+                        staticClass: "form-control",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.pegawai,
+                              "id_role",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    }),
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Pilih ID Role")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.roles, function(role) {
+                          return _c(
+                            "option",
+                            { domProps: { value: role.id } },
+                            [_vm._v(_vm._s(role.id))]
+                          )
+                        })
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
                     _vm.errors.id_role
                       ? _c("span", { staticClass: "help is-danger" }, [
@@ -10703,37 +10756,54 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-4" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.pegawai.id_cabang,
-                          expression: "pegawai.id_cabang"
-                        }
-                      ],
-                      staticClass: "input is-primary",
-                      style: { width: "35%" },
-                      attrs: {
-                        type: "text",
-                        required: "",
-                        placeholder: "ID Cabang",
-                        autofocus: ""
-                      },
-                      domProps: { value: _vm.pegawai.id_cabang },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.pegawai.id_cabang,
+                            expression: "pegawai.id_cabang"
                           }
-                          _vm.$set(
-                            _vm.pegawai,
-                            "id_cabang",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.pegawai,
+                              "id_cabang",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    }),
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Pilih ID Cabang")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.cabangs, function(cabang) {
+                          return _c(
+                            "option",
+                            { domProps: { value: cabang.id } },
+                            [_vm._v(_vm._s(cabang.id))]
+                          )
+                        })
+                      ],
+                      2
+                    ),
                     _vm._v(" "),
                     _vm.errors.id_cabang
                       ? _c("span", { staticClass: "help is-danger" }, [
@@ -32557,8 +32627,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\TCP2_8796\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\TCP2_8796\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
