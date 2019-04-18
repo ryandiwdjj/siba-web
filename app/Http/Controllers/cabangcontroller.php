@@ -14,9 +14,16 @@ class cabangcontroller extends Controller
      */
     public function index()
     {
-        $cabangs = Cabang::paginate(4);
+        $cabangs = Cabang::paginate(10);
 
         return response()->json($cabangs, 200);
+    }
+
+    public function all()
+    {
+        //
+        return Cabang::all();
+        
     }
 
     /**
@@ -37,6 +44,11 @@ class cabangcontroller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'no_telp_cabang' => 'required|unique:cabangs,no_telp_cabang|max:13',
+            
+        ]);
+
         $cabang = new cabang;
         $cabang->nama_cabang = $request->nama_cabang;
         $cabang->alamat_cabang = $request->alamat_cabang;
@@ -100,6 +112,10 @@ class cabangcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'no_telp_cabang' => 'required|unique:cabangs,no_telp_cabang,'.$id.'|max:13',
+            ]);
+
         $cabang = Cabang::where('id', $id)->first();
 
         if (is_null($cabang)) {

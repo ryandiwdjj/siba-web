@@ -13,31 +13,31 @@
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
-                      Pencarian 
-                      <input class = "input is-rounded" type="text" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <i class="fas fa-search"></i> 
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama" v-bind:style="{width: '20%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
                     <thead>
-                        <th>ID Role</th>
+                        <th>Role</th>
                         <th>Nama Pegawai</th>
                         <th>Alamat Pegawai</th>
                         <th>No Telp Pegawai</th>
                         <th>Gaji Per Minggu</th>
                         <th>Password Pegawai</th>
-                        <th>ID Cabang</th>
+                        <th>Cabang</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(pegawai,index) in pegawais" :key ="pegawai.id">
-                        <td>{{ pegawai.id_role }}</td>
+                      <tr v-for="(pegawai,index) in filteredList" :key ="pegawai.id">
+                        <td>{{ pegawai.role.nama_role }}</td>
                         <td>{{ pegawai.nama_pegawai }}</td>
                         <td>{{ pegawai.alamat_pegawai }}</td>
                         <td>{{ pegawai.no_telp_pegawai }}</td>
                         <td>{{ pegawai.gaji_perminggu }}</td>
                         <td>{{ pegawai.password_pegawai }}</td>
-                        <td>{{ pegawai.id_cabang }}</td>
+                        <td>{{ pegawai.cabang.nama_cabang }}</td>
                         <td>
                         <router-link 
                           :to="{name:'editPegawai' ,params:{id: pegawai.id}}" 
@@ -84,16 +84,12 @@
      var app = this;
     app.getResults();
     },
-    watch: {
-       pencarian: function (q) {
-          if (q != '') {
-            this.getHasilPencarian()  
-          }
-          else {
-            this.getResults()
-          }
-          
-        }
+    computed: {
+       filteredList: function(){
+         return this.pegawais.filter((pegawai) => {
+           return pegawai.nama_pegawai.toLowerCase().match(this.pencarian.toLowerCase());
+         });
+       }
     },
     methods: {
       getResults(page){

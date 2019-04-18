@@ -14,7 +14,7 @@ class sparepartcontroller extends Controller
      */
     public function index()
     {
-        $spareparts = Sparepart::paginate(4);
+        $spareparts = Sparepart::paginate(10);
 
         return response()->json($spareparts, 200);
     }
@@ -37,6 +37,12 @@ class sparepartcontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'kode_sparepart' => 'required|unique:spareparts,kode_sparepart|max:255',
+            
+        ]);
+
         $exploded = explode(',', $request->gambar_sparepart);
         $decoded = base64_decode($exploded[1]);
         if(str_contains($exploded[0], 'jpeg'))
@@ -98,6 +104,7 @@ class sparepartcontroller extends Controller
         } else
             return response()->json($result, 200);
     }
+    
     public function showByName($nama_sparepart)
     {
         //return sparepart::where('nama_sparepart', $nama_sparepart)->first();
@@ -130,6 +137,11 @@ class sparepartcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'kode_sparepart' => 'required|unique:spareparts,kode_sparepart,'.$id.'|max:255',
+            ]);
+
         $sparepart = Sparepart::where('id', $id)->first();
 
         if (is_null($sparepart)) {
@@ -196,14 +208,11 @@ class sparepartcontroller extends Controller
     public function indexMobile()
     {
         $spareparts = Sparepart::all();
-
         return response()->json($spareparts, 200);
     }
-
     public function storeMobile(Request $request)
     {
         $sparepart = new sparepart;
-
         $sparepart->kode_sparepart = $request->kode_sparepart;
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->merk_sparepart = $request->merk_sparepart;  
@@ -212,7 +221,6 @@ class sparepartcontroller extends Controller
         $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
         $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
         $sparepart->jumlah_minimal = $request->jumlah_minimal;
-
         
         if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
             $dir = 'images/sparepart/';
@@ -224,26 +232,20 @@ class sparepartcontroller extends Controller
             $sparepart->gambar_sparepart = $file;
         }
         
-
         $success = $sparepart->save();
-
         if (!$success) {
             return response()->json('Error Saving', 500);
         } else {
             return response()->json('Success', 204);
         }
     }
-
     public function updateMobile(Request $request, $id)
     {
         $sparepart = Sparepart::where('id', $id)->first();
-
         if (is_null($sparepart)) {
             return response()->json('Sparepart not found', 404);
         }
-
         else {
-
             $sparepart->kode_sparepart = $request->kode_sparepart;
             $sparepart->nama_sparepart = $request->nama_sparepart;
             $sparepart->merk_sparepart = $request->merk_sparepart;
@@ -252,7 +254,6 @@ class sparepartcontroller extends Controller
             $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
             $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
             $sparepart->jumlah_minimal = $request->jumlah_minimal;
-
             if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
                 $dir = 'images/sparepart/';
                 $path = 'http://192.168.1.14:8000/images/sparepart/'; //sesuai path yang dipake
@@ -262,9 +263,7 @@ class sparepartcontroller extends Controller
                 $request->file('gambar_sparepart')->move($dir, $fileName);
                 $sparepart->gambar_sparepart = $file;
             }
-
             $success = $sparepart->save();
-
             if (!$success) {
                 return response()->json('Error Updating', 500);
             } 
@@ -273,5 +272,4 @@ class sparepartcontroller extends Controller
             }
         }
     }
-    
 }

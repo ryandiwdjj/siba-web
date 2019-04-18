@@ -21,11 +21,16 @@
     .card-tools{
     margin-top: 10px;
     }
+    table{
+        font-size: small;
+    }
     th{
-        background-color: darkgray;
+        background-color: rgb(46, 46, 134);
+        -webkit-text-fill-color: antiquewhite;
     }
     .card{
         padding: 18px 30px 15px 30px;
+        background-color: rgb(255, 255, 255);
     }
     .footer{
         background-color: black;
