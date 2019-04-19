@@ -14,7 +14,13 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >ID Role</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="ID Role" v-model="pegawai.id_role" autofocus=""/>
+                          <select
+                          v-model="pegawai.id_role"
+                          class="form-control"
+                          required="" >
+                            <option value="">Pilih ID Role</option>
+                            <option v-for="role in roles" :value="role.id">{{ role.id }}</option>
+                          </select>
                         <span v-if="errors.id_role" class="help is-danger"> {{ errors.id_role[0]}}</span>
                         </div>
                       </div>
@@ -56,7 +62,13 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >ID Cabang</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="ID Cabang" v-model="pegawai.id_cabang" autofocus=""/>
+                          <select
+                          v-model="pegawai.id_cabang"
+                          class="form-control"
+                          required="" >
+                            <option value="">Pilih ID Cabang</option>
+                            <option v-for="cabang in cabangs" :value="cabang.id">{{ cabang.id }}</option>
+                          </select>
                         <span v-if="errors.id_cabang" class="help is-danger"> {{ errors.id_cabang[0]}}</span>
                         </div>
                       </div>
@@ -91,12 +103,16 @@
             password_pegawai: '',
             id_cabang: '',
         },
+        roles: [],
+        cabangs: [],
         errors: [],
         message: ''
       }
     },
     mounted()  {
      var app = this;
+     app.getRoles();
+     app.getCabangs();
     },
     methods: {
       alert(pesan){
@@ -105,6 +121,26 @@
           text: pesan,
           icon: "success"
         });
+      },
+      getRoles(){
+        var app = this;
+        axios.get('/api/role' + '/all')
+        .then(function(resp){
+          app.roles = resp.data;
+        })
+        .catch(function(resp){
+          console.log(resp);
+        })
+      },
+      getCabangs(){
+        var app = this;
+        axios.get('/api/cabang' + '/all')
+        .then(function(resp){
+          app.cabangs = resp.data;
+        })
+        .catch(function(resp){
+          console.log(resp);
+        })
       },
       saveForm(){
         var newPegawai = this.pegawai;

@@ -14,7 +14,7 @@ class suppliercontroller extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::paginate(4);
+        $suppliers = Supplier::paginate(10);
 
         return response()->json($suppliers, 200);
     }
@@ -37,6 +37,10 @@ class suppliercontroller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'no_telp_supplier' => 'required|unique:suppliers,no_telp_supplier|max:13',
+            
+        ]);
         //post
         $supplier = new supplier;
         $supplier->nama_supplier = $request->nama_supplier;
@@ -99,6 +103,11 @@ class suppliercontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'no_telp_supplier' => 'required|unique:suppliers,no_telp_supplier,'.$id.'|max:13',
+            ]);
+
         $supplier = Supplier::where('id', $id)->first();
 
         if (is_null($supplier)) {
@@ -149,7 +158,6 @@ class suppliercontroller extends Controller
     public function indexMobile()
     {
         $suppliers = Supplier::all();
-
         return response()->json($suppliers, 200);
     }
 }
