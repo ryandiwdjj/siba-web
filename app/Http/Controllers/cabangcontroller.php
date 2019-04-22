@@ -153,8 +153,9 @@ class cabangcontroller extends Controller
         
         else {
             $success = $cabang->delete();
-            if($success)
+            if($success) {
                 return response()->json('Success Delete', 200);
+            }
             else {
                 return response()->json('Error Delete', 500);
             }
