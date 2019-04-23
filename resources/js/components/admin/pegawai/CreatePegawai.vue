@@ -13,6 +13,8 @@
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >ID Role</label>
+                        <br>
+                        <div class="select is-primary">
                         <div class="col-md-4">
                           <select
                           v-model="pegawai.id_role"
@@ -22,6 +24,7 @@
                             <option v-for="role in roles" :value="role.id">{{ role.id }}</option>
                           </select>
                         <span v-if="errors.id_role" class="help is-danger"> {{ errors.id_role[0]}}</span>
+                        </div>
                         </div>
                       </div>
                       <div class="form-group">
@@ -61,6 +64,8 @@
                       </div>
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >ID Cabang</label>
+                        <br>
+                        <div class="select is-primary">
                         <div class="col-md-4">
                           <select
                           v-model="pegawai.id_cabang"
@@ -70,6 +75,7 @@
                             <option v-for="cabang in cabangs" :value="cabang.id">{{ cabang.id }}</option>
                           </select>
                         <span v-if="errors.id_cabang" class="help is-danger"> {{ errors.id_cabang[0]}}</span>
+                        </div>
                         </div>
                       </div>
                       <br>

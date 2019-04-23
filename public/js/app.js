@@ -3150,6 +3150,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3228,6 +3234,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5233,7 +5245,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n    background-color: rgb(255, 255, 255);\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
+exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n    table-layout: fixed;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\ntd{\n    background-color: rgb(64, 63, 65);\n    -webkit-text-fill-color: antiquewhite;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
 
 // exports
 
@@ -9941,61 +9953,65 @@ var render = function() {
                     [_vm._v("ID Role")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pegawai.id_role,
-                            expression: "pegawai.id_role"
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_role,
+                              expression: "pegawai.id_role"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_role",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { required: "" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.pegawai,
-                              "id_role",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Role")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.roles, function(role) {
+                            return _c(
+                              "option",
+                              { domProps: { value: role.id } },
+                              [_vm._v(_vm._s(role.id))]
                             )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Pilih ID Role")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.roles, function(role) {
-                          return _c(
-                            "option",
-                            { domProps: { value: role.id } },
-                            [_vm._v(_vm._s(role.id))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm.errors.id_role
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
-                        ])
-                      : _vm._e()
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_role
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10267,61 +10283,65 @@ var render = function() {
                     [_vm._v("ID Cabang")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pegawai.id_cabang,
-                            expression: "pegawai.id_cabang"
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_cabang,
+                              expression: "pegawai.id_cabang"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_cabang",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { required: "" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.pegawai,
-                              "id_cabang",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Cabang")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.cabangs, function(cabang) {
+                            return _c(
+                              "option",
+                              { domProps: { value: cabang.id } },
+                              [_vm._v(_vm._s(cabang.id))]
                             )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Pilih ID Cabang")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.cabangs, function(cabang) {
-                          return _c(
-                            "option",
-                            { domProps: { value: cabang.id } },
-                            [_vm._v(_vm._s(cabang.id))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm.errors.id_cabang
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
-                        ])
-                      : _vm._e()
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_cabang
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10429,61 +10449,65 @@ var render = function() {
                     [_vm._v("ID Role")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pegawai.id_role,
-                            expression: "pegawai.id_role"
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_role,
+                              expression: "pegawai.id_role"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_role",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { required: "" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.pegawai,
-                              "id_role",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Role")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.roles, function(role) {
+                            return _c(
+                              "option",
+                              { domProps: { value: role.id } },
+                              [_vm._v(_vm._s(role.id))]
                             )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Pilih ID Role")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.roles, function(role) {
-                          return _c(
-                            "option",
-                            { domProps: { value: role.id } },
-                            [_vm._v(_vm._s(role.id))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm.errors.id_role
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
-                        ])
-                      : _vm._e()
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_role
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_role[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -10755,61 +10779,65 @@ var render = function() {
                     [_vm._v("ID Cabang")]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-4" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pegawai.id_cabang,
-                            expression: "pegawai.id_cabang"
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.pegawai.id_cabang,
+                              expression: "pegawai.id_cabang"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.pegawai,
+                                "id_cabang",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
                           }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { required: "" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.pegawai,
-                              "id_cabang",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Cabang")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.cabangs, function(cabang) {
+                            return _c(
+                              "option",
+                              { domProps: { value: cabang.id } },
+                              [_vm._v(_vm._s(cabang.id))]
                             )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Pilih ID Cabang")
-                        ]),
-                        _vm._v(" "),
-                        _vm._l(_vm.cabangs, function(cabang) {
-                          return _c(
-                            "option",
-                            { domProps: { value: cabang.id } },
-                            [_vm._v(_vm._s(cabang.id))]
-                          )
-                        })
-                      ],
-                      2
-                    ),
-                    _vm._v(" "),
-                    _vm.errors.id_cabang
-                      ? _c("span", { staticClass: "help is-danger" }, [
-                          _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
-                        ])
-                      : _vm._e()
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_cabang
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
+                          ])
+                        : _vm._e()
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -12832,7 +12860,7 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _c("input", {
-                      staticClass: "form-control",
+                      staticClass: "file-label",
                       attrs: { name: "image", type: "file" },
                       on: { change: _vm.onFileSelected }
                     }),
@@ -13366,7 +13394,7 @@ var render = function() {
                         ]),
                     _vm._v(" "),
                     _c("input", {
-                      staticClass: "form-control",
+                      staticClass: "file-label",
                       attrs: { name: "image", type: "file" },
                       on: { change: _vm.onFileSelected }
                     }),
