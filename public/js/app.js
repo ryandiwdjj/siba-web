@@ -4259,6 +4259,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -7785,7 +7802,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Cabang   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -8549,7 +8566,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Jasa Service   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -9130,7 +9147,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Kendaraan   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
@@ -12271,6 +12288,66 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "navbar-item has-dropdown is-hoverable" },
+                [
+                  _c("a", { staticClass: "navbar-link" }, [
+                    _vm._v("\r\n        Transaksi\r\n      ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "navbar-dropdown" }, [
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/detail_jasas" }
+                          },
+                          [_vm._v("Detail Jasa Service")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/detail_sparepart" }
+                          },
+                          [_vm._v("Detail Sparepart")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/trans_penjualan" }
+                          },
+                          [_vm._v("Transaksi Penjualan")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
               _c("a", { staticClass: "navbar-item" }, [
                 _vm._v("\r\n        Pemesanan\r\n      ")
               ]),
@@ -12396,7 +12473,7 @@ var render = function() {
                 },
                 [
                   _vm._v("Tambah Sparepart   "),
-                  _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  _c("i", { staticClass: "fas fa-plus-circle" })
                 ]
               )
             ],
