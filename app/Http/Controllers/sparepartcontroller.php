@@ -260,15 +260,35 @@ class sparepartcontroller extends Controller
         }
     }
 
+    private $photo_path;
+    public function __construct() {
+        $this->photo_path = 'http://192.168.1.23:8000/images/sparepart/';
+    }
+
     public function indexMobile()
     {
         $spareparts = Sparepart::all();
         return response()->json($spareparts, 200);
     }
+
+
     public function storeMobile(Request $request)
     {
         $sparepart = new sparepart;
-        $sparepart->kode_sparepart = $request->kode_sparepart;
+
+        $kode_spare = $request->kode_sparepart;
+
+        $no = Sparepart::where('kode_sparepart', 'like', $kode_spare.'%')
+                ->orderBy('kode_sparepart', 'desc')->pluck('kode_sparepart')->first();
+        if(!$no) {
+            $no = '001';
+            $sparepart->kode_sparepart = $kode_spare.$no;
+        }
+        else {
+            $sparepart->kode_sparepart = ++$no;
+        }
+
+        
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->merk_sparepart = $request->merk_sparepart;  
         $sparepart->tipe_sparepart = $request->tipe_sparepart;
@@ -279,10 +299,10 @@ class sparepartcontroller extends Controller
         
         if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
             $dir = 'images/sparepart/';
-            $path = 'http://192.168.1.14:8000/images/sparepart/'; //sesuai path yang dipake
+            // $path = 'http://10.53.10.70:8000/images/sparepart/'; //sesuai path yang dipake
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
-            $file = $path . $fileName;
+            $file = $this->photo_path . $fileName;
             $request->file('gambar_sparepart')->move($dir, $fileName);
             $sparepart->gambar_sparepart = $file;
         }
@@ -311,10 +331,10 @@ class sparepartcontroller extends Controller
             $sparepart->jumlah_minimal = $request->jumlah_minimal;
             if($request->hasFile('gambar_sparepart')){ //gambar_sparepart itu nama variabel dari model
                 $dir = 'images/sparepart/';
-                $path = 'http://192.168.1.14:8000/images/sparepart/'; //sesuai path yang dipake
+                // $path = 'http://10.53.10.70:8000/images/sparepart/'; //sesuai path yang dipake
                 $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
                 $fileName = str_random() . '.' . $extension;
-                $file = $path . $fileName;
+                $file = $this->photo_path . $fileName;
                 $request->file('gambar_sparepart')->move($dir, $fileName);
                 $sparepart->gambar_sparepart = $file;
             }
@@ -323,7 +343,7 @@ class sparepartcontroller extends Controller
                 return response()->json('Error Updating', 500);
             } 
             else {
-                return response()->json('Success Updating', 200);
+                return response()->json('Success Updating', 204);
             }
         }
     }
