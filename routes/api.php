@@ -29,7 +29,7 @@ Route::post('/jasa_service/store','jasaservicecontroller@store');
 Route::put('/jasa_service/update/{id}','jasaservicecontroller@update');
 Route::delete('/jasa_service/{id}','jasaservicecontroller@destroy');
 
-Route::get('/jasa_serviceMobile','jasaservicecontroller@indexMobile');
+Route::get('/jasa_service/mobile','jasaservicecontroller@indexMobile');
 
 
 Route::get('/role','rolecontroller@index');
@@ -47,9 +47,9 @@ Route::get('/pegawai/showByName/{nama_pegawai}','pegawaicontroller@showByName');
 Route::post('/pegawai/store','pegawaicontroller@store');
 Route::put('/pegawai/update/{id}','pegawaicontroller@update');
 Route::delete('/pegawai/{id}','pegawaicontroller@destroy');
-
-Route::get('/pegawaiMobile','pegawaicontroller@indexMobile');
 Route::post('/pegawai/login','pegawaicontroller@login');
+
+Route::get('/pegawai/mobile','pegawaicontroller@indexMobile');
 
 
 Route::get('/cabang','cabangcontroller@index');
@@ -68,7 +68,7 @@ Route::post('/supplier/store','suppliercontroller@store');
 Route::put('/supplier/update/{id}','suppliercontroller@update');
 Route::delete('/supplier/{id}','suppliercontroller@destroy');
 
-Route::get('/suppliersMobile','suppliercontroller@indexMobile');
+Route::get('/suppliers/mobile','suppliercontroller@indexMobile');
 
 
 Route::get('/sparepart','sparepartcontroller@index');
@@ -78,9 +78,9 @@ Route::post('sparepart/store','sparepartcontroller@store');
 Route::put('/sparepart/update/{id}','sparepartcontroller@update');
 Route::delete('/sparepart/{id}','sparepartcontroller@destroy');
 
-Route::get('/sparepartMobile','sparepartcontroller@indexMobile');
-Route::post('/sparepartMobile/store','sparepartcontroller@storeMobile');
-Route::post('/sparepartMobile/update/{id}','sparepartcontroller@updateMobile');
+Route::get('/sparepart/mobile','sparepartcontroller@indexMobile');
+Route::post('/sparepart/mobile/store','sparepartcontroller@storeMobile');
+Route::post('/sparepart/mobile/update/{id}','sparepartcontroller@updateMobile');
 
 
 Route::get('/pelanggan','pelanggancontroller@index');
@@ -99,16 +99,22 @@ Route::post('kendaraan/store','kendaraancontroller@store');
 Route::put('/kendaraan/update/{id}','kendaraancontroller@update');
 Route::delete('/kendaraan/{id}','kendaraancontroller@destroy');
 
-Route::get('/kendaraanMobile','kendaraancontroller@indexMobile');
+Route::get('/kendaraan/mobile','kendaraancontroller@indexMobile');
 
 
 Route::get('/trans_penjualan', 'transpenjualancontroller@index');
-Route::get('/trans_penjualanMobile', 'transpenjualancontroller@indexMobile');
-Route::post('/trans_penjualanMobile/store','transpenjualancontroller@storeMobile');
+
+Route::get('/trans_penjualan/mobile', 'transpenjualancontroller@indexMobile');
+Route::post('/trans_penjualan/mobile/store','transpenjualancontroller@storeMobile');
+Route::delete('/trans_penjualan/mobile/delete/{id}','transpenjualancontroller@destroyMobile');
 
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
-Route::get('/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@indexMobile');
-Route::post('/trans_penjualan/detail_jasa/storeMobile', 'detailTransPenjualanJasaController@storeMobile');
+Route::get('/trans_penjualan/detail_jasa/mobile', 'detailTransPenjualanJasaController@indexMobile');
+Route::post('/trans_penjualan/detail_jasa/mobile/store', 'detailTransPenjualanJasaController@storeMobile');
+Route::delete('/trans_penjualan/detail_jasa/mobile/delete/{id}', 'detailTransPenjualanJasaController@destroyMobile');
+Route::put('/trans_penjualan/detail_jasa/mobile/update/{id}', 'detailTransPenjualanJasaController@updateMobile');
 
-Route::get('trans_penjualan/detail_spare','detailTransPenjualanSpareController@indexMobile');
-Route::post('/trans_penjualan/detail_spare/storeMobile','detailTransPenjualanSpareController@storeMobile');
+Route::get('trans_penjualan/detail_spare/mobile','detailTransPenjualanSpareController@indexMobile');
+Route::post('/trans_penjualan/detail_spare/mobile/store','detailTransPenjualanSpareController@storeMobile');
+Route::delete('/trans_penjualan/detail_spare/mobile/delete/{id}', 'detailTransPenjualanSpareController@destroyMobile');
+Route::put('/trans_penjualan/detail_spare/mobile/update/{id}', 'detailTransPenjualanSpareController@updateMobile');

@@ -194,4 +194,22 @@ class transpenjualancontroller extends Controller
             return response()->json('Success', 204);
         }
     }
+
+    public function destroyMobile($id)
+    {
+        $transpenjualan = trans_penjualan::find($id);
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan Not Found', 404);
+        }
+        
+        else {
+            $success = $transpenjualan->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
+        }
+    }
 }
