@@ -15,7 +15,7 @@ class transpenjualancontroller extends Controller
      */
     public function index()
     {
-        $transpenjualans = trans_penjualan::paginate(10);
+        $transpenjualans = trans_penjualan::with('pelanggan','cabang')->paginate(10);
 
         return response()->json($transpenjualans, 200);
     }
@@ -39,18 +39,30 @@ class transpenjualancontroller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_plat_kendaraan' => 'required|unique:trans_penjualans,no_plat_kendaraan|max:8',
+            'no_plat_kendaraan' => 'required|unique:trans_penjualan,no_plat_kendaraan|max:8',
             
         ]);
+
+        $v = Validator::make($request->all(),[
+            'id_pelanggan' => 'exists:pelanggans,id',
+            'id_cabang' => 'exists:cabangs,id'
+         ]);
+ 
+         if($v->fails()) {
+             return response()->json([
+                 'status' => 'error',
+                 'errors' => $v->errors()
+             ], 404);
+         }
 
         $transpenjualan = new trans_penjualan;
         $transpenjualan->id_pelanggan = $request->id_pelanggan;
         $transpenjualan->id_cabang = $request->id_cabang;
-        $transpenjualan->total_harga_trans = $request->total_harga_trans;
-        $transpenjualan->discount_penjualan = $request->discount_penjualan;
-        $transpenjualan->grand_total = $request->grand_total;
-        $transpenjualan->status_transaksi = $request->status_transaksi;
-        $transpenjualan->status_pembayaran = $request->status_pembayaran;
+        $transpenjualan->total_harga_trans = 0;
+        $transpenjualan->discount_penjualan = 0;
+        $transpenjualan->grand_total = 0;
+        $transpenjualan->status_transaksi = "Belum";
+        $transpenjualan->status_pembayaran = "Belum";
         $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
         $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
 

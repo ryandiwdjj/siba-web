@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//////////////////////////////////////////////////////////////////////////////////Kelola Data
 Route::get('/jasa_service','jasaservicecontroller@index');
 Route::get('/jasa_service/{id}','jasaservicecontroller@show');
 Route::get('/jasa_service/search','jasaservicecontroller@search');
@@ -84,6 +84,7 @@ Route::post('/sparepart/mobile/update/{id}','sparepartcontroller@updateMobile');
 
 
 Route::get('/pelanggan','pelanggancontroller@index');
+Route::get('/pelanggan/all','pelanggancontroller@all');
 Route::get('/pelanggan/{id}','pelanggancontroller@show');
 Route::get('/pelanggan/showByNo/{no_telp_pelanggan}','pelanggancontroller@showByNo');
 Route::get('/pelanggan/search', 'pelanggancontroller@search');
@@ -102,7 +103,11 @@ Route::delete('/kendaraan/{id}','kendaraancontroller@destroy');
 Route::get('/kendaraan/mobile','kendaraancontroller@indexMobile');
 
 
+
+//////////////////////////////////////////////////////////////////////////////////Trans Penjualan
 Route::get('/trans_penjualan', 'transpenjualancontroller@index');
+Route::post('trans_penjualan/store','transpenjualancontroller@store');
+Route::delete('/trans_penjualan/{id}','transpenjualancontroller@destroy');
 
 Route::get('/trans_penjualan/mobile', 'transpenjualancontroller@indexMobile');
 Route::post('/trans_penjualan/mobile/store','transpenjualancontroller@storeMobile');
