@@ -4,53 +4,47 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Service</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_penjualan" class="button is-success">Tambah Transaksi &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_jasa" class="button is-success">Tambah Transaksi Service &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan plat" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama service" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
-                        <th>Pelanggan</th>
-                        <th>Cabang</th>
-                        <th>Total Harga Transaksi</th>
-                        <th>Diskon Penjualan</th>
-                        <th>Grand Total</th>
-                        <th>Status Transaksi</th>
-                        <th>Status Pembayaran</th>
-                        <th>Nomor Plat</th>
-                        <th>Tanggal</th>
+                        <th>Nomor Transaksi Penjualan</th>
+                        <th>Jasa Service</th>
+                        <th>Pegawai</th>
+                        <th>Kendaraan</th>
+                        <th>Jumlah Jasa</th>
+                        <th>Total Harga Jasa</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
                       <tr v-for="(transaksi,index) in filteredList" :key ="transaksi.id">
-                        <td>{{ transaksi.pelanggan.nama_pelanggan }}</td>
-                        <td>{{ transaksi.cabang.nama_cabang }}</td>
-                        <td>{{ transaksi.total_harga_trans }}</td>
-                        <td>{{ transaksi.discount_penjualan }}</td>
-                        <td>{{ transaksi.grand_total }}</td>
-                        <td>{{ transaksi.status_transaksi }}</td>
-                        <td>{{ transaksi.status_pembayaran }}</td>
-                        <td>{{ transaksi.no_plat_kendaraan }}</td>
-                        <td>{{ transaksi.tanggal_penjualan }}</td>
+                        <td>{{ transaksi.id_trans_penjualan }}</td>
+                        <td>{{ transaksi.jasa_service.nama_jasa }}</td>
+                        <td>{{ transaksi.pegawai.nama_pegawai }}</td>
+                        <td>{{ transaksi.kendaraan.tipe_kendaraan }}</td>
+                        <td>{{ transaksi.jumlah_jasa }}</td>
+                        <td>{{ transaksi.total_harga_jasa }}</td>
                         <td>
                         <router-link 
-                          :to="{name:'editTransaksi' ,params:{id: transaksi.id}}" 
+                          :to="{name:'editDetailTransJasa' ,params:{id: transaksi.id}}" 
                           class="button is-primary">
                           <i class="fa fa-edit"></i>
                        </router-link>
                         <button 
                           class="button is-danger" 
-                          v-on:click="konfirmasiHapus(transaksi.id,index,transaksi.no_plat_kendaraan)">
+                          v-on:click="konfirmasiHapus(transaksi.id,index,transaksi.id_trans_penjualan)">
                           <i class="fa fa-trash"></i>
                         </button>
                         </td>
@@ -61,7 +55,7 @@
                    </div>     
                     <div class="card-footer">
                       <pagination class="card-footer-item"
-                        :data="transaksiPenjualanData" @pagination-change-page="getResults" :limit="4">
+                        :data="detailTransJasaData" @pagination-change-page="getResults" :limit="4">
                         <span slot="prev-nav">&lt; Previous</span>
 	                      <span slot="next-nav">Next &gt;</span>
                       </pagination>
@@ -78,8 +72,8 @@
   export default {
     data: function() {
       return {
-        transaksiPenjualan: [],
-        transaksiPenjualanData: {},
+        detailTransJasa: [],
+        detailTransJasaData: {},
         pencarian: '',
         loading: true
       }
@@ -90,8 +84,8 @@
     },
     computed: {
        filteredList: function(){
-         return this.transaksiPenjualan.filter((transaksi) => {
-           return transaksi.no_plat_kendaraan.toLowerCase().match(this.pencarian.toLowerCase());
+         return this.detailTransJasa.filter((transaksi) => {
+           return transaksi.jasa_service.nama_jasa.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
     },
@@ -101,10 +95,10 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/trans_penjualan?page=' + page)
+        axios.get('/api/trans_penjualan/detail_jasa?page=' + page)
         .then(function(resp){
-          app.transaksiPenjualan = resp.data.data;
-          app.transaksiPenjualanData = resp.data;
+          app.detailTransJasa = resp.data.data;
+          app.detailTransJasaData = resp.data;
           app.loading = false;
         })
         .catch(function(resp){
@@ -114,21 +108,21 @@
         })
       },
       
-      deleteEntry(id,index,nomorPlat){
-          axios.delete('/api/trans_penjualan/' + id)
+      deleteEntry(id,index,noTransPenjualan){
+          axios.delete('/api/trans_penjualan/detail_jasa/' + id)
           .then((resp) => {
             this.getResults();
-            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi " + nomorPlat);
+            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi Service ");
           })
           .catch((resp) =>{
-            alert("Gagal Menghapus Transaksi")
+            alert("Gagal Menghapus Transaksi Service")
             console.log(resp);
           })
       },
-      konfirmasiHapus(id,index,nomorPlat){
+      konfirmasiHapus(id,index,noTransPenjualan){
       
         this.$swal({
-          title: "Yakin Ingin Menghapus Transaksi " + nomorPlat + "?",
+          title: "Yakin Ingin Menghapus Transaksi Service?",
           text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
           icon: "warning",
           buttons: true,
@@ -136,7 +130,7 @@
         })
         .then((willDelete) => {
           if (willDelete) {
-            this.deleteEntry(id,index,nomorPlat);
+            this.deleteEntry(id,index,noTransPenjualan);
           }
         })  
       },

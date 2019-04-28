@@ -24,4 +24,7 @@ class pegawai extends Model
     public function role(){
         return $this->belongsTo(Role::class, 'id_role');
     }
+    public function detail_trans_jasa(){
+        return $this->hasMany(detail_trans_jasa::class);
+    }
 }
