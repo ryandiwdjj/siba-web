@@ -2338,6 +2338,211 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      detail_trans_jasa: {
+        id_trans_penjualan: '',
+        id_jasa: '',
+        id_pegawai: '',
+        id_kendaraan: '',
+        jumlah_jasa: ''
+      },
+      transaksiPenjualan: [],
+      jasa_services: [],
+      pegawais: [],
+      kendaraans: [],
+      transJasaId: null,
+      errors: [],
+      message: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var app = this;
+    this.transJasaId = this.$route.params.id;
+    axios.get('/api/trans_penjualan/detail_jasa/' + this.transJasaId).then(function (resp) {
+      _this.detail_trans_jasa = resp.data;
+    }).catch(function (resp) {
+      alert("Gagal memuat transaksi service");
+    });
+    app.getTransaksiPenjualan();
+    app.getJasas();
+    app.getPegawais();
+    app.getKendaraans();
+  },
+  methods: {
+    alert: function alert(pesan) {
+      this.$swal({
+        title: "Berhasil Mengubah Transaksi Service",
+        text: pesan,
+        icon: "success"
+      });
+    },
+    getTransaksiPenjualan: function getTransaksiPenjualan() {
+      var app = this;
+      axios.get('/api/trans_penjualan' + '/all').then(function (resp) {
+        app.transaksiPenjualan = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getJasas: function getJasas() {
+      var app = this;
+      axios.get('/api/jasa_service' + '/all').then(function (resp) {
+        app.jasa_services = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getPegawais: function getPegawais() {
+      var app = this;
+      axios.get('/api/pegawai' + '/all').then(function (resp) {
+        app.pegawais = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getKendaraans: function getKendaraans() {
+      var app = this;
+      axios.get('/api/kendaraan' + '/all').then(function (resp) {
+        app.kendaraans = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    saveForm: function saveForm() {
+      var _this2 = this;
+
+      var newDetailTransJasa = this.detail_trans_jasa;
+      axios.put('/api/trans_penjualan/detail_jasa/update/' + this.transJasaId, newDetailTransJasa).then(function (resp) {
+        _this2.alert('Berhasil Mengubah Transaksi Service ');
+
+        _this2.$router.replace('/detail_trans_jasa');
+      }).catch(function (resp) {
+        if (resp.response.status == 500) alert('Gagal Mengubah Transaksi Service');
+        _this2.errors = resp.response.data.errors;
+        console.log(resp);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue?vue&type=script&lang=js& ***!
@@ -9864,6 +10069,443 @@ var staticRenderFns = [
       "button",
       { staticClass: "button is-success", attrs: { type: "submit" } },
       [_vm._v("Tambah    "), _c("i", { staticClass: "fas fa-plus-circle" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=template&id=7494c064&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=template&id=7494c064& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("ID Trans Penjualan")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detail_trans_jasa.id_trans_penjualan,
+                              expression: "detail_trans_jasa.id_trans_penjualan"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detail_trans_jasa,
+                                "id_trans_penjualan",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih ID Trans Penjualan")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.transaksiPenjualan, function(transaksi) {
+                            return _c(
+                              "option",
+                              { domProps: { value: transaksi.id } },
+                              [_vm._v(_vm._s(transaksi.id))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_trans_penjualan
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(
+                              " " + _vm._s(_vm.errors.id_trans_penjualan[0])
+                            )
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Jasa Service")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detail_trans_jasa.id_jasa,
+                              expression: "detail_trans_jasa.id_jasa"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detail_trans_jasa,
+                                "id_jasa",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Jasa Service")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.jasa_services, function(jasa_service) {
+                            return _c(
+                              "option",
+                              { domProps: { value: jasa_service.id } },
+                              [_vm._v(_vm._s(jasa_service.nama_jasa))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_jasa
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_jasa[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Pegawai")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detail_trans_jasa.id_pegawai,
+                              expression: "detail_trans_jasa.id_pegawai"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detail_trans_jasa,
+                                "id_pegawai",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Pegawai")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.pegawais, function(pegawai) {
+                            return _c(
+                              "option",
+                              { domProps: { value: pegawai.id } },
+                              [_vm._v(_vm._s(pegawai.nama_pegawai))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_pegawai
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_pegawai[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Kendaraan")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.detail_trans_jasa.id_kendaraan,
+                              expression: "detail_trans_jasa.id_kendaraan"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.detail_trans_jasa,
+                                "id_kendaraan",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Kendaraan")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.kendaraans, function(kendaraan) {
+                            return _c(
+                              "option",
+                              { domProps: { value: kendaraan.id } },
+                              [_vm._v(_vm._s(kendaraan.tipe_kendaraan))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_kendaraan
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_kendaraan[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Jumlah Jasa")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.detail_trans_jasa.jumlah_jasa,
+                          expression: "detail_trans_jasa.jumlah_jasa"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "Jumlah Jasa",
+                        autofocus: ""
+                      },
+                      domProps: { value: _vm.detail_trans_jasa.jumlah_jasa },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.detail_trans_jasa,
+                            "jumlah_jasa",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.jumlah_jasa
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.jumlah_jasa[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/detail_trans_jasa" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Ubah Transaksi Service")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "button is-success", attrs: { type: "submit" } },
+      [_vm._v("Ubah    "), _c("i", { staticClass: "fa fa-edit" })]
     )
   }
 ]
@@ -33727,6 +34369,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditDetailTransJasa_vue_vue_type_template_id_7494c064___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditDetailTransJasa.vue?vue&type=template&id=7494c064& */ "./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=template&id=7494c064&");
+/* harmony import */ var _EditDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditDetailTransJasa.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditDetailTransJasa_vue_vue_type_template_id_7494c064___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditDetailTransJasa_vue_vue_type_template_id_7494c064___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditDetailTransJasa.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDetailTransJasa_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=template&id=7494c064&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=template&id=7494c064& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDetailTransJasa_vue_vue_type_template_id_7494c064___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditDetailTransJasa.vue?vue&type=template&id=7494c064& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue?vue&type=template&id=7494c064&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDetailTransJasa_vue_vue_type_template_id_7494c064___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDetailTransJasa_vue_vue_type_template_id_7494c064___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue":
 /*!********************************************************************************!*\
   !*** ./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue ***!
@@ -35772,11 +36483,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_transaksiPenjualan_CreateTransaksiPenjualan_vue__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue */ "./resources/js/components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue");
 /* harmony import */ var _components_admin_detailTransJasa_detailTransJasaIndex_vue__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ../components/admin/detailTransJasa/detailTransJasaIndex.vue */ "./resources/js/components/admin/detailTransJasa/detailTransJasaIndex.vue");
 /* harmony import */ var _components_admin_detailTransJasa_CreateDetailTransJasa_vue__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ../components/admin/detailTransJasa/CreateDetailTransJasa.vue */ "./resources/js/components/admin/detailTransJasa/CreateDetailTransJasa.vue");
-/* harmony import */ var _components_admin_detailTransSparepart_detailTransSparepartIndex_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../components/admin/detailTransSparepart/detailTransSparepartIndex.vue */ "./resources/js/components/admin/detailTransSparepart/detailTransSparepartIndex.vue");
-/* harmony import */ var _components_admin_detailTransSparepart_CreateDetailTransSparepart_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../components/admin/detailTransSparepart/CreateDetailTransSparepart.vue */ "./resources/js/components/admin/detailTransSparepart/CreateDetailTransSparepart.vue");
+/* harmony import */ var _components_admin_detailTransJasa_EditDetailTransJasa_vue__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ../components/admin/detailTransJasa/EditDetailTransJasa.vue */ "./resources/js/components/admin/detailTransJasa/EditDetailTransJasa.vue");
+/* harmony import */ var _components_admin_detailTransSparepart_detailTransSparepartIndex_vue__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ../components/admin/detailTransSparepart/detailTransSparepartIndex.vue */ "./resources/js/components/admin/detailTransSparepart/detailTransSparepartIndex.vue");
+/* harmony import */ var _components_admin_detailTransSparepart_CreateDetailTransSparepart_vue__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ../components/admin/detailTransSparepart/CreateDetailTransSparepart.vue */ "./resources/js/components/admin/detailTransSparepart/CreateDetailTransSparepart.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -35909,10 +36622,14 @@ var routes = [{
     component: _components_admin_detailTransJasa_CreateDetailTransJasa_vue__WEBPACK_IMPORTED_MODULE_31__["default"]
   }, {
     path: '/detail_trans_sparepart',
-    component: _components_admin_detailTransSparepart_detailTransSparepartIndex_vue__WEBPACK_IMPORTED_MODULE_32__["default"]
+    component: _components_admin_detailTransSparepart_detailTransSparepartIndex_vue__WEBPACK_IMPORTED_MODULE_33__["default"]
   }, {
     path: '/tambah_trans_sparepart',
-    component: _components_admin_detailTransSparepart_CreateDetailTransSparepart_vue__WEBPACK_IMPORTED_MODULE_33__["default"]
+    component: _components_admin_detailTransSparepart_CreateDetailTransSparepart_vue__WEBPACK_IMPORTED_MODULE_34__["default"]
+  }, {
+    name: 'editDetailTransJasa',
+    path: '/edit_trans_jasa',
+    component: _components_admin_detailTransJasa_EditDetailTransJasa_vue__WEBPACK_IMPORTED_MODULE_32__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

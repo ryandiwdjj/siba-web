@@ -93,7 +93,12 @@ class detailTransPenjualanJasaController extends Controller
      */
     public function show($id)
     {
-        //
+        $result = detail_trans_jasa::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
     }
 
     /**

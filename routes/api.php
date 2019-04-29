@@ -125,8 +125,9 @@ Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@de
 
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
 Route::get('/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@index');
+Route::get('/trans_penjualan/detail_jasa/{id}','detailTransPenjualanJasaController@show');
 Route::post('/trans_penjualan/detail_jasa/store','detailTransPenjualanJasaController@store');
-//Route::put('/trans_penjualan/detail_jasa/update/{id}','detailTransPenjualanJasaController@update');
+Route::put('/trans_penjualan/detail_jasa/update/{id}','detailTransPenjualanJasaController@update');
 Route::delete('/trans_penjualan/detail_jasa/{id}','detailTransPenjualanJasaController@destroy');
 
 Route::get('/trans_penjualan/detail_spare', 'detailTransPenjualanSpareController@index');

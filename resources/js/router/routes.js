@@ -43,6 +43,7 @@ import CreateTransaksiPenjualan from '../components/admin/transaksiPenjualan/Cre
 
 import detailTransJasaIndex from '../components/admin/detailTransJasa/detailTransJasaIndex.vue'
 import CreateDetailTransJasa from '../components/admin/detailTransJasa/CreateDetailTransJasa.vue'
+import EditDetailTransJasa from '../components/admin/detailTransJasa/EditDetailTransJasa.vue'
 
 import detailTransSparepartIndex from '../components/admin/detailTransSparepart/detailTransSparepartIndex.vue'
 import CreateDetailTransSparepart from '../components/admin/detailTransSparepart/CreateDetailTransSparepart.vue'
@@ -196,6 +197,11 @@ const routes = [
             {
                 path:'/tambah_trans_sparepart',
                 component: CreateDetailTransSparepart
+            },
+            {
+                name: 'editDetailTransJasa',
+                path:'/edit_trans_jasa',
+                component: EditDetailTransJasa
             },
             
            
