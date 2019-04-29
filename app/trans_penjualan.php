@@ -30,4 +30,8 @@ class trans_penjualan extends Model
         return $this->hasMany(detail_trans_jasa::class);
     }
 
+    public function detail_trans_sparepart(){
+        return $this->hasMany(detail_trans_sparepart::class);
+    }
+
 }

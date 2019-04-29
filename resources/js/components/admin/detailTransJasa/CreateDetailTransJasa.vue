@@ -17,7 +17,7 @@
                         <div class="select is-primary">
                         <div class="col-md-4">
                           <select
-                          v-model="detailTransJasa.id_trans_penjualan"
+                          v-model="detail_trans_jasa.id_trans_penjualan"
                           class="form-control"
                           required="" >
                             <option value="">Pilih ID Trans Penjualan</option>
@@ -33,7 +33,7 @@
                         <div class="select is-primary">
                         <div class="col-md-4">
                           <select
-                          v-model="detailTransJasa.id_jasa"
+                          v-model="detail_trans_jasa.id_jasa"
                           class="form-control"
                           required="" >
                             <option value="">Pilih Jasa Service</option>
@@ -49,7 +49,7 @@
                         <div class="select is-primary">
                         <div class="col-md-4">
                           <select
-                          v-model="detailTransJasa.id_pegawai"
+                          v-model="detail_trans_jasa.id_pegawai"
                           class="form-control"
                           required="" >
                             <option value="">Pilih Pegawai</option>
@@ -65,7 +65,7 @@
                         <div class="select is-primary">
                         <div class="col-md-4">
                           <select
-                          v-model="detailTransJasa.id_kendaraan"
+                          v-model="detail_trans_jasa.id_kendaraan"
                           class="form-control"
                           required="" >
                             <option value="">Pilih Kendaraan</option>
@@ -78,7 +78,7 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Jumlah Jasa</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Jasa" v-model="detailTransJasa.jumlah_jasa" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Jasa" v-model="detail_trans_jasa.jumlah_jasa" autofocus=""/>
                         <span v-if="errors.jumlah_jasa" class="help is-danger"> {{ errors.jumlah_jasa[0]}}</span>
                         </div>
                       </div>
@@ -105,7 +105,7 @@
   export default {
     data: function() {
       return {
-        detailTransJasa: {
+        detail_trans_jasa: {
             id_trans_penjualan: '',
             id_jasa: '',
             id_pegawai: '',
@@ -116,6 +116,7 @@
         jasa_services: [],
         pegawais: [],
         kendaraans: [],
+        errors: [],
         message: ''
       }
     },
@@ -175,7 +176,7 @@
         })
       },
       saveForm(){
-        var newDetailTransJasa = this.detailTransJasa;
+        var newDetailTransJasa = this.detail_trans_jasa;
         axios.post('/api/trans_penjualan/detail_jasa/store',newDetailTransJasa)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Service ');

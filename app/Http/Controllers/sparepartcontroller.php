@@ -19,6 +19,13 @@ class sparepartcontroller extends Controller
         return response()->json($spareparts, 200);
     }
 
+    public function all()
+    {
+        $spareparts = Sparepart::all();
+
+        return response()->json($spareparts, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

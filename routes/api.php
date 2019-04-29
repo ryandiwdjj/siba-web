@@ -75,6 +75,7 @@ Route::get('/mobile/supplier','suppliercontroller@indexMobile');
 
 
 Route::get('/sparepart','sparepartcontroller@index');
+Route::get('/sparepart/all','sparepartcontroller@all');
 Route::get('/sparepart/{id}','sparepartcontroller@show');
 Route::get('/sparepart/showByName/{nama_sparepart}','sparepartcontroller@showByName');
 Route::post('/sparepart/store','sparepartcontroller@store');
@@ -125,8 +126,13 @@ Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@de
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
 Route::get('/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@index');
 Route::post('/trans_penjualan/detail_jasa/store','detailTransPenjualanJasaController@store');
-Route::put('/trans_penjualan/detail_jasa/update/{id}','detailTransPenjualanJasaController@update');
+//Route::put('/trans_penjualan/detail_jasa/update/{id}','detailTransPenjualanJasaController@update');
 Route::delete('/trans_penjualan/detail_jasa/{id}','detailTransPenjualanJasaController@destroy');
+
+Route::get('/trans_penjualan/detail_spare', 'detailTransPenjualanSpareController@index');
+Route::post('/trans_penjualan/detail_spare/store','detailTransPenjualanSpareController@store');
+Route::put('/trans_penjualan/detail_spare/update/{id}','detailTransPenjualanSpareController@update');
+Route::delete('/trans_penjualan/detail_spare/{id}','detailTransPenjualanSpareController@destroy');
 
 Route::get('/mobile/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@indexMobile');
 Route::post('/mobile/trans_penjualan/detail_jasa/store', 'detailTransPenjualanJasaController@storeMobile');
