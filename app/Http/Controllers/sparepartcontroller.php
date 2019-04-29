@@ -269,7 +269,7 @@ class sparepartcontroller extends Controller
 
     private $photo_path;
     public function __construct() {
-        $this->photo_path = 'http://192.168.1.23:8000/images/sparepart/';
+        $this->photo_path = 'http://192.168.1.27:8000/images/sparepart/';
     }
 
     public function indexMobile()
@@ -299,6 +299,7 @@ class sparepartcontroller extends Controller
         $sparepart->nama_sparepart = $request->nama_sparepart;
         $sparepart->merk_sparepart = $request->merk_sparepart;  
         $sparepart->tipe_sparepart = $request->tipe_sparepart;
+        // $sparepart->gambar_sparepart = $request->gambar_sparepart;
         $sparepart->jumlah_stok_sparepart = $request->jumlah_stok_sparepart;
         $sparepart->harga_beli_sparepart = $request->harga_beli_sparepart;
         $sparepart->harga_jual_sparepart = $request->harga_jual_sparepart;
