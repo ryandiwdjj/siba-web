@@ -40,6 +40,8 @@ import EditKendaraan from '../components/admin/kendaraan/EditKendaraan.vue'
 
 import transPenjualanIndex from '../components/admin/transaksiPenjualan/transPenjualanIndex.vue'
 import CreateTransaksiPenjualan from '../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue'
+import EditTransaksiPenjualan from '../components/admin/transaksiPenjualan/EditTransPenjualan.vue'
+import PrintSPK from '../components/admin/transaksiPenjualan/PrintSPK.vue'
 
 import detailTransJasaIndex from '../components/admin/detailTransJasa/detailTransJasaIndex.vue'
 import CreateDetailTransJasa from '../components/admin/detailTransJasa/CreateDetailTransJasa.vue'
@@ -47,6 +49,9 @@ import EditDetailTransJasa from '../components/admin/detailTransJasa/EditDetailT
 
 import detailTransSparepartIndex from '../components/admin/detailTransSparepart/detailTransSparepartIndex.vue'
 import CreateDetailTransSparepart from '../components/admin/detailTransSparepart/CreateDetailTransSparepart.vue'
+import EditDetailTransSparepart from '../components/admin/detailTransSparepart/EditDetailTransSparepart.vue'
+
+
 
 
 
@@ -180,6 +185,15 @@ const routes = [
                 path:'/tambah_trans_penjualan',
                 component: CreateTransaksiPenjualan
             },
+            {   name: 'editTransaksi',
+                path:'/edit_trans_penjualan',
+                component: EditTransaksiPenjualan
+            },
+            {
+                name: 'printSPK',
+                path:'/print_spk',
+                component: PrintSPK
+            },
 
             {
                 path:'/detail_trans_jasa',
@@ -188,6 +202,11 @@ const routes = [
             {
                 path:'/tambah_trans_jasa',
                 component: CreateDetailTransJasa
+            },
+            {
+                name: 'editDetailTransJasa',
+                path:'/edit_trans_jasa',
+                component: EditDetailTransJasa
             },
 
             {
@@ -199,10 +218,11 @@ const routes = [
                 component: CreateDetailTransSparepart
             },
             {
-                name: 'editDetailTransJasa',
-                path:'/edit_trans_jasa',
-                component: EditDetailTransJasa
+                name: 'editTransaksiSparepart',
+                path:'/edit_trans_sparepart',
+                component: EditDetailTransSparepart
             },
+            
             
            
             

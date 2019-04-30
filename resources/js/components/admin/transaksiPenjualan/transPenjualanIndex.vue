@@ -53,6 +53,11 @@
                           v-on:click="konfirmasiHapus(transaksi.id,index,transaksi.no_plat_kendaraan)">
                           <i class="fa fa-trash"></i>
                         </button>
+                        <router-link 
+                          :to="{name:'printSPK' ,params:{id: transaksi.id}}" 
+                          class="button is-info">
+                          <i class="fas fa-print"></i>
+                       </router-link>
                         </td>
                       </tr>
                     </tbody>

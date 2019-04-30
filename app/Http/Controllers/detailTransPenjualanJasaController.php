@@ -21,6 +21,13 @@ class detailTransPenjualanJasaController extends Controller
         return response()->json($detailTransJasas, 200);
     }
 
+    public function all()
+    {
+        $detailTransJasas = detail_trans_jasa::all();
+
+        return response()->json($detailTransJasas, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

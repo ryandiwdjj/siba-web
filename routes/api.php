@@ -116,7 +116,9 @@ Route::get('/mobile/kendaraan','kendaraancontroller@indexMobile');
 //////////////////////////////////////////////////////////////////////////////////Trans Penjualan
 Route::get('/trans_penjualan', 'transpenjualancontroller@index');
 Route::get('/trans_penjualan/all','transpenjualancontroller@all');
+Route::get('/trans_penjualan/SPK/{id}','transpenjualancontroller@show');
 Route::post('/trans_penjualan/store','transpenjualancontroller@store');
+Route::put('/trans_penjualan/update/{id}','transpenjualancontroller@update');
 Route::delete('/trans_penjualan/{id}','transpenjualancontroller@destroy');
 
 Route::get('/mobile/trans_penjualan', 'transpenjualancontroller@indexMobile');
@@ -125,12 +127,15 @@ Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@de
 
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
 Route::get('/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@index');
+Route::get('/trans_penjualan/detail_jasa/all','detailTransPenjualanJasaController@all');
 Route::get('/trans_penjualan/detail_jasa/{id}','detailTransPenjualanJasaController@show');
 Route::post('/trans_penjualan/detail_jasa/store','detailTransPenjualanJasaController@store');
 Route::put('/trans_penjualan/detail_jasa/update/{id}','detailTransPenjualanJasaController@update');
 Route::delete('/trans_penjualan/detail_jasa/{id}','detailTransPenjualanJasaController@destroy');
 
 Route::get('/trans_penjualan/detail_spare', 'detailTransPenjualanSpareController@index');
+Route::get('/trans_penjualan/detail_spare/all','detailTransPenjualanSpareController@all');
+Route::get('/trans_penjualan/detail_spare/{id}','detailTransPenjualanSpareController@show');
 Route::post('/trans_penjualan/detail_spare/store','detailTransPenjualanSpareController@store');
 Route::put('/trans_penjualan/detail_spare/update/{id}','detailTransPenjualanSpareController@update');
 Route::delete('/trans_penjualan/detail_spare/{id}','detailTransPenjualanSpareController@destroy');

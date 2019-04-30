@@ -14,7 +14,7 @@
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama sparepart" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">

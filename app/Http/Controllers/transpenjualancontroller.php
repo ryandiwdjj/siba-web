@@ -119,7 +119,7 @@ class transpenjualancontroller extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'no_plat_kendaraan' => 'required|unique:trans_penjualans,no_plat_kendaraan,'.$id.'|max:8',
+            'no_plat_kendaraan' => 'required|unique:trans_penjualan,no_plat_kendaraan,'.$id.'|max:8',
             ]);
 
         $transpenjualan = trans_penjualan::where('id', $id)->first();
@@ -129,15 +129,12 @@ class transpenjualancontroller extends Controller
         }
 
         else {
-            $transpenjualan->id_pelanggan = $request->id_pelanggan;
-            $transpenjualan->id_cabang = $request->id_cabang;
-            $transpenjualan->total_harga_trans = $request->total_harga_trans;
+            $transpenjualan->total_harga_trans;
             $transpenjualan->discount_penjualan = $request->discount_penjualan;
-            $transpenjualan->grand_total = $request->grand_total;
-            $transpenjualan->status_transaksi = $request->status_transaksi;
-            $transpenjualan->status_pembayaran = $request->status_pembayaran;
-            $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
-            $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+            $transpenjualan->grand_total = $transpenjualan->total_harga_trans - $transpenjualan->discount_penjualan ;
+            $transpenjualan->status_transaksi = "Selesai";
+            $transpenjualan->status_pembayaran = "Selesai";
+            
 
             $success = $transpenjualan->save();
 
