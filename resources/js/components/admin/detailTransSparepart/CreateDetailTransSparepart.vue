@@ -37,7 +37,7 @@
                           class="form-control"
                           required="" >
                             <option value="">Pilih Sparepart</option>
-                            <option v-for="sparepart in spareparts" :value="sparepart.id">{{ sparepart.nama_sparepart }}</option>
+                            <option v-for="sparepart in spareparts" :value="sparepart.id">{{ sparepart.kode_sparepart }}</option>
                           </select>
                         <span v-if="errors.id_sparepart" class="help is-danger"> {{ errors.id_sparepart[0]}}</span>
                         </div>

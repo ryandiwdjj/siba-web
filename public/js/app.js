@@ -11413,7 +11413,7 @@ var render = function() {
                             return _c(
                               "option",
                               { domProps: { value: sparepart.id } },
-                              [_vm._v(_vm._s(sparepart.nama_sparepart))]
+                              [_vm._v(_vm._s(sparepart.kode_sparepart))]
                             )
                           })
                         ],
@@ -11710,7 +11710,7 @@ var render = function() {
                             return _c(
                               "option",
                               { domProps: { value: sparepart.id } },
-                              [_vm._v(_vm._s(sparepart.nama_sparepart))]
+                              [_vm._v(_vm._s(sparepart.kode_sparepart))]
                             )
                           })
                         ],
