@@ -12,16 +12,15 @@
                     <p class="title">SURAT PERINTAH KERJA</p>                                       
                 </div>
                 <div class="text-xs-right">
-                  <template v-for="(data,index) in transaksiPenjualan">
-                  <tr :key="index">
-                  
+                  <template v-for="data in transaksiPenjualan" :value="data.id">
+                  <tr>
                   <p>{{data.created_at}} </p>
                   </tr>
                   </template>                  
                 </div>
                 <div class="text-xs-left">
-                  <template v-for="(data, index) in transaksiPenjualan">
-                  <tr :key="index">
+                  <template v-for="data in transaksiPenjualan" :value="data.id">
+                  <tr>
                   <p>{{data.id}} </p>
                   <p>Cust &nbsp; {{data.pelanggans.nama_pelanggan}} &emsp; Montir &nbsp; {{data.detail_trans_jasa.pegawais.nama_pegawai}} </p>
                   <p>Telepon &nbsp; {{data.pelanggans.no_telp_pelanggan}}</p>
@@ -43,8 +42,8 @@
                       <th>Merk</th>
                       <th>Jumlah</th>
                     </tr>
-                    <template v-for="(data, index) in transaksiPenjualan">
-                      <tr :key="index">
+                    <template v-for="data in transaksiPenjualan" :value="data.id">
+                      <tr>
                         <td>{{data.detail_trans_sparepart.spareparts.kode_sparepart}}</td>
                         <td>{{data.detail_trans_sparepart.spareparts.nama_sparepart}}</td>
                         <td>{{data.detail_trans_sparepart.spareparts.merk_sparepart}}</td>
@@ -66,8 +65,8 @@
                       <th>Nama</th> 
                       <th>Jumlah</th>
                     </tr>
-                    <template v-for="(data, index) in transaksiPenjualan">
-                      <tr :key="index">
+                    <template v-for="data in transaksiPenjualan" :value="data.id">
+                      <tr>
                         <td>{{data.detail_trans_jasa.jasa_services.id}}</td>
                         <td>{{data.detail_trans_jasa.jasa_services.nama_jasa}}</td>
                         <td>{{data.detail_trans_jasa.jumlah_jasa}}</td>

@@ -6610,7 +6610,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -18751,11 +18750,9 @@ var render = function() {
           "div",
           { staticClass: "text-xs-right" },
           [
-            _vm._l(_vm.transaksiPenjualan, function(data, index) {
+            _vm._l(_vm.transaksiPenjualan, function(data) {
               return [
-                _c("tr", { key: index }, [
-                  _c("p", [_vm._v(_vm._s(data.created_at) + " ")])
-                ])
+                _c("tr", [_c("p", [_vm._v(_vm._s(data.created_at) + " ")])])
               ]
             })
           ],
@@ -18766,9 +18763,9 @@ var render = function() {
           "div",
           { staticClass: "text-xs-left" },
           [
-            _vm._l(_vm.transaksiPenjualan, function(data, index) {
+            _vm._l(_vm.transaksiPenjualan, function(data) {
               return [
-                _c("tr", { key: index }, [
+                _c("tr", [
                   _c("p", [_vm._v(_vm._s(data.id) + " ")]),
                   _vm._v(" "),
                   _c("p", [
@@ -18804,9 +18801,9 @@ var render = function() {
             [
               _vm._m(2),
               _vm._v(" "),
-              _vm._l(_vm.transaksiPenjualan, function(data, index) {
+              _vm._l(_vm.transaksiPenjualan, function(data) {
                 return [
-                  _c("tr", { key: index }, [
+                  _c("tr", [
                     _c("td", [
                       _vm._v(
                         _vm._s(
@@ -18854,9 +18851,9 @@ var render = function() {
             [
               _vm._m(4),
               _vm._v(" "),
-              _vm._l(_vm.transaksiPenjualan, function(data, index) {
+              _vm._l(_vm.transaksiPenjualan, function(data) {
                 return [
-                  _c("tr", { key: index }, [
+                  _c("tr", [
                     _c("td", [
                       _vm._v(_vm._s(data.detail_trans_jasa.jasa_services.id))
                     ]),
