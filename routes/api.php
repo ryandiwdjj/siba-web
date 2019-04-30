@@ -72,6 +72,8 @@ Route::put('/supplier/update/{id}','suppliercontroller@update');
 Route::delete('/supplier/{id}','suppliercontroller@destroy');
 
 Route::get('/mobile/supplier','suppliercontroller@indexMobile');
+Route::post('/mobile/supplier/store','suppliercontroller@storeMobile');
+Route::put('/mobile/supplier/update/{id}','suppliercontroller@updateMobile');
 
 
 Route::get('/sparepart','sparepartcontroller@index');
@@ -85,7 +87,7 @@ Route::delete('/sparepart/{id}','sparepartcontroller@destroy');
 Route::get('/mobile/sparepart/','sparepartcontroller@indexMobile');
 Route::post('/mobile/sparepart/store','sparepartcontroller@storeMobile');
 Route::post('/mobile/sparepart/update/{id}','sparepartcontroller@updateMobile');
-Route::put('/mobile/sparepart/update_nonimg/{id}','sparepartcontroller@updateMobileNonImage');
+Route::post('/mobile/sparepart/update_nonimg/{id}','sparepartcontroller@updateMobileNonImage');
 
 
 Route::get('/pelanggan','pelanggancontroller@index');
