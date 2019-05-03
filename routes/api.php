@@ -142,6 +142,8 @@ Route::post('/trans_penjualan/detail_spare/store','detailTransPenjualanSpareCont
 Route::put('/trans_penjualan/detail_spare/update/{id}','detailTransPenjualanSpareController@update');
 Route::delete('/trans_penjualan/detail_spare/{id}','detailTransPenjualanSpareController@destroy');
 
+
+
 Route::get('/mobile/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@indexMobile');
 Route::post('/mobile/trans_penjualan/detail_jasa/store', 'detailTransPenjualanJasaController@storeMobile');
 Route::delete('/mobile/trans_penjualan/detail_jasa/delete/{id}', 'detailTransPenjualanJasaController@destroyMobile');

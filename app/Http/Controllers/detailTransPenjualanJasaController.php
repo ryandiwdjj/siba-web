@@ -279,18 +279,23 @@ class detailTransPenjualanJasaController extends Controller
         
         else {
 
-            $transpenjualan = trans_penjualan::where('id', $detailTransJasa->id_trans_penjualan)->first();
+            $transpenjualan = trans_penjualan::where('id', $request->id_trans_penjualan)->first();
 
             if(is_null($transpenjualan)) {
                 return response()->json('Transaksi Penjualan not found', 404);
             }
 
-            $jasa_service = jasa_service::where('id', $detailTransJasa->id_jasa)->first();
+            $jasa_service = jasa_service::where('id', $request->id_jasa)->first();
 
             if(is_null($jasa_service)) {
                 return response()->json('Jasa Service not found', 404);
             }
 
+            //pengurangan harga total harga transaksi
+            $transpenjualan->total_harga_trans = 
+            $transpenjualan->total_harga_trans - $detailTransJasa->total_harga_jasa;
+
+            //input data baru
             $detailTransJasa->id_trans_penjualan = $request->id_trans_penjualan;
             $detailTransJasa->id_jasa = $request->id_jasa;
             $detailTransJasa->id_pegawai = $request->id_pegawai;
