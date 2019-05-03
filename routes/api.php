@@ -125,6 +125,8 @@ Route::put('/trans_penjualan/update/{id}','transpenjualancontroller@update');
 Route::delete('/trans_penjualan/{id}','transpenjualancontroller@destroy');
 
 Route::get('/mobile/trans_penjualan', 'transpenjualancontroller@indexMobile');
+Route::post('/mobile/trans_penjualan/stat_trans/{id}', 'transpenjualancontroller@pekerjaanSelesai');
+Route::post('/mobile/trans_penjualan/stat_bayar/{id}', 'transpenjualancontroller@pembayaranSelesai');
 Route::post('/mobile/trans_penjualan/store','transpenjualancontroller@storeMobile');
 Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@destroyMobile');
 
@@ -142,6 +144,8 @@ Route::get('/trans_penjualan/detail_spare/{id}','detailTransPenjualanSpareContro
 Route::post('/trans_penjualan/detail_spare/store','detailTransPenjualanSpareController@store');
 Route::put('/trans_penjualan/detail_spare/update/{id}','detailTransPenjualanSpareController@update');
 Route::delete('/trans_penjualan/detail_spare/{id}','detailTransPenjualanSpareController@destroy');
+
+
 
 Route::get('/mobile/trans_penjualan/detail_jasa', 'detailTransPenjualanJasaController@indexMobile');
 Route::post('/mobile/trans_penjualan/detail_jasa/store', 'detailTransPenjualanJasaController@storeMobile');

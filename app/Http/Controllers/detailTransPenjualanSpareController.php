@@ -133,6 +133,11 @@ class detailTransPenjualanSpareController extends Controller
             return response()->json('Sparepart not found', 404);
         }
 
+        //pengurangan harga total harga transaksi
+        $transpenjualan->total_harga_trans = 
+        $transpenjualan->total_harga_trans - $detailTransSpare->total_harga_spare;
+
+        //input data baru
          $detailTransSpare->id_trans_penjualan = $request->id_trans_penjualan;
          $detailTransSpare->id_sparepart = $request->id_sparepart;
          $detailTransSpare->jumlah_barang = $request->jumlah_barang;
@@ -195,6 +200,30 @@ class detailTransPenjualanSpareController extends Controller
                 return response()->json('Error Delete', 500);
             }
         }
+    }
+
+    public function penguranganStok($id_trans) {
+        $results = detail_trans_sparepart::where('id_trans_penjualan', $id_trans)->get();
+
+        foreach($results as $result) {
+
+            $sparepart = sparepart::find($result->id_sparepart);
+            if(is_null($sparepart)) {
+                return response()->json('Sparepart not found', 404);
+            }
+
+            $sparepart->jumlah_stok_sparepart = 
+            $sparepart->jumlah_stok_sparepart - $result->jumlah_barang;
+        }
+
+        $success = $sparepart->save();
+
+        if($success)
+                return response()->json('Success Decrease', 200);
+            else {
+                return response()->json('Error Decrease', 500);
+            }
+
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -262,6 +291,11 @@ class detailTransPenjualanSpareController extends Controller
             return response()->json('Sparepart not found', 404);
         }
 
+            //pengurangan harga total harga transaksi
+            $transpenjualan->total_harga_trans = 
+            $transpenjualan->total_harga_trans - $detailTransSpare->total_harga_spare;
+
+            //input data baru
          $detailTransSpare->id_trans_penjualan = $request->id_trans_penjualan;
          $detailTransSpare->id_sparepart = $request->id_sparepart;
          $detailTransSpare->jumlah_barang = $request->jumlah_barang;

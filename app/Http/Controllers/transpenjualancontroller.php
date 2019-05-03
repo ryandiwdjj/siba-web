@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\trans_penjualan;
+use App\sparepart;
+use App\detail_trans_sparepart;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -68,8 +70,8 @@ class transpenjualancontroller extends Controller
         $transpenjualan->total_harga_trans = 0;
         $transpenjualan->discount_penjualan = 0;
         $transpenjualan->grand_total = 0;
-        $transpenjualan->status_transaksi = "Belum";
-        $transpenjualan->status_pembayaran = "Belum";
+        $transpenjualan->status_transaksi = "belum";
+        $transpenjualan->status_pembayaran = "belum";
         $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
         $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
 
@@ -132,8 +134,8 @@ class transpenjualancontroller extends Controller
             $transpenjualan->total_harga_trans;
             $transpenjualan->discount_penjualan = $request->discount_penjualan;
             $transpenjualan->grand_total = $transpenjualan->total_harga_trans - $transpenjualan->discount_penjualan ;
-            $transpenjualan->status_transaksi = "Selesai";
-            $transpenjualan->status_pembayaran = "Selesai";
+            $transpenjualan->status_transaksi = $transpenjualan->status_transaksi;
+            $transpenjualan->status_pembayaran = $transpenjualan->status_transaksi;
             
 
             $success = $transpenjualan->save();
@@ -170,6 +172,8 @@ class transpenjualancontroller extends Controller
         }
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////MOBILE
+
     public function indexMobile()
     {
         $transpenjualans = trans_penjualan::all();
@@ -197,8 +201,8 @@ class transpenjualancontroller extends Controller
         $transpenjualan->total_harga_trans = 0;
         $transpenjualan->discount_penjualan = 0;
         $transpenjualan->grand_total = 0;
-        $transpenjualan->status_transaksi = 'Belum';
-        $transpenjualan->status_pembayaran = 'Belum';
+        $transpenjualan->status_transaksi = 'belum';
+        $transpenjualan->status_pembayaran = 'belum';
         $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
         $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
 
@@ -226,6 +230,76 @@ class transpenjualancontroller extends Controller
             else {
                 return response()->json('Error Delete', 500);
             }
+        }
+    }
+
+    public function pekerjaanSelesai($id) {
+        $transpenjualan = trans_penjualan::where('id', $id)->first();
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan Not Found', 404);
+        }
+        
+        else {
+            $transpenjualan->status_transaksi = "sudah";
+        }
+
+        $success = $transpenjualan->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
+    }
+
+    public function pembayaranSelesai($id) {
+        $transpenjualan = trans_penjualan::where('id', $id)->first();
+
+        if(is_null($transpenjualan)) {
+            return response()->json('Transaksi Penjualan Not Found', 404);
+        }
+        
+        else {
+            if($transpenjualan->status_pembayaran == "sudah") {
+                return response()->json('Transaksi sudah dibayar', 200);
+            }
+
+            $transpenjualan->status_transaksi = "sudah";
+            $transpenjualan->status_pembayaran = "sudah";
+
+            //function untuk pengurangan stok sparepart
+            $results = detail_trans_sparepart::where('id_trans_penjualan', $id)->get();
+
+            foreach($results as $result) {
+
+                $sparepart = sparepart::find($result->id_sparepart);
+                if(is_null($sparepart)) {
+                    return response()->json('Sparepart not found', 404);
+                }
+
+                $sparepart->jumlah_stok_sparepart = 
+                $sparepart->jumlah_stok_sparepart - $result->jumlah_barang;
+            }
+
+            $success_sparepart = $sparepart->save();
+            $success_trans = $transpenjualan->save();
+
+            if($success_sparepart && $success_trans) {
+                return response()->json('Success Decrease', 200);
+            }
+            else {
+                return response()->json('Error Decrease', 500);
+            }
+
+        }
+        
+        $success = $transpenjualan->save();
+
+        if ($success) {
+            return response()->json('Pembayaran Sukses', 204);
+        } else {
+            return response()->json('Pembayaran gagal', 500);
         }
     }
 }
