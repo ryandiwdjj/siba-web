@@ -133,6 +133,11 @@ class detailTransPenjualanSpareController extends Controller
             return response()->json('Sparepart not found', 404);
         }
 
+        //pengurangan harga total harga transaksi
+        $transpenjualan->total_harga_trans = 
+        $transpenjualan->total_harga_trans - $detailTransSpare->total_harga_spare;
+
+        //input data baru
          $detailTransSpare->id_trans_penjualan = $request->id_trans_penjualan;
          $detailTransSpare->id_sparepart = $request->id_sparepart;
          $detailTransSpare->jumlah_barang = $request->jumlah_barang;

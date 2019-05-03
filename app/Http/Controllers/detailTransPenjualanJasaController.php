@@ -148,6 +148,11 @@ class detailTransPenjualanJasaController extends Controller
                 return response()->json('Jasa Service not found', 404);
             }
 
+            //pengurangan harga total harga transaksi
+            $transpenjualan->total_harga_trans = 
+            $transpenjualan->total_harga_trans - $detailTransJasa->total_harga_jasa;
+
+            //input data baru
             $detailTransJasa->id_trans_penjualan = $request->id_trans_penjualan;
             $detailTransJasa->id_jasa = $request->id_jasa;
             $detailTransJasa->id_pegawai = $request->id_pegawai;
