@@ -124,6 +124,8 @@ Route::put('/trans_penjualan/update/{id}','transpenjualancontroller@update');
 Route::delete('/trans_penjualan/{id}','transpenjualancontroller@destroy');
 
 Route::get('/mobile/trans_penjualan', 'transpenjualancontroller@indexMobile');
+Route::post('/mobile/trans_penjualan/stat_trans/{id}', 'transpenjualancontroller@pekerjaanSelesai');
+Route::post('/mobile/trans_penjualan/stat_bayar/{id}', 'transpenjualancontroller@pembayaranSelesai');
 Route::post('/mobile/trans_penjualan/store','transpenjualancontroller@storeMobile');
 Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@destroyMobile');
 

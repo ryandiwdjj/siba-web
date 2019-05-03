@@ -202,6 +202,30 @@ class detailTransPenjualanSpareController extends Controller
         }
     }
 
+    public function penguranganStok($id_trans) {
+        $results = detail_trans_sparepart::where('id_trans_penjualan', $id_trans)->get();
+
+        foreach($results as $result) {
+
+            $sparepart = sparepart::find($result->id_sparepart);
+            if(is_null($sparepart)) {
+                return response()->json('Sparepart not found', 404);
+            }
+
+            $sparepart->jumlah_stok_sparepart = 
+            $sparepart->jumlah_stok_sparepart - $result->jumlah_barang;
+        }
+
+        $success = $sparepart->save();
+
+        if($success)
+                return response()->json('Success Decrease', 200);
+            else {
+                return response()->json('Error Decrease', 500);
+            }
+
+    }
+
     ////////////////////////////////////////////////////////////////////////////////
 
     public function indexMobile() {
