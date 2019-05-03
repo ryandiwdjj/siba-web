@@ -22,4 +22,8 @@ class sparepart extends Model
     public function detail_trans_sparepart(){
         return $this->hasMany(detail_trans_sparepart::class);
     }
+
+    public function detail_trans_pengadaan(){
+        return $this->hasMany(detail_trans_pengadaan::class);
+    }
 }

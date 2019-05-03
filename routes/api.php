@@ -65,6 +65,7 @@ Route::delete('/cabang/{id}','cabangcontroller@destroy');
 
 
 Route::get('/suppliers','suppliercontroller@index');
+Route::get('/supplier/all','suppliercontroller@all');
 Route::get('/supplier/{id}','suppliercontroller@show');
 Route::get('/supplier/showByName/{nama_supplier}','suppliercontroller@showByName');
 Route::post('/supplier/store','suppliercontroller@store');
@@ -151,3 +152,19 @@ Route::get('/mobile/trans_penjualan/detail_spare','detailTransPenjualanSpareCont
 Route::post('/mobile/trans_penjualan/detail_spare/store','detailTransPenjualanSpareController@storeMobile');
 Route::delete('/mobile/trans_penjualan/detail_spare/delete/{id}', 'detailTransPenjualanSpareController@destroyMobile');
 Route::put('/mobile/trans_penjualan/detail_spare/update/{id}', 'detailTransPenjualanSpareController@updateMobile');
+
+/////////////////////////////////////////////////////////////////////////////////////////////Trans Pengadaan
+Route::get('/trans_pengadaan', 'transpengadaancontroller@index');
+Route::get('/trans_pengadaan/all','transpengadaancontroller@all');
+Route::get('/trans_pengadaan/{id}','transpengadaancontroller@show');
+Route::post('/trans_pengadaan/store','transpengadaancontroller@store');
+//Route::put('/trans_pengadaan/update/{id}','transpengadaancontroller@update');
+Route::delete('/trans_pengadaan/{id}','transpengadaancontroller@destroy');
+
+/////////////////////////////////////////////////////////////////////////////////////////////Detail Trans Pengadaan
+Route::get('/detail_trans_pengadaan', 'detailpengadaancontroller@index');
+//Route::get('/detail_trans_pengadaan/all','detailpengadaancontroller@all');
+Route::get('/detail_trans_pengadaan/{id}','detailpengadaancontroller@show');
+Route::post('/detail_trans_pengadaan/store','detailpengadaancontroller@store');
+//Route::put('/detail_trans_pengadaan/update/{id}','detailpengadaancontroller@update');
+Route::delete('/detail_trans_pengadaan/{id}','detailpengadaancontroller@destroy');

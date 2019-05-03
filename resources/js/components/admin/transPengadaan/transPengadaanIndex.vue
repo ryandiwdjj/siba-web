@@ -4,43 +4,43 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi Sparepart</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Pengadaan</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_sparepart" class="button is-success">Tambah Transaksi Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_pengadaan" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari berdasarkan nama sparepart" v-bind:style="{width: '25%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
-                        <th>Nomor Transaksi Penjualan</th>
-                        <th>Sparepart</th>
-                        <th>Jumlah Sparepart</th>
-                        <th>Total Harga Sparepart</th>
+                        <th>Supplier</th>
+                        <th>Cabang</th>
+                        <th>Tanggal Pengadaan</th>
+                        <th>Total Harga Pengadaan</th>
                         <th>Modify</th>
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(detail_trans_sparepart,index) in filteredList" :key ="detail_trans_sparepart.id">
-                        <td>{{ detail_trans_sparepart.id_trans_penjualan }}</td>
-                        <td>{{ detail_trans_sparepart.sparepart.kode_sparepart }}</td>
-                        <td>{{ detail_trans_sparepart.jumlah_barang }}</td>
-                        <td>{{ detail_trans_sparepart.total_harga_spare }}</td>
+                      <tr v-for="(trans_pengadaan,index) in filteredList" :key ="trans_pengadaan.id">
+                        <td>{{ trans_pengadaan.supplier.nama_supplier }}</td>
+                        <td>{{ trans_pengadaan.cabang.nama_cabang }}</td>
+                        <td>{{ trans_pengadaan.tanggal_pengadaan }}</td>
+                        <td>{{ trans_pengadaan.total_harga_pengadaan }}</td>
                         <td>
                         <router-link 
-                          :to="{name:'editTransaksiSparepart' ,params:{id: detail_trans_sparepart.id}}" 
+                          :to="{name:'editTransaksiPengadaan' ,params:{id: trans_pengadaan.id}}" 
                           class="button is-primary">
                           <i class="fa fa-edit"></i>
                        </router-link>
                         <button 
                           class="button is-danger" 
-                          v-on:click="konfirmasiHapus(detail_trans_sparepart.id,index)">
+                          v-on:click="konfirmasiHapus(trans_pengadaan.id,index)">
                           <i class="fa fa-trash"></i>
                         </button>
                         </td>
@@ -51,7 +51,7 @@
                    </div>     
                     <div class="card-footer">
                       <pagination class="card-footer-item"
-                        :data="detail_transsparepartData" @pagination-change-page="getResults" :limit="4">
+                        :data="trans_pengadaanData" @pagination-change-page="getResults" :limit="4">
                         <span slot="prev-nav">&lt; Previous</span>
 	                      <span slot="next-nav">Next &gt;</span>
                       </pagination>
@@ -68,8 +68,8 @@
   export default {
     data: function() {
       return {
-        detail_transsparepart: [],
-        detail_transsparepartData: {},
+        transaksiPengadaan: [],
+        trans_pengadaanData: {},
         pencarian: '',
         loading: true
       }
@@ -80,8 +80,8 @@
     },
     computed: {
        filteredList: function(){
-         return this.detail_transsparepart.filter((detail_trans_sparepart) => {
-           return detail_trans_sparepart.sparepart.kode_sparepart.toLowerCase().match(this.pencarian.toLowerCase());
+         return this.transaksiPengadaan.filter((trans_pengadaan) => {
+           return trans_pengadaan.supplier.nama_supplier.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
     },
@@ -91,10 +91,10 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/trans_penjualan/detail_spare?page=' + page)
+        axios.get('/api/trans_pengadaan?page=' + page)
         .then(function(resp){
-          app.detail_transsparepart = resp.data.data;
-          app.detail_transsparepartData = resp.data;
+          app.transaksiPengadaan = resp.data.data;
+          app.trans_pengadaanData = resp.data;
           app.loading = false;
         })
         .catch(function(resp){
@@ -105,20 +105,20 @@
       },
       
       deleteEntry(id,index){
-          axios.delete('/api/trans_penjualan/detail_spare/' + id)
+          axios.delete('/api/trans_pengadaan/' + id)
           .then((resp) => {
             this.getResults();
-            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi ");
+            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi Pengadaan ");
           })
           .catch((resp) =>{
-            alert("Gagal Menghapus Transaksi")
+            alert("Gagal Menghapus Transaksi Pengadaan")
             console.log(resp);
           })
       },
       konfirmasiHapus(id,index){
       
         this.$swal({
-          title: "Yakin Ingin Menghapus Transaksi ?",
+          title: "Yakin Ingin Menghapus Transaksi Pengadaan ?",
           text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
           icon: "warning",
           buttons: true,

@@ -51,6 +51,9 @@ import detailTransSparepartIndex from '../components/admin/detailTransSparepart/
 import CreateDetailTransSparepart from '../components/admin/detailTransSparepart/CreateDetailTransSparepart.vue'
 import EditDetailTransSparepart from '../components/admin/detailTransSparepart/EditDetailTransSparepart.vue'
 
+import transPengadaanIndex from '../components/admin/transPengadaan/transPengadaanIndex.vue'
+import CreateTransPengadaan from '../components/admin/transPengadaan/CreateTransPengadaan.vue'
+
 
 
 
@@ -221,6 +224,15 @@ const routes = [
                 name: 'editTransaksiSparepart',
                 path:'/edit_trans_sparepart',
                 component: EditDetailTransSparepart
+            },
+
+            {
+                path:'/trans_pengadaan',
+                component: transPengadaanIndex
+            },
+            {
+                path:'/tambah_trans_pengadaan',
+                component: CreateTransPengadaan
             },
             
             

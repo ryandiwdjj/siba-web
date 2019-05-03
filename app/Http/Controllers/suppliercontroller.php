@@ -19,6 +19,13 @@ class suppliercontroller extends Controller
         return response()->json($suppliers, 200);
     }
 
+    public function all()
+    {
+        $suppliers = Supplier::all();
+
+        return response()->json($suppliers, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
