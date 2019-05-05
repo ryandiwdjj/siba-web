@@ -83,8 +83,10 @@
                                 </td>
                                 <td>
                                   <div class="form-group">
-                                    <input type="text" v-bind:style="{width: '25%' }" class="input is-primary" v-model="detail_trans_pengadaan.jumlah_pengadaan" @input="onlyNumbers" >
-                                    <span v-if="errors.jumlah_pengadaan" class="help is-danger"> {{ errors.jumlah_pengadaan[0]}}</span>
+                                     <div class="col-md-4">
+                                      <input type="text" v-bind:style="{width: '25%' }" class="input is-primary" required="" placeholder="" v-model="detail_trans_pengadaan.jumlah_pengadaan" @input="onlyNumbers" autofocus=""/>
+                                      <span v-if="errors.jumlah_pengadaan" class="help is-danger"> {{ errors.jumlah_pengadaan[0]}}</span>
+                                     </div>
                                   </div>
                                 </td>
                                 <td>

@@ -6386,6 +6386,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -18947,47 +18949,59 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _c("div", { staticClass: "form-group" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value:
-                                    detail_trans_pengadaan.jumlah_pengadaan,
-                                  expression:
-                                    "detail_trans_pengadaan.jumlah_pengadaan"
+                            _c("div", { staticClass: "col-md-4" }, [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      detail_trans_pengadaan.jumlah_pengadaan,
+                                    expression:
+                                      "detail_trans_pengadaan.jumlah_pengadaan"
+                                  }
+                                ],
+                                staticClass: "input is-primary",
+                                style: { width: "25%" },
+                                attrs: {
+                                  type: "text",
+                                  required: "",
+                                  placeholder: "",
+                                  autofocus: ""
+                                },
+                                domProps: {
+                                  value: detail_trans_pengadaan.jumlah_pengadaan
+                                },
+                                on: {
+                                  input: [
+                                    function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        detail_trans_pengadaan,
+                                        "jumlah_pengadaan",
+                                        $event.target.value
+                                      )
+                                    },
+                                    _vm.onlyNumbers
+                                  ]
                                 }
-                              ],
-                              staticClass: "input is-primary",
-                              style: { width: "25%" },
-                              attrs: { type: "text" },
-                              domProps: {
-                                value: detail_trans_pengadaan.jumlah_pengadaan
-                              },
-                              on: {
-                                input: [
-                                  function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      detail_trans_pengadaan,
-                                      "jumlah_pengadaan",
-                                      $event.target.value
-                                    )
-                                  },
-                                  _vm.onlyNumbers
-                                ]
-                              }
-                            }),
-                            _vm._v(" "),
-                            _vm.errors.jumlah_pengadaan
-                              ? _c("span", { staticClass: "help is-danger" }, [
-                                  _vm._v(
-                                    " " + _vm._s(_vm.errors.jumlah_pengadaan[0])
+                              }),
+                              _vm._v(" "),
+                              _vm.errors.jumlah_pengadaan
+                                ? _c(
+                                    "span",
+                                    { staticClass: "help is-danger" },
+                                    [
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(_vm.errors.jumlah_pengadaan[0])
+                                      )
+                                    ]
                                   )
-                                ])
-                              : _vm._e()
+                                : _vm._e()
+                            ])
                           ])
                         ]),
                         _vm._v(" "),
