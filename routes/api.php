@@ -89,6 +89,7 @@ Route::get('/mobile/sparepart/','sparepartcontroller@indexMobile');
 Route::post('/mobile/sparepart/store','sparepartcontroller@storeMobile');
 Route::post('/mobile/sparepart/update/{id}','sparepartcontroller@updateMobile');
 Route::post('/mobile/sparepart/update_nonimg/{id}','sparepartcontroller@updateMobileNonImage');
+Route::get('/mobile/sparepart/cek_stok','sparepartcontroller@cekJumlahStok');
 
 
 Route::get('/pelanggan','pelanggancontroller@index');
@@ -172,3 +173,11 @@ Route::get('/detail_trans_pengadaan/{id}','detailpengadaancontroller@show');
 Route::post('/detail_trans_pengadaan/store','detailpengadaancontroller@store');
 //Route::put('/detail_trans_pengadaan/update/{id}','detailpengadaancontroller@update');
 Route::delete('/detail_trans_pengadaan/{id}','detailpengadaancontroller@destroy');
+
+/////////////////////////////////////////////////////////////////////////////////////////////REPORT
+Route::get('/report/pendapatan_bulanan/{month}', 'reportController@lap_pendapatan_bul');
+Route::get('/report/pengeluaran_bulanan/{month}', 'reportController@lap_pengeluaran_bul');
+Route::get('/report/spare_terlaris/{month}', 'reportController@lap_spare_terlaris');
+Route::get('/report/jumlah_jasa_permotor/{motor}', 'reportController@lap_jumlah_jasa_perMotor');
+Route::get('/report/sisa_stok_bulanan', 'reportController@lap_sisa_stok_bulanan');
+Route::get('/report/tahunan_percabang/{month}', 'reportController@lap_tahunan_perCabang');

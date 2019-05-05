@@ -379,4 +379,15 @@ class sparepartcontroller extends Controller
             return response()->json('Success Updating', 204);
         }
     }
+
+    public function cekJumlahStok() {
+        $results = Sparepart::whereColumn('jumlah_stok_sparepart', '<=', 'jumlah_minimal')->get();
+
+        if(is_null($results)) {
+            return response()->json('Not found', 404);
+        }
+        else {
+            return response()->json($results, 200);
+        }
+    }
 }
