@@ -50,6 +50,54 @@
                         <span v-if="errors.tanggal_pengadaan" class="help is-danger"> {{ errors.tanggal_pengadaan[0]}}</span>
                         </div>
                       </div>
+                        <br>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <td><strong>Sparepart</strong></td>
+                              <td><strong>Jumlah Pengadaan</strong></td>
+                              <td></td>
+                            </tr>
+                          </thead>
+                            <tbody>
+                              <tr v-for="(detail_trans_pengadaan, index) in rows">
+
+                                <td>
+                                  
+                                  <div class="form-group">
+                                    
+                                    <div class="select is-primary">
+                                      <div class="col-md-4">
+                                        <select
+                                         v-model="detail_trans_pengadaan.id_sparepart"
+                                         class="form-control"
+                                         required="" >
+                                          <option value="">Pilih Sparepart</option>
+                                          <option v-for="sparepart in spareparts" :value="sparepart.id">{{ sparepart.kode_sparepart }}</option>
+                                        </select>
+                                        <span v-if="errors.id_sparepart" class="help is-danger"> {{ errors.id_sparepart[0]}}</span>
+                                      </div>
+                                      </div>
+                                    </div>
+                                
+                                </td>
+                                <td>
+                                  <div class="form-group">
+                                    <input type="text" v-bind:style="{width: '25%' }" class="input is-primary" v-model="detail_trans_pengadaan.jumlah_pengadaan" @input="onlyNumbers" >
+                                    <span v-if="errors.jumlah_pengadaan" class="help is-danger"> {{ errors.jumlah_pengadaan[0]}}</span>
+                                  </div>
+                                </td>
+                                <td>
+                                   <a v-on:click="removeElement(index);" style="cursor: pointer">Remove</a>
+                                </td>
+
+
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div>
+                            <button class="button is-primary" @click="addRow"><i class="fas fa-plus-circle"></i></button>
+                          </div>
                       
                       <br>
                       <div class="form-group">
@@ -76,10 +124,16 @@
         transaksiPengadaan: {
             id_supplier: '',
             id_cabang: '',
-            tanggal_pengadaan: '2019-02-04',
+            tanggal_pengadaan: '2019-02-04',   
+        },
+        detail_trans_pengadaan: {
+            id_sparepart: '',
+            jumlah_pengadaan: '',
         },
         suppliers: [],
         cabangs: [],
+        spareparts: [],
+        rows: [],
         errors: [],
         message: ''
       }
@@ -88,6 +142,7 @@
      var app = this;
      app.getSuppliers();
      app.getCabangs();
+     app.getSpareparts();
     },
     methods: {
       alert(pesan){
@@ -117,9 +172,31 @@
           console.log(resp);
         })
       },
+      getSpareparts(){
+        var app = this;
+        axios.get('/api/sparepart' + '/all')
+        .then(function(resp){
+          app.spareparts = resp.data;
+        })
+        .catch(function(resp){
+          console.log(resp);
+        })
+      },
+      addRow: function() {
+            var elem = document.createElement('tr');
+            this.rows.push({
+            id_sparepart: "",
+            jumlah_pengadaan: "",
+            });
+      },
+      removeElement: function(index) {
+        this.rows.splice(index, 1);
+      },
       saveForm(){
         var newTransPengadaan = this.transaksiPengadaan;
         axios.post('/api/trans_pengadaan/store',newTransPengadaan)
+        var newDetailTransPengadaan = this.detail_trans_pengadaan;
+        axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Pengadaan ');
           this.$router.replace('/trans_pengadaan');
@@ -130,10 +207,12 @@
           console.log(resp);
         });
       },
-    //   onlyNumbers: function() {
-    //    this.transaksiPenjualan.tanggal_penjualan = this.transaksiPenjualan.tanggal_penjualan.replace(/[^0-9-]/g,'');
-    //   }
+      onlyNumbers: function() {
+       this.detail_trans_pengadaan.jumlah_pengadaan = this.detail_trans_pengadaan.jumlah_pengadaan.replace(/[^0-9]/g,'');
+      }
     }
   }
 
 </script>
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\trans_pengadaan;
+use App\detail_trans_pengadaan;
 
 
 class transpengadaancontroller extends Controller
@@ -58,13 +59,13 @@ class transpengadaancontroller extends Controller
              ], 404);
          }
 
-        $transpengadaans = new trans_pengadaan;
-        $transpengadaans->id_supplier = $request->id_supplier;
-        $transpengadaans->id_cabang = $request->id_cabang;
-        $transpengadaans->tanggal_pengadaan = $request->tanggal_pengadaan;
-        $transpengadaans->total_harga_pengadaan = 0;
+        $transpengadaan = new trans_pengadaan;
+        $transpengadaan->id_supplier = $request->id_supplier;
+        $transpengadaan->id_cabang = $request->id_cabang;
+        $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
+        $transpengadaan->total_harga_pengadaan = 0;
 
-        $success = $transpengadaans->save();
+        $success = $transpengadaan->save();
 
         if (!$success) {
             return response()->json('Error Saving', 500);

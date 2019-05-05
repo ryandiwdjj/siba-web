@@ -6338,6 +6338,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -6346,8 +6394,14 @@ __webpack_require__.r(__webpack_exports__);
         id_cabang: '',
         tanggal_pengadaan: '2019-02-04'
       },
+      detail_trans_pengadaan: {
+        id_sparepart: '',
+        jumlah_pengadaan: ''
+      },
       suppliers: [],
       cabangs: [],
+      spareparts: [],
+      rows: [],
       errors: [],
       message: ''
     };
@@ -6356,6 +6410,7 @@ __webpack_require__.r(__webpack_exports__);
     var app = this;
     app.getSuppliers();
     app.getCabangs();
+    app.getSpareparts();
   },
   methods: {
     alert: function alert(pesan) {
@@ -6381,11 +6436,31 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
       });
     },
+    getSpareparts: function getSpareparts() {
+      var app = this;
+      axios.get('/api/sparepart' + '/all').then(function (resp) {
+        app.spareparts = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    addRow: function addRow() {
+      var elem = document.createElement('tr');
+      this.rows.push({
+        id_sparepart: "",
+        jumlah_pengadaan: ""
+      });
+    },
+    removeElement: function removeElement(index) {
+      this.rows.splice(index, 1);
+    },
     saveForm: function saveForm() {
       var _this = this;
 
       var newTransPengadaan = this.transaksiPengadaan;
-      axios.post('/api/trans_pengadaan/store', newTransPengadaan).then(function (resp) {
+      axios.post('/api/trans_pengadaan/store', newTransPengadaan);
+      var newDetailTransPengadaan = this.detail_trans_pengadaan;
+      axios.post('/api/detail_trans_pengadaan/store', newDetailTransPengadaan).then(function (resp) {
         _this.alert('Berhasil Menambah Transaksi Pengadaan ');
 
         _this.$router.replace('/trans_pengadaan');
@@ -6394,6 +6469,9 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors = resp.response.data.errors;
         console.log(resp);
       });
+    },
+    onlyNumbers: function onlyNumbers() {
+      this.detail_trans_pengadaan.jumlah_pengadaan = this.detail_trans_pengadaan.jumlah_pengadaan.replace(/[^0-9]/g, '');
     }
   }
 });
@@ -7212,7 +7290,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n    table-layout: fixed;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\ntd{\n    background-color: rgb(64, 63, 65);\n    -webkit-text-fill-color: antiquewhite;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
+exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n    table-layout: fixed;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\ntd{\n    background-color: rgb(255, 255, 255);\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
 
 // exports
 
@@ -18781,12 +18859,177 @@ var render = function() {
                 _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.rows, function(detail_trans_pengadaan, index) {
+                      return _c("tr", [
+                        _c("td", [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("div", { staticClass: "select is-primary" }, [
+                              _c("div", { staticClass: "col-md-4" }, [
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value:
+                                          detail_trans_pengadaan.id_sparepart,
+                                        expression:
+                                          "detail_trans_pengadaan.id_sparepart"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { required: "" },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          detail_trans_pengadaan,
+                                          "id_sparepart",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("Pilih Sparepart")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.spareparts, function(sparepart) {
+                                      return _c(
+                                        "option",
+                                        { domProps: { value: sparepart.id } },
+                                        [
+                                          _vm._v(
+                                            _vm._s(sparepart.kode_sparepart)
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.errors.id_sparepart
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "help is-danger" },
+                                      [
+                                        _vm._v(
+                                          " " +
+                                            _vm._s(_vm.errors.id_sparepart[0])
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ])
+                            ])
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    detail_trans_pengadaan.jumlah_pengadaan,
+                                  expression:
+                                    "detail_trans_pengadaan.jumlah_pengadaan"
+                                }
+                              ],
+                              staticClass: "input is-primary",
+                              style: { width: "25%" },
+                              attrs: { type: "text" },
+                              domProps: {
+                                value: detail_trans_pengadaan.jumlah_pengadaan
+                              },
+                              on: {
+                                input: [
+                                  function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      detail_trans_pengadaan,
+                                      "jumlah_pengadaan",
+                                      $event.target.value
+                                    )
+                                  },
+                                  _vm.onlyNumbers
+                                ]
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.jumlah_pengadaan
+                              ? _c("span", { staticClass: "help is-danger" }, [
+                                  _vm._v(
+                                    " " + _vm._s(_vm.errors.jumlah_pengadaan[0])
+                                  )
+                                ])
+                              : _vm._e()
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticStyle: { cursor: "pointer" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.removeElement(index)
+                                }
+                              }
+                            },
+                            [_vm._v("Remove")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button is-primary",
+                      on: { click: _vm.addRow }
+                    },
+                    [_c("i", { staticClass: "fas fa-plus-circle" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c(
                     "div",
                     { staticClass: "col-md-4 col-md-offset-2" },
                     [
-                      _vm._m(1),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c(
                         "router-link",
@@ -18821,6 +19064,20 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-header-title" }, [
         _vm._v("Tambah Transaksi Pengadaan Sparepart")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", [_c("strong", [_vm._v("Sparepart")])]),
+        _vm._v(" "),
+        _c("td", [_c("strong", [_vm._v("Jumlah Pengadaan")])]),
+        _vm._v(" "),
+        _c("td")
       ])
     ])
   },
