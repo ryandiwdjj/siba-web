@@ -6388,22 +6388,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       transaksiPengadaan: {
         id_supplier: '',
         id_cabang: '',
-        tanggal_pengadaan: '2019-02-04'
-      },
-      detail_trans_pengadaan: {
+        tanggal_pengadaan: '',
         id_sparepart: '',
         jumlah_pengadaan: ''
       },
       suppliers: [],
       cabangs: [],
       spareparts: [],
-      rows: [],
+      transPengadaan: [],
+      rows: [{
+        id_sparepart: '',
+        jumlah_pengadaan: ''
+      }],
       errors: [],
       message: ''
     };
@@ -6413,6 +6418,7 @@ __webpack_require__.r(__webpack_exports__);
     app.getSuppliers();
     app.getCabangs();
     app.getSpareparts();
+    app.getTransPengadaan();
   },
   methods: {
     alert: function alert(pesan) {
@@ -6446,11 +6452,19 @@ __webpack_require__.r(__webpack_exports__);
         console.log(resp);
       });
     },
+    getTransPengadaan: function getTransPengadaan() {
+      var app = this;
+      axios.get('/api/trans_pengadaan' + '/all').then(function (resp) {
+        app.transPengadaan = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
     addRow: function addRow() {
       var elem = document.createElement('tr');
       this.rows.push({
-        id_sparepart: "",
-        jumlah_pengadaan: ""
+        id_sparepart: '',
+        jumlah_pengadaan: ''
       });
     },
     removeElement: function removeElement(index) {
@@ -6460,9 +6474,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var newTransPengadaan = this.transaksiPengadaan;
-      axios.post('/api/trans_pengadaan/store', newTransPengadaan);
-      var newDetailTransPengadaan = this.detail_trans_pengadaan;
-      axios.post('/api/detail_trans_pengadaan/store', newDetailTransPengadaan).then(function (resp) {
+      axios.post('/api/trans_pengadaan/store', newTransPengadaan) // var newDetailTransPengadaan = this.detail_trans_pengadaan;
+      // axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
+      .then(function (resp) {
         _this.alert('Berhasil Menambah Transaksi Pengadaan ');
 
         _this.$router.replace('/trans_pengadaan');
@@ -6473,7 +6487,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     onlyNumbers: function onlyNumbers() {
-      this.detail_trans_pengadaan.jumlah_pengadaan = this.detail_trans_pengadaan.jumlah_pengadaan.replace(/[^0-9]/g, '');
+      this.transaksiPengadaan.jumlah_pengadaan = this.transaksiPengadaan.jumlah_pengadaan.replace(/[^0-9]/g, '');
     }
   }
 });
@@ -18862,11 +18876,32 @@ var render = function() {
                 _c("br"),
                 _vm._v(" "),
                 _c("table", { staticClass: "table" }, [
-                  _vm._m(1),
+                  _c("thead", [
+                    _c("tr", [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("td"),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("div", [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button is-primary",
+                              on: { click: _vm.addRow }
+                            },
+                            [_c("i", { staticClass: "fas fa-plus" })]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.rows, function(detail_trans_pengadaan, index) {
+                    _vm._l(_vm.rows, function(transaksiPengadaan, index) {
                       return _c("tr", [
                         _c("td", [
                           _c("div", { staticClass: "form-group" }, [
@@ -18879,10 +18914,9 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value:
-                                          detail_trans_pengadaan.id_sparepart,
+                                        value: transaksiPengadaan.id_sparepart,
                                         expression:
-                                          "detail_trans_pengadaan.id_sparepart"
+                                          "transaksiPengadaan.id_sparepart"
                                       }
                                     ],
                                     staticClass: "form-control",
@@ -18901,7 +18935,7 @@ var render = function() {
                                             return val
                                           })
                                         _vm.$set(
-                                          detail_trans_pengadaan,
+                                          transaksiPengadaan,
                                           "id_sparepart",
                                           $event.target.multiple
                                             ? $$selectedVal
@@ -18955,10 +18989,9 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value:
-                                      detail_trans_pengadaan.jumlah_pengadaan,
+                                    value: transaksiPengadaan.jumlah_pengadaan,
                                     expression:
-                                      "detail_trans_pengadaan.jumlah_pengadaan"
+                                      "transaksiPengadaan.jumlah_pengadaan"
                                   }
                                 ],
                                 staticClass: "input is-primary",
@@ -18970,7 +19003,7 @@ var render = function() {
                                   autofocus: ""
                                 },
                                 domProps: {
-                                  value: detail_trans_pengadaan.jumlah_pengadaan
+                                  value: transaksiPengadaan.jumlah_pengadaan
                                 },
                                 on: {
                                   input: [
@@ -18979,7 +19012,7 @@ var render = function() {
                                         return
                                       }
                                       _vm.$set(
-                                        detail_trans_pengadaan,
+                                        transaksiPengadaan,
                                         "jumlah_pengadaan",
                                         $event.target.value
                                       )
@@ -19025,17 +19058,6 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("div", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "button is-primary",
-                      on: { click: _vm.addRow }
-                    },
-                    [_c("i", { staticClass: "fas fa-plus-circle" })]
-                  )
-                ]),
-                _vm._v(" "),
                 _c("br"),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
@@ -19043,7 +19065,7 @@ var render = function() {
                     "div",
                     { staticClass: "col-md-4 col-md-offset-2" },
                     [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c(
                         "router-link",
@@ -19085,15 +19107,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("td", [_c("strong", [_vm._v("Sparepart")])]),
-        _vm._v(" "),
-        _c("td", [_c("strong", [_vm._v("Jumlah Pengadaan")])]),
-        _vm._v(" "),
-        _c("td")
-      ])
-    ])
+    return _c("td", [_c("strong", [_vm._v("Sparepart")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("strong", [_vm._v("Jumlah Pengadaan")])])
   },
   function() {
     var _vm = this

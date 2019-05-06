@@ -57,10 +57,15 @@
                               <td><strong>Sparepart</strong></td>
                               <td><strong>Jumlah Pengadaan</strong></td>
                               <td></td>
+                              <td>
+                                <div>
+                                  <button class="button is-primary" @click="addRow"><i class="fas fa-plus"></i></button>
+                                </div>
+                              </td>
                             </tr>
                           </thead>
                             <tbody>
-                              <tr v-for="(detail_trans_pengadaan, index) in rows">
+                              <tr v-for="(transaksiPengadaan, index) in rows">
 
                                 <td>
                                   
@@ -69,7 +74,7 @@
                                     <div class="select is-primary">
                                       <div class="col-md-4">
                                         <select
-                                         v-model="detail_trans_pengadaan.id_sparepart"
+                                         v-model="transaksiPengadaan.id_sparepart"
                                          class="form-control"
                                          required="" >
                                           <option value="">Pilih Sparepart</option>
@@ -84,7 +89,7 @@
                                 <td>
                                   <div class="form-group">
                                      <div class="col-md-4">
-                                      <input type="text" v-bind:style="{width: '25%' }" class="input is-primary" required="" placeholder="" v-model="detail_trans_pengadaan.jumlah_pengadaan" @input="onlyNumbers" autofocus=""/>
+                                      <input type="text" v-bind:style="{width: '25%' }" class="input is-primary" required="" placeholder="" v-model="transaksiPengadaan.jumlah_pengadaan" @input="onlyNumbers" autofocus=""/>
                                       <span v-if="errors.jumlah_pengadaan" class="help is-danger"> {{ errors.jumlah_pengadaan[0]}}</span>
                                      </div>
                                   </div>
@@ -97,9 +102,7 @@
                               </tr>
                             </tbody>
                           </table>
-                          <div>
-                            <button class="button is-primary" @click="addRow"><i class="fas fa-plus-circle"></i></button>
-                          </div>
+                          
                       
                       <br>
                       <div class="form-group">
@@ -126,16 +129,20 @@
         transaksiPengadaan: {
             id_supplier: '',
             id_cabang: '',
-            tanggal_pengadaan: '2019-02-04',   
-        },
-        detail_trans_pengadaan: {
+            tanggal_pengadaan: '',   
             id_sparepart: '',
             jumlah_pengadaan: '',
         },
         suppliers: [],
         cabangs: [],
         spareparts: [],
-        rows: [],
+        transPengadaan: [],
+        rows: [
+          {
+            id_sparepart: '',
+            jumlah_pengadaan: '',
+          }
+        ],
         errors: [],
         message: ''
       }
@@ -145,6 +152,7 @@
      app.getSuppliers();
      app.getCabangs();
      app.getSpareparts();
+     app.getTransPengadaan();
     },
     methods: {
       alert(pesan){
@@ -184,11 +192,21 @@
           console.log(resp);
         })
       },
+      getTransPengadaan(){
+        var app = this;
+        axios.get('/api/trans_pengadaan' + '/all')
+        .then(function(resp){
+          app.transPengadaan = resp.data;
+        })
+        .catch(function(resp){
+          console.log(resp);
+        })
+      },
       addRow: function() {
             var elem = document.createElement('tr');
             this.rows.push({
-            id_sparepart: "",
-            jumlah_pengadaan: "",
+            id_sparepart: '',
+            jumlah_pengadaan: '',
             });
       },
       removeElement: function(index) {
@@ -197,8 +215,8 @@
       saveForm(){
         var newTransPengadaan = this.transaksiPengadaan;
         axios.post('/api/trans_pengadaan/store',newTransPengadaan)
-        var newDetailTransPengadaan = this.detail_trans_pengadaan;
-        axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
+        // var newDetailTransPengadaan = this.detail_trans_pengadaan;
+        // axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Pengadaan ');
           this.$router.replace('/trans_pengadaan');
@@ -210,7 +228,7 @@
         });
       },
       onlyNumbers: function() {
-       this.detail_trans_pengadaan.jumlah_pengadaan = this.detail_trans_pengadaan.jumlah_pengadaan.replace(/[^0-9]/g,'');
+       this.transaksiPengadaan.jumlah_pengadaan = this.transaksiPengadaan.jumlah_pengadaan.replace(/[^0-9]/g,'');
       }
     }
   }

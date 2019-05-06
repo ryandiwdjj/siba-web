@@ -59,19 +59,53 @@ class transpengadaancontroller extends Controller
              ], 404);
          }
 
-        $transpengadaan = new trans_pengadaan;
-        $transpengadaan->id_supplier = $request->id_supplier;
-        $transpengadaan->id_cabang = $request->id_cabang;
-        $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
-        $transpengadaan->total_harga_pengadaan = 0;
+        //  $request->validate([
+        //     'id_trans_pengadaan' => 'nullable',
+            
+        // ]);
 
-        $success = $transpengadaan->save();
+        // $transpengadaan = new trans_pengadaan;
+        // $transpengadaan->id_supplier = $request->id_supplier;
+        // $transpengadaan->id_cabang = $request->id_cabang;
+        // $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
+        // $transpengadaan->total_harga_pengadaan = 0;
 
-        if (!$success) {
-            return response()->json('Error Saving', 500);
-        } else {
-            return response()->json('Success', 200);
-        }
+        // $detailTransPengadaan = new detail_trans_pengadaan;
+        // $detailTransPengadaan->id_trans_pengadaan = $transpengadaan->id;
+        // $detailTransPengadaan->id_sparepart = $request->id_sparepart;
+        // $detailTransPengadaan->jumlah_pengadaan = $request->jumlah_pengadaan;
+
+       
+
+        // $success_detail = $detailTransPengadaan->save();
+        // $success_trans = $transpengadaan->save();
+
+        // //$success = $transpengadaan->save();
+
+        // if (!$success_detail && !$success_trans ) {
+        //     return response()->json('Error Saving', 500);
+        // } else {
+        //     return response()->json('Success', 200);
+        // }
+
+        $transpengadaan = trans_pengadaan::create([            
+            'id_supplier' => $request->id_supplier,            
+            'id_cabang' => $request->id_cabang,
+            'tanggal_pengadaan' => $request->tanggal_pengadaan,
+            'total_harga_pengadaan' => 0,           
+        ]);
+        
+        //create detail pengadaan
+        detail_trans_pengadaan::create([
+            'id_trans_pengadaan' => $transpengadaan->id,
+            'id_sparepart' => $request->id_sparepart,
+            'jumlah_pengadaan' => $request->jumlah_pengadaan,
+        ]);
+        return response()->json([
+            'status' => (bool) $transpengadaan,
+            'data'   => $transpengadaan,
+            'message' => $transpengadaan ? ' Pengadaan Sparepart Berhasil' : 'Pengadaan Sparepart gagal'
+        ]);
     }
 
     /**
