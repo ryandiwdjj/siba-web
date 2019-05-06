@@ -42,6 +42,8 @@ import transPenjualanIndex from '../components/admin/transaksiPenjualan/transPen
 import CreateTransaksiPenjualan from '../components/admin/transaksiPenjualan/CreateTransaksiPenjualan.vue'
 import EditTransaksiPenjualan from '../components/admin/transaksiPenjualan/EditTransPenjualan.vue'
 import PrintSPK from '../components/admin/transaksiPenjualan/PrintSPK.vue'
+import pembayaranIndex from '../components/admin/transaksiPenjualan/pembayaranIndex.vue'
+import Pembayaran from '../components/admin/transaksiPenjualan/pembayaran.vue'
 
 import detailTransJasaIndex from '../components/admin/detailTransJasa/detailTransJasaIndex.vue'
 import CreateDetailTransJasa from '../components/admin/detailTransJasa/CreateDetailTransJasa.vue'
@@ -196,6 +198,15 @@ const routes = [
                 name: 'printSPK',
                 path:'/print_spk',
                 component: PrintSPK
+            },
+            {
+                path:'/trans_penjualan_pembayaran',
+                component: pembayaranIndex
+            },
+            {
+                name: 'bayarTransaksi',
+                path:'/trans_penjualan_bayar',
+                component: Pembayaran
             },
 
             {

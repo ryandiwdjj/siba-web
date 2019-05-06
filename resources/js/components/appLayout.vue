@@ -31,7 +31,8 @@
     }
     td{
         background-color: rgb(255, 255, 255);
-        
+        overflow: hidden;
+        text-overflow: ellipsis;
     } 
     .card{
         padding: 18px 30px 15px 30px;

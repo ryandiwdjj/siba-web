@@ -65,6 +65,9 @@
           <a class="navbar-item">
             <router-link to= "/trans_penjualan"  class="navbar-item">Transaksi Penjualan</router-link>
           </a>
+          <a class="navbar-item">
+            <router-link to= "/trans_penjualan_pembayaran"  class="navbar-item">Pembayaran</router-link>
+          </a>
       </div>
     </div>
       

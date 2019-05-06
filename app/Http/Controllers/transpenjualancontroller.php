@@ -131,11 +131,15 @@ class transpenjualancontroller extends Controller
         }
 
         else {
-            $transpenjualan->total_harga_trans;
-            $transpenjualan->discount_penjualan = $request->discount_penjualan;
-            $transpenjualan->grand_total = $transpenjualan->total_harga_trans - $transpenjualan->discount_penjualan ;
-            $transpenjualan->status_transaksi = $transpenjualan->status_transaksi;
-            $transpenjualan->status_pembayaran = $transpenjualan->status_transaksi;
+            $transpenjualan->id_pelanggan = $request->id_pelanggan;
+            $transpenjualan->id_cabang = $request->id_cabang;
+            //$transpenjualan->total_harga_trans = 0;
+            //$transpenjualan->discount_penjualan = 0;
+            //$transpenjualan->grand_total = 0;
+            $transpenjualan->status_transaksi = $request->status_transaksi;
+            //$transpenjualan->status_pembayaran = "belum";
+            $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
+            $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
             
 
             $success = $transpenjualan->save();
@@ -145,6 +149,57 @@ class transpenjualancontroller extends Controller
             } else {
                 return response()->json('Success Updating', 200);
             }
+        }
+    }
+
+    public function pembayaranWeb(Request $request, $id)
+    {
+        $transpenjualan = trans_penjualan::where('id', $id)->first();
+
+        if (is_null($transpenjualan)) {
+            return response()->json('Transaksi penjualan not found', 404);
+        }
+
+        else {
+            if($transpenjualan->status_transaksi == "belum") {
+                return response()->json('Transaksi belum selesai', 500);
+            }
+            else{
+                $transpenjualan->total_harga_trans;
+                $transpenjualan->discount_penjualan = $request->discount_penjualan;
+                $transpenjualan->grand_total = $transpenjualan->total_harga_trans - $transpenjualan->discount_penjualan ;
+                //$transpenjualan->status_transaksi = $transpenjualan->status_transaksi;
+                $transpenjualan->status_pembayaran = "sudah";
+
+                //function untuk pengurangan stok sparepart
+                $results = detail_trans_sparepart::where('id_trans_penjualan', $id)->get();
+
+                foreach($results as $result) {
+
+                    $sparepart = sparepart::find($result->id_sparepart);
+                    if(is_null($sparepart)) {
+                        return response()->json('Sparepart not found', 404);
+                    }
+
+                    $sparepart->jumlah_stok_sparepart = 
+                    $sparepart->jumlah_stok_sparepart - $result->jumlah_barang;
+
+                    $success_sparepart = $sparepart->save();
+                }
+
+               
+                $success_trans = $transpenjualan->save();
+            
+
+                //$success = $transpenjualan->save();
+
+                if (!$success_sparepart && !$success_trans) {
+                    return response()->json('Error Updating', 500);
+                } else {
+                    return response()->json('Success Updating', 200);
+                }
+            }
+            
         }
     }
 

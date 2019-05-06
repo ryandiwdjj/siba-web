@@ -159,7 +159,8 @@ class detailTransPenjualanJasaController extends Controller
             $detailTransJasa->id_kendaraan = $request->id_kendaraan;
             $detailTransJasa->jumlah_jasa = $request->jumlah_jasa;
 
-            $detailTransJasa->total_harga_jasa = $request->jumlah_jasa * $jasa_service->harga_jasa;
+            $detailTransJasa->total_harga_jasa = 
+            $request->jumlah_jasa * $jasa_service->harga_jasa;
 
             $transpenjualan->total_harga_trans = 
             $transpenjualan->total_harga_trans + $detailTransJasa->total_harga_jasa;

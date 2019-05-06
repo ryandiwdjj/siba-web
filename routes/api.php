@@ -123,6 +123,7 @@ Route::get('/trans_penjualan/all','transpenjualancontroller@all');
 Route::get('/trans_penjualan/SPK/{id}','transpenjualancontroller@show');
 Route::post('/trans_penjualan/store','transpenjualancontroller@store');
 Route::put('/trans_penjualan/update/{id}','transpenjualancontroller@update');
+Route::put('/trans_penjualan/pembayaran/{id}','transpenjualancontroller@pembayaranWeb');
 Route::delete('/trans_penjualan/{id}','transpenjualancontroller@destroy');
 
 Route::get('/mobile/trans_penjualan', 'transpenjualancontroller@indexMobile');
