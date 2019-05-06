@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\trans_pengadaan;
 use App\detail_trans_pengadaan;
+use App\sparepart;
 
 
 class transpengadaancontroller extends Controller
@@ -17,7 +18,7 @@ class transpengadaancontroller extends Controller
      */
     public function index()
     {
-        $transpengadaans = trans_pengadaan::with('supplier','cabang')->paginate(10);
+        $transpengadaans = trans_pengadaan::with('supplier','cabang')->paginate(100);
 
         return response()->json($transpengadaans, 200);
     }
@@ -64,11 +65,11 @@ class transpengadaancontroller extends Controller
             
         // ]);
 
-        // $transpengadaan = new trans_pengadaan;
-        // $transpengadaan->id_supplier = $request->id_supplier;
-        // $transpengadaan->id_cabang = $request->id_cabang;
-        // $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
-        // $transpengadaan->total_harga_pengadaan = 0;
+        $transpengadaan = new trans_pengadaan;
+        $transpengadaan->id_supplier = $request->id_supplier;
+        $transpengadaan->id_cabang = $request->id_cabang;
+        $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
+        $transpengadaan->total_harga_pengadaan = 0;
 
         // $detailTransPengadaan = new detail_trans_pengadaan;
         // $detailTransPengadaan->id_trans_pengadaan = $transpengadaan->id;
@@ -77,35 +78,41 @@ class transpengadaancontroller extends Controller
 
        
 
-        // $success_detail = $detailTransPengadaan->save();
-        // $success_trans = $transpengadaan->save();
+        //$success_detail = $detailTransPengadaan->save();
+        $success = $transpengadaan->save();
 
-        // //$success = $transpengadaan->save();
+        //$success = $transpengadaan->save();
 
-        // if (!$success_detail && !$success_trans ) {
-        //     return response()->json('Error Saving', 500);
-        // } else {
-        //     return response()->json('Success', 200);
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 200);
+        }
+
+        // $sparepart = sparepart::where('id', $request->id_sparepart)->first();
+
+        // if(is_null($sparepart)) {
+        //     return response()->json('Sparepart not found', 404);
         // }
 
-        $transpengadaan = trans_pengadaan::create([            
-            'id_supplier' => $request->id_supplier,            
-            'id_cabang' => $request->id_cabang,
-            'tanggal_pengadaan' => $request->tanggal_pengadaan,
-            'total_harga_pengadaan' => 0,           
-        ]);
+        // $transpengadaan = trans_pengadaan::create([            
+        //     'id_supplier' => $request->id_supplier,            
+        //     'id_cabang' => $request->id_cabang,
+        //     'tanggal_pengadaan' => $request->tanggal_pengadaan,
+        //     'total_harga_pengadaan' => $request->jumlah_pengadaan * $sparepart->harga_beli_sparepart           
+        // ]);
         
-        //create detail pengadaan
-        detail_trans_pengadaan::create([
-            'id_trans_pengadaan' => $transpengadaan->id,
-            'id_sparepart' => $request->id_sparepart,
-            'jumlah_pengadaan' => $request->jumlah_pengadaan,
-        ]);
-        return response()->json([
-            'status' => (bool) $transpengadaan,
-            'data'   => $transpengadaan,
-            'message' => $transpengadaan ? ' Pengadaan Sparepart Berhasil' : 'Pengadaan Sparepart gagal'
-        ]);
+        // //create detail pengadaan
+        // detail_trans_pengadaan::create([
+        //     'id_trans_pengadaan' => $transpengadaan->id,
+        //     'id_sparepart' => $request->id_sparepart,
+        //     'jumlah_pengadaan' => $request->jumlah_pengadaan
+        // ]);
+        // return response()->json([
+        //     'status' => (bool) $transpengadaan,
+        //     'data'   => $transpengadaan,
+        //     'message' => $transpengadaan ? ' Pengadaan Sparepart Berhasil' : 'Pengadaan Sparepart gagal'
+        // ]);
     }
 
     /**

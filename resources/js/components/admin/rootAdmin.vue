@@ -4,7 +4,7 @@
   <div class="navbar-brand">
     <a class="navbar-item">
         
-        <router-link to= "/" class="button is-dark"> ATMA AUTO </router-link>
+        <router-link to= "/" class="button is-dark"> SIBA </router-link>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -78,9 +78,14 @@
       </a>
       
       <div class="navbar-dropdown">
+
+          <a class="navbar-item">
+            <router-link to= "/detail_trans_pengadaan"  class="navbar-item">Detail Pengadaan</router-link>
+          </a>
           <a class="navbar-item">
             <router-link to= "/trans_pengadaan"  class="navbar-item">Transaksi Pengadaan</router-link>
           </a>
+          
          
       </div>
     </div>

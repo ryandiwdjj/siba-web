@@ -54,7 +54,10 @@ import CreateDetailTransSparepart from '../components/admin/detailTransSparepart
 import EditDetailTransSparepart from '../components/admin/detailTransSparepart/EditDetailTransSparepart.vue'
 
 import transPengadaanIndex from '../components/admin/transPengadaan/transPengadaanIndex.vue'
+import detailTransPengadaanIndex from '../components/admin/transPengadaan/detailTransPengadaanIndex.vue'
 import CreateTransPengadaan from '../components/admin/transPengadaan/CreateTransPengadaan.vue'
+import CreateTransPengadaanV2 from '../components/admin/transPengadaan/CreateTransPengadaanV2.vue'
+import CreateDetailPengadaan from '../components/admin/transPengadaan/CreateDetailPengadaan.vue'
 
 
 
@@ -242,8 +245,20 @@ const routes = [
                 component: transPengadaanIndex
             },
             {
+                path:'/detail_trans_pengadaan',
+                component: detailTransPengadaanIndex
+            },
+            {
                 path:'/tambah_trans_pengadaan',
                 component: CreateTransPengadaan
+            },
+            {
+                path:'/tambah_trans_pengadaanv2',
+                component: CreateTransPengadaanV2
+            },
+            {
+                path:'/tambah_detail_pengadaan',
+                component: CreateDetailPengadaan
             },
             
             

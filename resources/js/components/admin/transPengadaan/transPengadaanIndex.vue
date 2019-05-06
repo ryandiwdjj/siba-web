@@ -7,18 +7,20 @@
                     <h3 class="card-header-title">Daftar Transaksi Pengadaan</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_pengadaan" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_pengadaanv2" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_detail_pengadaan" class="button is-info">Tambah Detail Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari" v-bind:style="{width: '25%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari supplier" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
+                        <th class="id-row">ID</th>
                         <th>Supplier</th>
                         <th>Cabang</th>
                         <th>Tanggal Pengadaan</th>
@@ -28,6 +30,7 @@
                     </thead>
                     <tbody>
                       <tr v-for="(trans_pengadaan,index) in filteredList" :key ="trans_pengadaan.id">
+                        <td>{{ trans_pengadaan.id }}</td>
                         <td>{{ trans_pengadaan.supplier.nama_supplier }}</td>
                         <td>{{ trans_pengadaan.cabang.nama_cabang }}</td>
                         <td>{{ trans_pengadaan.tanggal_pengadaan }}</td>

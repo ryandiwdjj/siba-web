@@ -87,7 +87,7 @@
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
                           <button class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
-                          <router-link to = "/detail_trans_jasa" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <router-link to = "/trans_penjualan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
                         </div>
                       </div>
                       <br>

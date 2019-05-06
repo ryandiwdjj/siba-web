@@ -16,7 +16,7 @@ class detailTransPenjualanSpareController extends Controller
      */
     public function index()
     {
-        $detailTransSpareparts = detail_trans_sparepart::with('trans_penjualan','sparepart')->paginate(10);
+        $detailTransSpareparts = detail_trans_sparepart::with('trans_penjualan','sparepart')->paginate(100);
         return response()->json($detailTransSpareparts, 200);
     }
 
