@@ -131,4 +131,48 @@ class detailpengadaancontroller extends Controller
             }
         }
     }
+    ///////////////////////////////////////////////////////////////////////////// MOBILE
+
+    public function indexMobile() {
+        $detail_trans_pengadaan = detail_trans_pengadaan::all();
+
+        return response()->json($detail_trans_pengadaan, 200);
+    }
+
+    public function storeMobile(Request $request)
+    {
+
+        $transpengadaan = trans_pengadaan::where('id', $request->id_trans_pengadaan)->first();
+
+        if(is_null($transpengadaan)) {
+            return response()->json('Transaksi pengadaan not found', 404);
+        }
+
+        $sparepart = sparepart::where('id', $request->id_sparepart)->first();
+
+        if(is_null($sparepart)) {
+            return response()->json('Sparepart not found', 404);
+        }
+
+         $detailTransPengadaan = new detail_trans_pengadaan();
+         $detailTransPengadaan->id_trans_pengadaan = $request->id_trans_pengadaan;
+         $detailTransPengadaan->id_sparepart = $request->id_sparepart;
+         $detailTransPengadaan->jumlah_pengadaan = $request->jumlah_pengadaan;
+
+         $temp_total = 
+         $request->jumlah_pengadaan * $sparepart->harga_beli_sparepart;
+
+         //perhitungan total harga
+         $transpengadaan->total_harga_pengadaan = 
+         $transpengadaan->total_harga_pengadaan + $temp_total;
+         
+         $success_trans = $transpengadaan->save();
+         $success_detail = $detailTransPengadaan->save();
+
+        if (!$success_detail && !$success_trans) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
+    }
 }

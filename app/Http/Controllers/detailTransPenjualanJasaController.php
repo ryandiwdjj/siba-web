@@ -162,6 +162,7 @@ class detailTransPenjualanJasaController extends Controller
             $detailTransJasa->total_harga_jasa = 
             $request->jumlah_jasa * $jasa_service->harga_jasa;
 
+            //perhitungan total harganya
             $transpenjualan->total_harga_trans = 
             $transpenjualan->total_harga_trans + $detailTransJasa->total_harga_jasa;
             
@@ -262,8 +263,16 @@ class detailTransPenjualanJasaController extends Controller
 
          $detailTransJasa->total_harga_jasa = $request->jumlah_jasa * $jasa_service->harga_jasa;
 
+         //perhitungan total harga
          $transpenjualan->total_harga_trans = 
          $transpenjualan->total_harga_trans + $detailTransJasa->total_harga_jasa;
+
+         //perhitungan discount
+         $discount = 
+         $transpenjualan->total_harga_trans * ($transpenjualan->discount_penjualan / 100);
+
+         $transpenjualan->grand_total = 
+         $transpenjualan->total_harga_trans - $discount;
          
          $success_trans = $transpenjualan->save();
          $success_detail = $detailTransJasa->save();
@@ -310,8 +319,16 @@ class detailTransPenjualanJasaController extends Controller
 
             $detailTransJasa->total_harga_jasa = $request->jumlah_jasa * $jasa_service->harga_jasa;
 
+            //perhitungan total harga
             $transpenjualan->total_harga_trans = 
             $transpenjualan->total_harga_trans + $detailTransJasa->total_harga_jasa;
+
+            //perhitungan discount
+            $discount = 
+            $transpenjualan->total_harga_trans * ($transpenjualan->discount_penjualan / 100);
+
+            $transpenjualan->grand_total = 
+            $transpenjualan->total_harga_trans - $discount;
             
             $success_trans = $transpenjualan->save();
             $success_detail = $detailTransJasa->save();

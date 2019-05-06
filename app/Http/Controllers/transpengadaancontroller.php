@@ -170,4 +170,46 @@ class transpengadaancontroller extends Controller
             }
         }
     }
+
+    /////////////////////////////////////////////////////////////////////////MOBILE
+
+    public function indexMobile() {
+        $transpengadaans = trans_pengadaan::
+        join('suppliers', 'suppliers.id', 'trans_pengadaan.id_supplier')
+        ->join('cabangs', 'cabangs.id', 'trans_pengadaan.id_cabang')
+        ->latest('trans_pengadaan.created_at')
+        ->get();
+
+        return response()->json($transpengadaans, 200);
+    }
+
+
+    public function storeMobile(Request $request)
+    {
+        $v = Validator::make($request->all(),[
+            'id_supplier' => 'exists:suppliers,id',
+            'id_cabang' => 'exists:cabangs,id'
+         ]);
+ 
+         if($v->fails()) {
+             return response()->json([
+                 'status' => 'error',
+                 'errors' => $v->errors()
+             ], 404);
+         }
+
+        $transpengadaan = new trans_pengadaan();
+        $transpengadaan->id_supplier = $request->id_supplier;
+        $transpengadaan->id_cabang = $request->id_cabang;
+        $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
+        $transpengadaan->total_harga_pengadaan = 0;
+
+        $success = $transpengadaan->save();
+
+        if (!$success) {
+            return response()->json('Error Saving', 500);
+        } else {
+            return response()->json('Success', 204);
+        }
+    }
 }

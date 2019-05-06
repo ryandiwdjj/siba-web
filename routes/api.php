@@ -130,6 +130,7 @@ Route::get('/mobile/trans_penjualan', 'transpenjualancontroller@indexMobile');
 Route::post('/mobile/trans_penjualan/stat_trans/{id}', 'transpenjualancontroller@pekerjaanSelesai');
 Route::post('/mobile/trans_penjualan/stat_bayar/{id}', 'transpenjualancontroller@pembayaranSelesai');
 Route::post('/mobile/trans_penjualan/store','transpenjualancontroller@storeMobile');
+Route::put('/mobile/trans_penjualan/update/{id}','transpenjualancontroller@updateMobile');
 Route::delete('/mobile/trans_penjualan/delete/{id}','transpenjualancontroller@destroyMobile');
 
 //////////////////////////////////////////////////////////////////////////////////DETAIL TRANS PENJUALAN
@@ -167,6 +168,9 @@ Route::post('/trans_pengadaan/store','transpengadaancontroller@store');
 //Route::put('/trans_pengadaan/update/{id}','transpengadaancontroller@update');
 Route::delete('/trans_pengadaan/{id}','transpengadaancontroller@destroy');
 
+Route::get('/mobile/trans_pengadaan', 'transpengadaancontroller@indexMobile');
+Route::post('/mobile/trans_pengadaan/store','transpengadaancontroller@storeMobile');
+
 /////////////////////////////////////////////////////////////////////////////////////////////Detail Trans Pengadaan
 Route::get('/detail_trans_pengadaan', 'detailpengadaancontroller@index');
 //Route::get('/detail_trans_pengadaan/all','detailpengadaancontroller@all');
@@ -174,6 +178,9 @@ Route::get('/detail_trans_pengadaan/{id}','detailpengadaancontroller@show');
 Route::post('/detail_trans_pengadaan/store','detailpengadaancontroller@store');
 //Route::put('/detail_trans_pengadaan/update/{id}','detailpengadaancontroller@update');
 Route::delete('/detail_trans_pengadaan/{id}','detailpengadaancontroller@destroy');
+
+Route::get('/mobile/trans_pengadaan/detail', 'detailpengadaancontroller@indexMobiled');
+Route::post('/mobile/trans_pengadaan/detail/store','detailpengadaancontroller@storeMobile');
 
 /////////////////////////////////////////////////////////////////////////////////////////////REPORT
 Route::get('/report/pendapatan_bulanan/{month}', 'reportController@lap_pendapatan_bul');

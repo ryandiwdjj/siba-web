@@ -231,7 +231,11 @@ class transpenjualancontroller extends Controller
 
     public function indexMobile()
     {
-        $transpenjualans = trans_penjualan::all();
+        $transpenjualans = trans_penjualan::
+        join('pelanggans', 'pelanggans.id', 'trans_penjualan.id_pelanggan')
+        ->join('cabangs', 'cabangs.id', 'trans_penjualan.id_cabang')
+        ->latest('trans_penjualan.created_at')
+        ->get();
 
         return response()->json($transpenjualans, 200);
     }
@@ -267,6 +271,43 @@ class transpenjualancontroller extends Controller
             return response()->json('Error Saving', 500);
         } else {
             return response()->json('Success', 204);
+        }
+    }
+
+    public function updateMobile(Request $request, $id)
+    {
+        $request->validate([
+            'no_plat_kendaraan' => 'required|unique:trans_penjualan,no_plat_kendaraan,'.$id.'|max:8',
+            ]);
+
+        $transpenjualan = trans_penjualan::where('id', $id)->first();
+
+        if (is_null($transpenjualan)) {
+            return response()->json('Transaksi penjualan not found', 404);
+        }
+
+        else {
+            $transpenjualan->id_pelanggan = $request->id_pelanggan;
+            $transpenjualan->id_cabang = $request->id_cabang;
+            $transpenjualan->discount_penjualan = $request->discount_penjualan;
+            $transpenjualan->status_transaksi = $request->status_transaksi;
+            $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
+            $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+            
+        //perhitungan discount
+        $discount = 
+        $transpenjualan->total_harga_trans * ($transpenjualan->discount_penjualan / 100);
+
+        $transpenjualan->grand_total = 
+        $transpenjualan->total_harga_trans - $discount;
+
+            $success = $transpenjualan->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
         }
     }
 
