@@ -8,6 +8,8 @@
                   </div>
                   <div class="card-tools">
                       <router-link to="/tambah_trans_penjualan" class="button is-success">Tambah Transaksi &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_jasa" class="button is-info">Tambah Jasa &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_trans_sparepart" class="button is-warning">Tambah Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -19,6 +21,7 @@
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
+                        <th class="id-row">ID</th>
                         <th>Pelanggan</th>
                         <th>Cabang</th>
                         <th>Total Harga Transaksi</th>
@@ -28,11 +31,12 @@
                         <th>Status Pembayaran</th>
                         <th>Nomor Plat</th>
                         <th>Tanggal</th>
-                        <th>Modify</th>
+                        <th class="row-Modify">Modify</th>
                         
                     </thead>
                     <tbody>
                       <tr v-for="(transaksi,index) in filteredList" :key ="transaksi.id">
+                        <td>{{ transaksi.id }}</td>
                         <td>{{ transaksi.pelanggan.nama_pelanggan }}</td>
                         <td>{{ transaksi.cabang.nama_cabang }}</td>
                         <td>{{ transaksi.total_harga_trans }}</td>

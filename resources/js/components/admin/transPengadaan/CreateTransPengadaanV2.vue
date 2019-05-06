@@ -5,57 +5,56 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                  <div class="card-header">
-                    <h3 class="card-header-title">Tambah Transaksi Sparepart</h3>
+                    <h3 class="card-header-title">Tambah Transaksi Pengadaan Sparepart</h3>
                   </div>
 
                 <div class="card-body">
                   
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
                       <div class="form-group">
-                        <label for="name" class="col-md-2 control-label" >ID Transaksi Penjualan</label>
+                        <label for="name" class="col-md-2 control-label" >Supplier</label>
                         <br>
                         <div class="select is-primary">
                         <div class="col-md-4">
                           <select
-                          v-model="detail_trans_sparepart.id_trans_penjualan"
+                          v-model="transaksiPengadaan.id_supplier"
                           class="form-control"
                           required="" >
-                            <option value="">Pilih ID Transaksi Penjualan</option>
-                            <option v-for="transaksi in transaksiPenjualan" :value="transaksi.id">{{ transaksi.id }}</option>
+                            <option value="">Pilih Supplier</option>
+                            <option v-for="supplier in suppliers" :value="supplier.id">{{ supplier.nama_supplier }}</option>
                           </select>
-                        <span v-if="errors.id_trans_penjualan" class="help is-danger"> {{ errors.id_trans_penjualan[0]}}</span>
+                        <span v-if="errors.id_supplier" class="help is-danger"> {{ errors.id_supplier[0]}}</span>
                         </div>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="name" class="col-md-2 control-label" >Sparepart</label>
+                        <label for="name" class="col-md-2 control-label" >Cabang</label>
                         <br>
                         <div class="select is-primary">
                         <div class="col-md-4">
                           <select
-                          v-model="detail_trans_sparepart.id_sparepart"
+                          v-model="transaksiPengadaan.id_cabang"
                           class="form-control"
                           required="" >
-                            <option value="">Pilih Sparepart</option>
-                            <option v-for="sparepart in spareparts" :value="sparepart.id">{{ sparepart.kode_sparepart }}</option>
+                            <option value="">Pilih Cabang</option>
+                            <option v-for="cabang in cabangs" :value="cabang.id">{{ cabang.nama_cabang }}</option>
                           </select>
-                        <span v-if="errors.id_sparepart" class="help is-danger"> {{ errors.id_sparepart[0]}}</span>
+                        <span v-if="errors.id_cabang" class="help is-danger"> {{ errors.id_cabang[0]}}</span>
                         </div>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="name" class="col-md-2 control-label" >Jumlah Sparepart</label>
+                        <label for="name" class="col-md-2 control-label" >Tanggal Pengadaan</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Jumlah Sparepart" v-model="detail_trans_sparepart.jumlah_barang" autofocus=""/>
-                        <span v-if="errors.jumlah_barang" class="help is-danger"> {{ errors.jumlah_barang[0]}}</span>
+                          <input type="date" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="" v-model="transaksiPengadaan.tanggal_pengadaan" autofocus=""/>
+                        <span v-if="errors.tanggal_pengadaan" class="help is-danger"> {{ errors.tanggal_pengadaan[0]}}</span>
                         </div>
-                      </div>
-                      
+                      </div>   
                       <br>
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
                           <button class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
-                          <router-link to = "/trans_penjualan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <router-link to = "/trans_pengadaan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
                         </div>
                       </div>
                       <br>
@@ -73,59 +72,59 @@
   export default {
     data: function() {
       return {
-        detail_trans_sparepart: {
-            id_trans_penjualan: '',
-            id_sparepart: '',
-            jumlah_barang: '',
+        transaksiPengadaan: {
+            id_supplier: '',
+            id_cabang: '',
+            tanggal_pengadaan: '',   
         },
-        transaksiPenjualan: [],
-        spareparts: [],
+        suppliers: [],
+        cabangs: [],
         errors: [],
         message: ''
       }
     },
     mounted()  {
      var app = this;
-     app.getTransaksiPenjualan();
-     app.getSpareparts();
+     app.getSuppliers();
+     app.getCabangs();
     },
     methods: {
       alert(pesan){
         this.$swal({
-          title: "Berhasil Menambah Transaksi Sparepart",
+          title: "Berhasil Menambah Transaksi Pengadaan",
           text: pesan,
           icon: "success"
         });
       },
-      getTransaksiPenjualan(){
+      getSuppliers(){
         var app = this;
-        axios.get('/api/trans_penjualan' + '/all')
+        axios.get('/api/supplier' + '/all')
         .then(function(resp){
-          app.transaksiPenjualan = resp.data;
+          app.suppliers = resp.data;
         })
         .catch(function(resp){
           console.log(resp);
         })
       },
-      getSpareparts(){
+      getCabangs(){
         var app = this;
-        axios.get('/api/sparepart' + '/all')
+        axios.get('/api/cabang' + '/all')
         .then(function(resp){
-          app.spareparts = resp.data;
+          app.cabangs = resp.data;
         })
         .catch(function(resp){
           console.log(resp);
         })
       },
       saveForm(){
-        var newDetailTransSparepart = this.detail_trans_sparepart;
-        axios.post('/api/trans_penjualan/detail_spare/store',newDetailTransSparepart)
+        var newTransPengadaan = this.transaksiPengadaan;
+        axios.post('/api/trans_pengadaan/store',newTransPengadaan)
         .then((resp) => {
-          this.alert('Berhasil Menambah Transaksi Sparepart ');
-          this.$router.replace('/detail_trans_sparepart');
+          this.alert('Berhasil Menambah Transaksi Pengadaan ');
+          this.$router.replace('/trans_pengadaan');
         })
         .catch((resp) =>{
-          if(resp.response.status == 500) alert('Gagal Menambah Transaksi Sparepart');
+          if(resp.response.status == 500) alert('Gagal Menambah Transaksi Pengadaan');
           this.errors = resp.response.data.errors;
           console.log(resp);
         });
@@ -134,3 +133,5 @@
   }
 
 </script>
+
+

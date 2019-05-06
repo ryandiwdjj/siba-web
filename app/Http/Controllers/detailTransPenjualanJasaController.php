@@ -17,7 +17,7 @@ class detailTransPenjualanJasaController extends Controller
      */
     public function index()
     {
-        $detailTransJasas = detail_trans_jasa::with('trans_penjualan','jasa_service','pegawai','kendaraan')->paginate(10);
+        $detailTransJasas = detail_trans_jasa::with('trans_penjualan','jasa_service','pegawai','kendaraan')->paginate(100);
         return response()->json($detailTransJasas, 200);
     }
 

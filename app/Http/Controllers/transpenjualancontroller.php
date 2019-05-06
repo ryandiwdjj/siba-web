@@ -17,7 +17,7 @@ class transpenjualancontroller extends Controller
      */
     public function index()
     {
-        $transpenjualans = trans_penjualan::with('pelanggan','cabang')->paginate(10);
+        $transpenjualans = trans_penjualan::with('pelanggan','cabang')->paginate(100);
 
         return response()->json($transpenjualans, 200);
     }

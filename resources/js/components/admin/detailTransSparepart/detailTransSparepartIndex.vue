@@ -7,7 +7,7 @@
                     <h3 class="card-header-title">Daftar Transaksi Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_sparepart" class="button is-success">Tambah Transaksi Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                     
                   </div>
                     
                     <div class="card-body table-responsive p-0">

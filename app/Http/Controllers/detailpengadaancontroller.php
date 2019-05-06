@@ -16,7 +16,7 @@ class detailpengadaancontroller extends Controller
      */
     public function index()
     {
-        $detailTransPengadaan = detail_trans_pengadaan::with('trans_pengadaan','sparepart')->paginate(10);
+        $detailTransPengadaan = detail_trans_pengadaan::with('trans_pengadaan','sparepart')->paginate(100);
 
         return response()->json($detailTransPengadaan, 200);
     }
@@ -57,12 +57,16 @@ class detailpengadaancontroller extends Controller
         $detailTransPengadaan->jumlah_pengadaan = $request->jumlah_pengadaan;
         
         $transpengadaan->total_harga_pengadaan = 
-        $transpengadaan->total_harga_pengadaan + ($detailTransPengadaan->jumlah_pengadaan * $sparepart->harga_beli_sparepart);
+        $transpengadaan->total_harga_pengadaan + ($request->jumlah_pengadaan * $sparepart->harga_beli_sparepart);
+
+        $sparepart->jumlah_stok_sparepart = 
+        $sparepart->jumlah_stok_sparepart + $request->jumlah_pengadaan;
 
         $success_trans = $transpengadaan->save();
         $success_detail = $detailTransPengadaan->save();
+        $success_spare = $sparepart->save();
 
-        if (!$success_detail && !$success_trans) {
+        if (!$success_detail && !$success_trans && !$success_spare) {
             return response()->json('Error Saving', 500);
         } else {
             return response()->json('Success', 200);

@@ -30,9 +30,15 @@
         -webkit-text-fill-color: antiquewhite;
     }
     td{
-        background-color: rgb(255, 255, 255);
+        background-color: rgb(209, 209, 209);
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    .id-row{
+        width: 4%;
+    }
+    .row-Modify{
+        width: 15%;
     } 
     .card{
         padding: 18px 30px 15px 30px;
