@@ -30,6 +30,14 @@ class transpengadaancontroller extends Controller
         return response()->json($transpengadaans, 200);
     }
 
+    public function showDetail($id)
+    {
+        $transpengadaans = detail_trans_pengadaan::where('id_trans_pengadaan', $id)
+        ->with('trans_pengadaan','sparepart')->get();
+
+        return response()->json($transpengadaans, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

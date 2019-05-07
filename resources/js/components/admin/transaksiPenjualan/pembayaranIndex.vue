@@ -33,7 +33,7 @@
                         <td>{{ transaksi.pelanggan.nama_pelanggan }}</td>
                         <td>{{ transaksi.cabang.nama_cabang }}</td>
                         <td>{{ transaksi.total_harga_trans }}</td>
-                        <td>{{ transaksi.discount_penjualan }}</td>
+                        <td>{{ transaksi.discount_penjualan }}%</td>
                         <td>{{ transaksi.grand_total }}</td>
                         <td>{{ transaksi.status_transaksi }}</td>
                         <td>{{ transaksi.status_pembayaran }}</td>

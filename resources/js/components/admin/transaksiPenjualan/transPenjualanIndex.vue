@@ -10,6 +10,7 @@
                       <router-link to="/tambah_trans_penjualan" class="button is-success">Tambah Transaksi &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                       <router-link to="/tambah_trans_jasa" class="button is-info">Tambah Jasa &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                       <router-link to="/tambah_trans_sparepart" class="button is-warning">Tambah Sparepart &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/trans_penjualan_pembayaran" class="button is-dark">Pembayaran &nbsp; <i class="fas fa-money-bill-wave"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -40,7 +41,7 @@
                         <td>{{ transaksi.pelanggan.nama_pelanggan }}</td>
                         <td>{{ transaksi.cabang.nama_cabang }}</td>
                         <td>{{ transaksi.total_harga_trans }}</td>
-                        <td>{{ transaksi.discount_penjualan }}</td>
+                        <td>{{ transaksi.discount_penjualan }}%</td>
                         <td>{{ transaksi.grand_total }}</td>
                         <td>{{ transaksi.status_transaksi }}</td>
                         <td>{{ transaksi.status_pembayaran }}</td>

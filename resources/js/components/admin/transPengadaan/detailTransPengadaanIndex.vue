@@ -7,7 +7,7 @@
                     <h3 class="card-header-title">Detail Pengadaan Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      
+                      <router-link to = "/trans_pengadaan" class="button is-warning"> <i class="fas fa-arrow-left"></i> &nbsp; Kembali</router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -44,15 +44,9 @@
                         </td>
                       </tr>
                     </tbody>
-                    </table>     
-                    <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
+                    </table>                
                    </div>     
                     <div class="card-footer">
-                      <pagination class="card-footer-item"
-                        :data="detail_pengadaanData" @pagination-change-page="getResults" :limit="4">
-                        <span slot="prev-nav">&lt; Previous</span>
-	                      <span slot="next-nav">Next &gt;</span>
-                      </pagination>
                     </div>
                 
             </div>
@@ -67,13 +61,22 @@
     data: function() {
       return {
         detail_pengadaan: [],
-        detail_pengadaanData: {},
+        //detail_pengadaanData: {},
         pencarian: '',
-        loading: true
+        //loading: true,
+        transPengadaanId: null,
       }
     },
     mounted()  {
      var app = this;
+    //  this.transPengadaanId = this.$route.params.id;
+    //  axios.get('/api/trans_pengadaan/showDetail/'+this.transPengadaanId)
+    //  .then((resp) => {
+    //    this.detail_pengadaan =  resp.data;
+    //  })
+    //  .catch((resp) => {
+    //     alert("Gagal memuat detail transaksi pengadaan sparepart");    
+    //  });
     app.getResults();
     },
     computed: {
@@ -84,22 +87,15 @@
        }
     },
     methods: {
-      getResults(page){
-        var app = this;
-        if(typeof page == 'undefined'){
-          page = 1;
-        }
-        axios.get('/api/detail_trans_pengadaan?page=' + page)
-        .then(function(resp){
-          app.detail_pengadaan = resp.data.data;
-          app.detail_pengadaanData = resp.data;
-          app.loading = false;
+      getResults(){
+        this.transPengadaanId = this.$route.params.id;
+        axios.get('/api/trans_pengadaan/showDetail/'+this.transPengadaanId)
+          .then((resp) => {
+            this.detail_pengadaan =  resp.data;
         })
-        .catch(function(resp){
-          console.log(resp);
-          app.loading = false;
-         
-        })
+          .catch((resp) => {
+          alert("Gagal memuat detail transaksi pengadaan sparepart");    
+        });
       },
       
       deleteEntry(id,index){

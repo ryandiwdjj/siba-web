@@ -58,6 +58,7 @@ import detailTransPengadaanIndex from '../components/admin/transPengadaan/detail
 import CreateTransPengadaan from '../components/admin/transPengadaan/CreateTransPengadaan.vue'
 import CreateTransPengadaanV2 from '../components/admin/transPengadaan/CreateTransPengadaanV2.vue'
 import CreateDetailPengadaan from '../components/admin/transPengadaan/CreateDetailPengadaan.vue'
+import EditDetailPengadaan from '../components/admin/transPengadaan/EditDetailPengadaan.vue'
 
 
 
@@ -83,7 +84,7 @@ const routes = [
             },
             {
                 name: 'editJasaService',
-                path:'/edit_jasa',
+                path:'/edit_jasa/:id',
                 component: EditJasaService
             },
             
@@ -97,7 +98,7 @@ const routes = [
             },
             {
                 name: 'editPegawai',
-                path:'/edit_pegawai',
+                path:'/edit_pegawai/:id',
                 component: EditPegawai
             },
 
@@ -111,7 +112,7 @@ const routes = [
             },
             {
                 name: 'editSparepart',
-                path:'/edit_sparepart',
+                path:'/edit_sparepart/:id',
                 component: EditSparepart
             },
 
@@ -125,7 +126,7 @@ const routes = [
             },
             {
                 name: 'editSupplier',
-                path:'/edit_supplier',
+                path:'/edit_supplier/:id',
                 component: EditSupplier
             },
 
@@ -139,7 +140,7 @@ const routes = [
             },
             {
                 name: 'editRole',
-                path:'/edit_role',
+                path:'/edit_role/:id',
                 component: EditRole
             },
 
@@ -153,7 +154,7 @@ const routes = [
             },
             {
                 name: 'editCabang',
-                path:'/edit_cabang',
+                path:'/edit_cabang/:id',
                 component: EditCabang
             },
 
@@ -167,7 +168,7 @@ const routes = [
             },
             {
                 name: 'editPelanggan',
-                path:'/edit_pelanggan',
+                path:'/edit_pelanggan/:id',
                 component: EditPelanggan
             },
 
@@ -181,7 +182,7 @@ const routes = [
             },
             {
                 name: 'editKendaraan',
-                path:'/edit_kendaraan',
+                path:'/edit_kendaraan/:id',
                 component: EditKendaraan
             },
 
@@ -194,7 +195,7 @@ const routes = [
                 component: CreateTransaksiPenjualan
             },
             {   name: 'editTransaksi',
-                path:'/edit_trans_penjualan',
+                path:'/edit_trans_penjualan/:id',
                 component: EditTransaksiPenjualan
             },
             {
@@ -208,7 +209,7 @@ const routes = [
             },
             {
                 name: 'bayarTransaksi',
-                path:'/trans_penjualan_bayar',
+                path:'/trans_penjualan_bayar/:id',
                 component: Pembayaran
             },
 
@@ -222,7 +223,7 @@ const routes = [
             },
             {
                 name: 'editDetailTransJasa',
-                path:'/edit_trans_jasa',
+                path:'/edit_trans_jasa/:id',
                 component: EditDetailTransJasa
             },
 
@@ -236,7 +237,7 @@ const routes = [
             },
             {
                 name: 'editTransaksiSparepart',
-                path:'/edit_trans_sparepart',
+                path:'/edit_trans_sparepart/:id',
                 component: EditDetailTransSparepart
             },
 
@@ -245,7 +246,8 @@ const routes = [
                 component: transPengadaanIndex
             },
             {
-                path:'/detail_trans_pengadaan',
+                name:'showDetail',
+                path:'/detail_trans_pengadaan/:id',
                 component: detailTransPengadaanIndex
             },
             {
@@ -259,6 +261,11 @@ const routes = [
             {
                 path:'/tambah_detail_pengadaan',
                 component: CreateDetailPengadaan
+            },
+            {
+                name: 'editDetailPengadaan',
+                path:'/edit_detail_pengadaan/:id',
+                component: EditDetailPengadaan
             },
             
             

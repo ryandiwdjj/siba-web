@@ -46,6 +46,11 @@
                           v-on:click="konfirmasiHapus(trans_pengadaan.id,index)">
                           <i class="fa fa-trash"></i>
                         </button>
+                        <router-link 
+                          :to="{name:'showDetail' ,params:{id: trans_pengadaan.id}}" 
+                          class="button is-dark">
+                          <i class="fas fa-list"></i>
+                       </router-link>
                         </td>
                       </tr>
                     </tbody>

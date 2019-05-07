@@ -167,7 +167,14 @@ class transpenjualancontroller extends Controller
             else{
                 $transpenjualan->total_harga_trans;
                 $transpenjualan->discount_penjualan = $request->discount_penjualan;
-                $transpenjualan->grand_total = $transpenjualan->total_harga_trans - $transpenjualan->discount_penjualan ;
+
+                //perhitungan discount
+                $discount = 
+                $transpenjualan->total_harga_trans * ($transpenjualan->discount_penjualan / 100);
+
+                $transpenjualan->grand_total = 
+                $transpenjualan->total_harga_trans - $discount;
+                //$transpenjualan->grand_total = $transpenjualan->total_harga_trans - $transpenjualan->discount_penjualan ;
                 //$transpenjualan->status_transaksi = $transpenjualan->status_transaksi;
                 $transpenjualan->status_pembayaran = "sudah";
 

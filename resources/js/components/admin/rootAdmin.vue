@@ -2,6 +2,9 @@
 <div class="content" id="homeAdmin">  
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
+    <a>
+<img src="../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '60px', width: '65px', height: '60px' }">
+</a>
     <a class="navbar-item">
         
         <router-link to= "/" class="button is-dark"> SIBA </router-link>
@@ -65,9 +68,6 @@
           <a class="navbar-item">
             <router-link to= "/trans_penjualan"  class="navbar-item">Transaksi Penjualan</router-link>
           </a>
-          <a class="navbar-item">
-            <router-link to= "/trans_penjualan_pembayaran"  class="navbar-item">Pembayaran</router-link>
-          </a>
       </div>
     </div>
       
@@ -79,9 +79,6 @@
       
       <div class="navbar-dropdown">
 
-          <a class="navbar-item">
-            <router-link to= "/detail_trans_pengadaan"  class="navbar-item">Detail Pengadaan</router-link>
-          </a>
           <a class="navbar-item">
             <router-link to= "/trans_pengadaan"  class="navbar-item">Transaksi Pengadaan</router-link>
           </a>
@@ -111,9 +108,7 @@
     </div>
   </div>
 </nav>
-<a>
-<img src="../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '60px', width: '85px', height: '80px' }">
-</a>
+
         <div id="appPage">
             <main class="pageContent">
             <transition name="fade">

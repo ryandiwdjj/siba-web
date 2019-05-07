@@ -5,13 +5,13 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                  <div class="card-header">
-                    <h3 class="card-header-title">Tambah Detail Transaksi Pengadaan Sparepart</h3>
+                    <h3 class="card-header-title">Ubah Detail Pengadaan Sparepart</h3>
                   </div>
 
                 <div class="card-body">
                   
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
-                        <br>
+                       <br>
                                   
                                   <div class="form-group">
                                     <label for="name" class="col-md-2 control-label" >ID Transaksi Pengadaan</label>
@@ -60,14 +60,12 @@
                                       <span v-if="errors.jumlah_pengadaan" class="help is-danger"> {{ errors.jumlah_pengadaan[0]}}</span>
                                      </div>
                                   </div>
-                          
                       
                       <br>
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
-                          <button v-on:click="isHidden = false" class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
-                          <router-link to = "/trans_pengadaan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
-                          <router-link to = "/trans_pengadaan" v-if="!isHidden" class="button is-info">Selesai  &nbsp; <i class="fas fa-check"></i></router-link>
+                          <button class="button is-success" type="submit">Ubah  &nbsp; <i class="fa fa-edit"></i></button>
+                          <router-link to="/trans_pengadaan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
                         </div>
                       </div>
                       <br>
@@ -90,35 +88,34 @@
             id_sparepart: '',
             jumlah_pengadaan: '',
         },
-        spareparts: [],
         transPengadaan: [],
+        spareparts: [],
+        detailtransPengadaanId : null,
         errors: [],
-        message: '',
-        isHidden: true,
+        message: ''
       }
     },
     mounted()  {
      var app = this;
-     app.getSpareparts();
+     this.detailtransPengadaanId = this.$route.params.id;
+     axios.get('/api/detail_trans_pengadaan/'+this.detailtransPengadaanId)
+     .then((resp) => {
+       this.detailPengadaan =  resp.data;
+     })
+     .catch((resp) => {
+        alert("Gagal memuat transaksi pengadaan sparepart");    
+     });
+     
      app.getTransPengadaan();
+     app.getSpareparts();
     },
     methods: {
       alert(pesan){
         this.$swal({
-          title: "Berhasil Menambah Transaksi Pengadaan",
+          title: "Berhasil Mengubah Transaksi Pengadaan Sparepart",
           text: pesan,
           icon: "success"
         });
-      },
-      getSpareparts(){
-        var app = this;
-        axios.get('/api/sparepart' + '/all')
-        .then(function(resp){
-          app.spareparts = resp.data;
-        })
-        .catch(function(resp){
-          console.log(resp);
-        })
       },
       getTransPengadaan(){
         var app = this;
@@ -130,15 +127,25 @@
           console.log(resp);
         })
       },
+      getSpareparts(){
+        var app = this;
+        axios.get('/api/sparepart' + '/all')
+        .then(function(resp){
+          app.spareparts = resp.data;
+        })
+        .catch(function(resp){
+          console.log(resp);
+        })
+      },
       saveForm(){
         var newDetailTransPengadaan = this.detailPengadaan;
-        axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
+        axios.put('/api/detail_trans_pengadaan/update/' + this.detailtransPengadaanId ,newDetailTransPengadaan)
         .then((resp) => {
-          this.alert('Berhasil Menambah Detail Transaksi Pengadaan ');
-          this.$router.replace('/tambah_detail_pengadaan');
+          this.alert('Berhasil Mengubah Transaksi Pengadaan Sparepart ');
+          this.$router.replace('/trans_pengadaan');
         })
         .catch((resp) =>{
-          if(resp.response.status == 500) alert('Gagal Menambah Detail Transaksi Pengadaan');
+          if(resp.response.status == 500) alert('Gagal Mengubah Transaksi Pengadaan Sparepart');
           this.errors = resp.response.data.errors;
           console.log(resp);
         });
@@ -150,5 +157,3 @@
   }
 
 </script>
-
-

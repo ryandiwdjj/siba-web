@@ -15,7 +15,7 @@
                       <div class="form-group">
                         <label for="name" class="col-md-2 control-label" >Discount Penjualan</label>
                         <div class="col-md-4">
-                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Discount" v-model="transaksiPenjualan.discount_penjualan" autofocus=""/>
+                          <input type="text" v-bind:style="{width: '35%' }" class="input is-primary" required="" placeholder="Discount" v-model="transaksiPenjualan.discount_penjualan" autofocus=""/>%
                         <span v-if="errors.discount_penjualan" class="help is-danger"> {{ errors.discount_penjualan[0]}}</span>
                         </div>
                       </div>
