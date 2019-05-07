@@ -182,7 +182,10 @@ class transpengadaancontroller extends Controller
 
     public function indexMobile() {
         $transpengadaans = trans_pengadaan::
-        join('suppliers', 'suppliers.id', 'trans_pengadaan.id_supplier')
+        select('trans_pengadaan.*', 'suppliers.nama_supplier', 'suppliers.no_telp_supplier'
+        ,'suppliers.alamat_supplier','cabangs.nama_cabang', 'cabangs.no_telp_cabang'
+        ,'cabangs.alamat_cabang')
+        ->join('suppliers', 'suppliers.id', 'trans_pengadaan.id_supplier')
         ->join('cabangs', 'cabangs.id', 'trans_pengadaan.id_cabang')
         ->latest('trans_pengadaan.created_at')
         ->get();
@@ -217,6 +220,47 @@ class transpengadaancontroller extends Controller
             return response()->json('Error Saving', 500);
         } else {
             return response()->json('Success', 204);
+        }
+    }
+
+    public function updateMobile(Request $request, $id)
+    {
+        $transpengadaan = trans_pengadaan::where('id', $id)->first();
+
+        if (is_null($transpengadaan)) {
+            return response()->json('Transaksi pengadaan not found', 404);
+        }
+
+        else {
+            $transpengadaan->id_supplier = $request->id_supplier;
+            $transpengadaan->id_cabang = $request->id_cabang;
+            $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
+            
+            $success = $transpengadaan->save();
+
+            if (!$success) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        }
+    }
+
+    public function destroyMobile($id)
+    {
+        $transpengadaan = trans_pengadaan::find($id);
+
+        if(is_null($transpengadaan)) {
+            return response()->json('Transaksi Pengadaan Not Found', 404);
+        }
+        
+        else {
+            $success = $transpengadaan->delete();
+            if($success)
+                return response()->json('Success Delete', 200);
+            else {
+                return response()->json('Error Delete', 500);
+            }
         }
     }
 }

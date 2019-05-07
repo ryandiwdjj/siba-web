@@ -170,6 +170,8 @@ Route::delete('/trans_pengadaan/{id}','transpengadaancontroller@destroy');
 
 Route::get('/mobile/trans_pengadaan', 'transpengadaancontroller@indexMobile');
 Route::post('/mobile/trans_pengadaan/store','transpengadaancontroller@storeMobile');
+Route::put('/mobile/trans_pengadaan/update/{id}','transpengadaancontroller@updateMobile');
+Route::delete('/mobile/trans_pengadaan/{id}','transpengadaancontroller@destroyMobile');
 
 /////////////////////////////////////////////////////////////////////////////////////////////Detail Trans Pengadaan
 Route::get('/detail_trans_pengadaan', 'detailpengadaancontroller@index');
@@ -179,8 +181,10 @@ Route::post('/detail_trans_pengadaan/store','detailpengadaancontroller@store');
 //Route::put('/detail_trans_pengadaan/update/{id}','detailpengadaancontroller@update');
 Route::delete('/detail_trans_pengadaan/{id}','detailpengadaancontroller@destroy');
 
-Route::get('/mobile/trans_pengadaan/detail', 'detailpengadaancontroller@indexMobiled');
+Route::get('/mobile/trans_pengadaan/detail', 'detailpengadaancontroller@indexMobile');
 Route::post('/mobile/trans_pengadaan/detail/store','detailpengadaancontroller@storeMobile');
+Route::put('/mobile/trans_pengadaan/detail/update/{id}','detailpengadaancontroller@updateMobile');
+Route::delete('/mobile/trans_pengadaan/detail/{id}','detailpengadaancontroller@destroyMobile');
 
 /////////////////////////////////////////////////////////////////////////////////////////////REPORT
 Route::get('/report/pendapatan_bulanan/{month}', 'reportController@lap_pendapatan_bul');
