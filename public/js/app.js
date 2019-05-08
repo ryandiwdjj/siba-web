@@ -3884,6 +3884,99 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      trans_penjualan: [],
+      bulan_trans: {},
+      loading: true
+    };
+  },
+  mounted: function mounted() {
+    var app = this;
+    app.getResults();
+  },
+  computed: {
+    filteredList: function filteredList() {
+      return this.trans_penjualan;
+    }
+  },
+  methods: {
+    getResults: function getResults() {
+      var app = this;
+      axios.get('/api/report/pendapatan_bulanan').then(function (resp) {
+        app.bulan_trans = resp.data;
+        app.trans_penjualan = resp.data.data;
+        app.loading = false;
+      }).catch(function (resp) {
+        console.log(resp);
+        app.loading = false;
+      });
+    },
+    alert: function alert(title, pesan) {
+      this.$swal({
+        title: title,
+        text: pesan,
+        icon: "success"
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/pegawai/AdminPegawai.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/pegawai/AdminPegawai.vue?vue&type=script&lang=js& ***!
@@ -5165,6 +5258,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -14637,6 +14751,123 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "button is-success",
+                  attrs: { to: "/cetak_pendapatan_bulanan" }
+                },
+                [_vm._v("Cetak")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body table-responsive p-0" },
+            [
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.getResults, function(trans_penjualan, index) {
+                      return _c("tr", { key: trans_penjualan.id }, [
+                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_penjualan.status_pembayaran))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_penjualan.status_transaksi))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(trans_penjualan.created_at))])
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.loading ? _c("vue-simple-spinner") : _vm._e()
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Laporan Pendapatan Bulanan")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", [_vm._v("No")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Bulan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Service")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Sparepart")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Total")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/pegawai/AdminPegawai.vue?vue&type=template&id=a4ca4a6a&":
 /*!*****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/pegawai/AdminPegawai.vue?vue&type=template&id=a4ca4a6a& ***!
@@ -17307,7 +17538,111 @@ var render = function() {
                 ]
               ),
               _vm._v(" "),
-              _vm._m(4)
+              _c(
+                "div",
+                { staticClass: "navbar-item has-dropdown is-hoverable" },
+                [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "navbar-dropdown" }, [
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/laporan" }
+                          },
+                          [_vm._v("Pendapatan Bulanan")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/laporan" }
+                          },
+                          [_vm._v("Pengeluaran Bulanan")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/laporan" }
+                          },
+                          [_vm._v("Sparepart Terlaris")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/laporan" }
+                          },
+                          [_vm._v("Jasa service permotor")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/laporan" }
+                          },
+                          [_vm._v("Sisa Stok bulanan")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { staticClass: "navbar-item" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "navbar-item",
+                            attrs: { to: "/laporan" }
+                          },
+                          [_vm._v("Pendapatan Tahunan")]
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                ]
+              )
             ]),
             _vm._v(" "),
             _vm._m(5)
@@ -17386,9 +17721,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "navbar-item" }, [
-      _c("i", { staticClass: "far fa-file-alt" }),
-      _vm._v("   Laporan\r\n        ")
+    return _c("a", { staticClass: "navbar-link" }, [
+      _c("i", { staticClass: "fas fa-money-check-alt" }),
+      _vm._v("   Laporan\r\n          ")
     ])
   },
   function() {
@@ -40273,6 +40608,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& */ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&");
+/* harmony import */ var _LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LaporanPendapatanBulanan.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************!*\
+  !*** ./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LaporanPendapatanBulanan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/pegawai/AdminPegawai.vue":
 /*!****************************************************************!*\
   !*** ./resources/js/components/admin/pegawai/AdminPegawai.vue ***!
@@ -42348,9 +42752,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_transPengadaan_CreateTransPengadaanV2_vue__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateTransPengadaanV2.vue */ "./resources/js/components/admin/transPengadaan/CreateTransPengadaanV2.vue");
 /* harmony import */ var _components_admin_transPengadaan_CreateDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/CreateDetailPengadaan.vue");
 /* harmony import */ var _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ../components/admin/transPengadaan/EditDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/EditDetailPengadaan.vue");
+/* harmony import */ var _components_admin_laporan_LaporanPendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../components/admin/laporan/LaporanPendapatanBulanan.vue */ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
 
 
 
@@ -42542,6 +42948,9 @@ var routes = [{
     name: 'editDetailPengadaan',
     path: '/edit_detail_pengadaan/:id',
     component: _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__["default"]
+  }, {
+    path: '/laporan',
+    component: _components_admin_laporan_LaporanPendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
@@ -42570,8 +42979,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Git\siba-web\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Git\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

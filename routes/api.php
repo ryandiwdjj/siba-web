@@ -188,9 +188,9 @@ Route::put('/mobile/trans_pengadaan/detail/update/{id}','detailpengadaancontroll
 Route::delete('/mobile/trans_pengadaan/detail/{id}','detailpengadaancontroller@destroyMobile');
 
 /////////////////////////////////////////////////////////////////////////////////////////////REPORT
-Route::get('/report/pendapatan_bulanan/{month}', 'reportController@lap_pendapatan_bul');
-Route::get('/report/pengeluaran_bulanan/{month}', 'reportController@lap_pengeluaran_bul');
+Route::get('/report/pendapatan_bulanan/', 'reportController@pendapatan_bul');
+Route::get('/report/pengeluaran_bulanan/{month}', 'reportController@pengeluaran_bul');
 Route::get('/report/spare_terlaris/{month}', 'reportController@lap_spare_terlaris');
-Route::get('/report/jumlah_jasa_permotor/{motor}', 'reportController@lap_jumlah_jasa_perMotor');
-Route::get('/report/sisa_stok_bulanan', 'reportController@lap_sisa_stok_bulanan');
-Route::get('/report/tahunan_percabang/{month}', 'reportController@lap_tahunan_perCabang');
+Route::get('/report/jumlah_jasa_permotor/{motor}', 'reportController@jumlah_jasa_perMotor');
+Route::get('/report/sisa_stok_bulanan', 'reportController@sisa_stok_bulanan');
+Route::get('/report/tahunan_percabang/{month}', 'reportController@tahunan_perCabang');
