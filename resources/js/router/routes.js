@@ -60,7 +60,7 @@ import CreateTransPengadaanV2 from '../components/admin/transPengadaan/CreateTra
 import CreateDetailPengadaan from '../components/admin/transPengadaan/CreateDetailPengadaan.vue'
 import EditDetailPengadaan from '../components/admin/transPengadaan/EditDetailPengadaan.vue'
 
-
+import LaporanPendapatanBulanan from '../components/admin/laporan/LaporanPendapatanBulanan.vue'
 
 
 
@@ -269,9 +269,11 @@ const routes = [
                 component: EditDetailPengadaan
             },
             
-            
+            {
+                path:'/laporan',
+                component: LaporanPendapatanBulanan
+            },
            
-            
         ]
     }
     

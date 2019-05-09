@@ -76,11 +76,32 @@
       </a>
     
 
-      
-        <a class="navbar-item">
-          <i class="far fa-file-alt"></i> &nbsp; Laporan
-        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            <i class="fas fa-money-check-alt"></i> &nbsp; Laporan
+          </a>
 
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            <router-link to= "/laporan"  class="navbar-item">Pendapatan Bulanan</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/laporan"  class="navbar-item">Pengeluaran Bulanan</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/laporan"  class="navbar-item">Sparepart Terlaris</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/laporan"  class="navbar-item">Jasa service permotor</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/laporan"  class="navbar-item">Sisa Stok bulanan</router-link>
+          </a>
+          <a class="navbar-item">
+            <router-link to= "/laporan"  class="navbar-item">Pendapatan Tahunan</router-link>
+          </a>
+        </div>
+      </div>
         
      </div>
     
