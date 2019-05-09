@@ -221,6 +221,7 @@ class transpengadaancontroller extends Controller
         $transpengadaan->id_cabang = $request->id_cabang;
         $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
         $transpengadaan->total_harga_pengadaan = 0;
+        $transpengadaan->status_pengadaan = "belum";
 
         $success = $transpengadaan->save();
 
@@ -252,6 +253,41 @@ class transpengadaancontroller extends Controller
                 return response()->json('Success Updating', 200);
             }
         }
+    }
+
+    public function barang_datang($id) {
+        $transpengadaan = trans_pengadaan::where('id', $id)->first();
+
+        if (is_null($transpengadaan)) {
+            return response()->json('Transaksi pengadaan not found', 404);
+        }
+
+        //function untuk pengurangan stok sparepart
+        $results = detail_trans_pengadaan::where('id_trans_pengadaan', $id)->get();
+
+        foreach($results as $result) {
+
+            $sparepart = sparepart::find($result->id_sparepart);
+            if(is_null($sparepart)) {
+                return response()->json('Sparepart not found', 404);
+            }
+
+            $sparepart->jumlah_stok_sparepart = 
+            $sparepart->jumlah_stok_sparepart + $result->jumlah_barang;
+        }
+
+        
+            $transpengadaan->status_transaksi = "sudah";
+            
+            $success_pengadaan = $transpengadaan->save();
+            $success_spare = $sparepart->save();
+
+            if (!$success_pengadaan && !$success_spare) {
+                return response()->json('Error Updating', 500);
+            } else {
+                return response()->json('Success Updating', 200);
+            }
+        
     }
 
     public function destroyMobile($id)
