@@ -169,72 +169,72 @@ class reportController extends Controller
 		$desember_spare = $desember->sum('total_harga_spare');
 
 		$januari_json = [
-			"bulan" => "januari",
+			"bulan" => "Januari",
 			"grand_total" => $januari_grand, 
 			"total_jasa" => $januari_jasa, 
 			"total_spare" => $januari_spare];
 
 		$februari_json = [
-			"bulan" => "februari",
+			"bulan" => "Februari",
 			"grand_total" => $februari_grand, 
 			"total_jasa" => $februari_jasa, 
 			"total_spare" => $februari_spare];
 			
 		$maret_json = [
-			"bulan" => "maret",
+			"bulan" => "Maret",
 			"grand_total" => $maret_grand, 
 			"total_jasa" => $maret_jasa, 
 			"total_spare" => $maret_spare];
 
 		$april_json = [
-			"bulan" => "april",
+			"bulan" => "April",
 			"grand_total" => $april_grand, 
 			"total_jasa" => $april_jasa, 
 			"total_spare" => $april_spare];
 
 		$mei_json = [
-			"bulan" => "mei",
+			"bulan" => "Mei",
 			"grand_total" => $mei_grand, 
 			"total_jasa" => $mei_jasa, 
 			"total_spare" => $mei_spare];
 
 		$juni_json = [
-			"bulan" => "juni",
+			"bulan" => "Juni",
 			"grand_total" => $juni_grand, 
 			"total_jasa" => $juni_jasa, 
 			"total_spare" => $juni_spare];
 			
 		$juli_json = [
-			"bulan" => "juli",
+			"bulan" => "Juli",
 			"grand_total" => $juli_grand, 
 			"total_jasa" => $juli_jasa, 
 			"total_spare" => $juli_spare];
 		$agustus_json = [
-			"bulan" => "agustus",
+			"bulan" => "Agustus",
 			"grand_total" => $agustus_grand, 
 			"total_jasa" => $agustus_jasa, 
 			"total_spare" => $agustus_spare];
 
 		$september_json = [
-			"bulan" => "september",
+			"bulan" => "September",
 			"grand_total" => $september_grand, 
 			"total_jasa" => $september_jasa, 
 			"total_spare" => $september_spare];
 			
 		$oktober_json = [
-			"bulan" => "oktober",
+			"bulan" => "Oktober",
 			"grand_total" => $oktober_grand, 
 			"total_jasa" => $oktober_jasa, 
 			"total_spare" => $oktober_spare];
 
 		$november_json = [
-			"bulan" => "november",
+			"bulan" => "November",
 			"grand_total" => $november_grand, 
 			"total_jasa" => $november_jasa, 
 			"total_spare" => $november_spare];
 			
 		$desember_json = [
-			"bulan" => "desember",
+			"bulan" => "Desember",
 			"grand_total" => $desember_grand, 
 			"total_jasa" => $desember_jasa, 
 			"total_spare" => $desember_spare];

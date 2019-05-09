@@ -25,11 +25,11 @@
                     </thead>
                     <tbody>
                       <tr v-for="(trans_penjualan,index) in filteredList" :key ="trans_penjualan.id">
-                        <td>{{ index }}</td>
-                        <td>{{ index }}</td>
-                        <td>{{ trans_penjualan.status_pembayaran }}</td>
-                        <td>{{ trans_penjualan.status_transaksi }}</td>
-                        <td>{{ trans_penjualan.created_at }}</td>
+                        <td>{{ index+1 }}</td>
+                        <td>{{ trans_penjualan.bulan }}</td>
+                        <td>{{ trans_penjualan.total_jasa }}</td>
+                        <td>{{ trans_penjualan.total_spare }}</td>
+                        <td>{{ trans_penjualan.grand_total }}</td>
                       </tr>
                     </tbody>
                     </table>     
@@ -47,7 +47,7 @@
     data: function() {
       return {
         transaksiPenjualan: {},
-        bulan_trans:[],
+        bulan_trans: {},
         loading: true
       }
     },
@@ -57,7 +57,7 @@
     },
     computed: {
        filteredList: function(){
-         return this.bulan_trans;
+         return this.transaksiPenjualan;
        }
     },
     methods: {
@@ -66,8 +66,8 @@
         axios.get('/api/report/pendapatan_bulanan')
         .then(function(resp){
         //app.bulan_trans = resp.data;
-        app.transPenjualan = resp.data.data;
-        app.bulan_trans = resp.data;
+        //app.trans_penjualan = resp.data.data;
+        app.transaksiPenjualan = resp.data;
         app.loading = false;
         })
         .catch(function(resp){

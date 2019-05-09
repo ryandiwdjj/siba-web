@@ -3907,7 +3907,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       transaksiPenjualan: {},
-      bulan_trans: [],
+      bulan_trans: {},
       loading: true
     };
   },
@@ -3917,7 +3917,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     filteredList: function filteredList() {
-      return this.bulan_trans;
+      return this.transaksiPenjualan;
     }
   },
   methods: {
@@ -3925,8 +3925,8 @@ __webpack_require__.r(__webpack_exports__);
       var app = this;
       axios.get('/api/report/pendapatan_bulanan').then(function (resp) {
         //app.bulan_trans = resp.data;
-        app.transPenjualan = resp.data.data;
-        app.bulan_trans = resp.data;
+        //app.trans_penjualan = resp.data.data;
+        app.transaksiPenjualan = resp.data;
         app.loading = false;
       }).catch(function (resp) {
         console.log(resp);
@@ -14599,19 +14599,15 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.filteredList, function(trans_penjualan, index) {
                       return _c("tr", { key: trans_penjualan.id }, [
-                        _c("td", [_vm._v(_vm._s(index))]),
+                        _c("td", [_vm._v(_vm._s(index + 1))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(index))]),
+                        _c("td", [_vm._v(_vm._s(trans_penjualan.bulan))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(trans_penjualan.status_pembayaran))
-                        ]),
+                        _c("td", [_vm._v(_vm._s(trans_penjualan.total_jasa))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(trans_penjualan.status_transaksi))
-                        ]),
+                        _c("td", [_vm._v(_vm._s(trans_penjualan.total_spare))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(trans_penjualan.created_at))])
+                        _c("td", [_vm._v(_vm._s(trans_penjualan.grand_total))])
                       ])
                     }),
                     0
