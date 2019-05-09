@@ -214,7 +214,8 @@ const routes = [
             },
 
             {
-                path:'/detail_trans_jasa',
+                name: 'showDetailJasa',
+                path:'/detail_trans_jasa/:id',
                 component: detailTransJasaIndex
             },
             {

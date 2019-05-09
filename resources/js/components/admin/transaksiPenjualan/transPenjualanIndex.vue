@@ -63,6 +63,11 @@
                           class="button is-dark">
                           <i class="fas fa-cogs"></i>
                        </router-link>
+                       <router-link 
+                          :to="{name:'showDetailJasa' ,params:{id: transaksi.id}}" 
+                          class="button is-dark">
+                          <i class="fas fa-tools"></i>
+                       </router-link>
                         <router-link 
                           :to="{name:'printSPK' ,params:{id: transaksi.id}}" 
                           class="button is-info">

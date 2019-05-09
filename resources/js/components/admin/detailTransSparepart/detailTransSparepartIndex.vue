@@ -64,7 +64,7 @@
     data: function() {
       return {
         detail_transsparepart: [],
-        //detail_pengadaanData: {},
+        
         pencarian: '',
         //loading: true,
         detailTransSparepartId: null,

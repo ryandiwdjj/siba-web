@@ -60,10 +60,6 @@
       
       <div class="navbar-dropdown">
           <a class="navbar-item">
-            <router-link to= "/detail_trans_jasa"  class="navbar-item">Detail Jasa Service</router-link>
-          </a>
-         
-          <a class="navbar-item">
             <router-link to= "/trans_penjualan"  class="navbar-item">Transaksi Penjualan</router-link>
           </a>
       </div>
@@ -78,7 +74,7 @@
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
-            <i class="fas fa-money-check-alt"></i> &nbsp; Laporan
+            <i class="fas fa-clipboard-list"></i> &nbsp; Laporan
           </a>
 
         <div class="navbar-dropdown">
