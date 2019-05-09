@@ -3902,11 +3902,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaksiPenjualan: [],
-      bulan_trans: {},
+      transaksiPenjualan: {},
+      bulan_trans: [],
       loading: true
     };
   },
@@ -3916,7 +3917,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     filteredList: function filteredList() {
-      return this.transaksiPenjualan;
+      return this.bulan_trans;
     }
   },
   methods: {
@@ -3924,8 +3925,8 @@ __webpack_require__.r(__webpack_exports__);
       var app = this;
       axios.get('/api/report/pendapatan_bulanan').then(function (resp) {
         //app.bulan_trans = resp.data;
-        //app.trans_penjualan = resp.data.data;
-        app.transaksiPenjualan = resp.data;
+        app.transPenjualan = resp.data.data;
+        app.bulan_trans = resp.data;
         app.loading = false;
       }).catch(function (resp) {
         console.log(resp);
@@ -14598,7 +14599,9 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.filteredList, function(trans_penjualan, index) {
                       return _c("tr", { key: trans_penjualan.id }, [
-                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _c("td", [_vm._v(_vm._s(index))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(index))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(trans_penjualan.status_pembayaran))
@@ -42673,8 +42676,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Git\siba-web\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Git\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
