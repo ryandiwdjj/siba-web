@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\trans_penjualan;
 use App\sparepart;
 use App\detail_trans_sparepart;
+use App\detail_trans_jasa;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,22 @@ class transpenjualancontroller extends Controller
     public function all()
     {
         $transpenjualans = trans_penjualan::all();
+
+        return response()->json($transpenjualans, 200);
+    }
+
+    public function showDetailJasa($id)
+    {
+        $transpenjualans = detail_trans_jasa::where('id_trans_penjualan', $id)
+        ->with('trans_penjualan','jasa_service','pegawai','kendaraan')->get();
+
+        return response()->json($transpenjualans, 200);
+    }
+
+    public function showDetailSparepart($id)
+    {
+        $transpenjualans = detail_trans_sparepart::where('id_trans_penjualan', $id)
+        ->with('trans_penjualan','sparepart')->get();
 
         return response()->json($transpenjualans, 200);
     }

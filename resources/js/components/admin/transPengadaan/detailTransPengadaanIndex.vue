@@ -7,7 +7,7 @@
                     <h3 class="card-header-title">Detail Pengadaan Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to = "/trans_pengadaan" class="button is-warning"> <i class="fas fa-arrow-left"></i> &nbsp; Kembali</router-link>
+                      <router-link to = "/trans_pengadaan" class="button is-warning"> <i class="fas fa-arrow-left"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -102,17 +102,17 @@
           axios.delete('/api/detail_trans_pengadaan/' + id)
           .then((resp) => {
             this.getResults();
-            this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi Pengadaan ");
+            this.alert("Berhasil Menghapus","Berhasil Menghapus Detail Transaksi Pengadaan ");
           })
           .catch((resp) =>{
-            alert("Gagal Menghapus Transaksi Pengadaan")
+            alert("Gagal Menghapus Detail Transaksi Pengadaan")
             console.log(resp);
           })
       },
       konfirmasiHapus(id,index){
       
         this.$swal({
-          title: "Yakin Ingin Menghapus Transaksi Pengadaan ?",
+          title: "Yakin Ingin Menghapus Detail Transaksi Pengadaan ?",
           text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
           icon: "warning",
           buttons: true,

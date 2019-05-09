@@ -66,7 +66,7 @@
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
                           <button v-on:click="isHidden = false" class="button is-success" type="submit">Tambah  &nbsp; <i class="fas fa-plus-circle"></i></button>
-                          <router-link to = "/trans_pengadaan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <router-link to = "/trans_pengadaan" v-if="isHidden" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
                           <router-link to = "/trans_pengadaan" v-if="!isHidden" class="button is-info">Selesai  &nbsp; <i class="fas fa-check"></i></router-link>
                         </div>
                       </div>
@@ -105,7 +105,7 @@
     methods: {
       alert(pesan){
         this.$swal({
-          title: "Berhasil Menambah Transaksi Pengadaan",
+          title: "Berhasil Menambah Detail Transaksi Pengadaan",
           text: pesan,
           icon: "success"
         });
@@ -136,6 +136,7 @@
         .then((resp) => {
           this.alert('Berhasil Menambah Detail Transaksi Pengadaan ');
           this.$router.replace('/tambah_detail_pengadaan');
+          this.detailPengadaan.jumlah_pengadaan = "";
         })
         .catch((resp) =>{
           if(resp.response.status == 500) alert('Gagal Menambah Detail Transaksi Pengadaan');

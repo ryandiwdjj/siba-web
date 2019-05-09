@@ -121,6 +121,11 @@ class detailpengadaancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'jumlah_pengadaan' => 'required|numeric|not_in:0',
+            
+        ]);
+        
         $detailTransPengadaan = detail_trans_pengadaan::find($id);
 
         if(is_null($detailTransPengadaan)) {
@@ -150,7 +155,7 @@ class detailpengadaancontroller extends Controller
         $sparepart->jumlah_stok_sparepart - $detailTransPengadaan->jumlah_pengadaan;
 
         //input data baru
-        $detailTransPengadaan->id_trans_pengadaan = $request->id_trans_pengadaan;
+        //$detailTransPengadaan->id_trans_pengadaan = $request->id_trans_pengadaan;
         $detailTransPengadaan->id_sparepart = $request->id_sparepart;
         $detailTransPengadaan->jumlah_pengadaan = $request->jumlah_pengadaan;
 

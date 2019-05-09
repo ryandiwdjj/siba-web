@@ -12,28 +12,6 @@
                   
                     <form v-on:submit.prevent="saveForm()" class="form-horizontal" >
                        <br>
-                                  
-                                  <div class="form-group">
-                                    <label for="name" class="col-md-2 control-label" >ID Transaksi Pengadaan</label>
-                                    <br>
-                                    <div class="select is-primary">
-                                      <div class="col-md-4">
-                                        <select
-                                         v-model="detailPengadaan.id_trans_pengadaan"
-                                         class="form-control"
-                                         required="" >
-                                          <option value="">Pilih ID Transaksi</option>
-                                          <option v-for="trans_pengadaan in transPengadaan" :value="trans_pengadaan.id">{{ trans_pengadaan.id }}</option>
-                                        </select>
-                                        <span v-if="errors.id_trans_pengadaan" class="help is-danger"> {{ errors.id_trans_pengadaan[0]}}</span>
-                                      </div>
-                                      </div>
-                                    </div>
-                                
-                               
-
-                               
-                                  
                                   <div class="form-group">
                                     <label for="name" class="col-md-2 control-label" >Sparepart</label>
                                     <br>
@@ -65,7 +43,7 @@
                       <div class="form-group">
                         <div class="col-md-4 col-md-offset-2">
                           <button class="button is-success" type="submit">Ubah  &nbsp; <i class="fa fa-edit"></i></button>
-                          <router-link to="/trans_pengadaan" class="button is-warning">Batal  &nbsp; <i class="fas fa-window-close"></i></router-link>
+                          <button class="button is-warning" type="button" @click="kembali">Batal  &nbsp; <i class="fas fa-window-close"></i></button>
                         </div>
                       </div>
                       <br>
@@ -84,7 +62,7 @@
     data: function() {
       return {
         detailPengadaan: {
-            id_trans_pengadaan: '',   
+            //id_trans_pengadaan: '',   
             id_sparepart: '',
             jumlah_pengadaan: '',
         },
@@ -112,7 +90,7 @@
     methods: {
       alert(pesan){
         this.$swal({
-          title: "Berhasil Mengubah Transaksi Pengadaan Sparepart",
+          title: "Berhasil Mengubah Detail Transaksi Pengadaan Sparepart",
           text: pesan,
           icon: "success"
         });
@@ -141,17 +119,21 @@
         var newDetailTransPengadaan = this.detailPengadaan;
         axios.put('/api/detail_trans_pengadaan/update/' + this.detailtransPengadaanId ,newDetailTransPengadaan)
         .then((resp) => {
-          this.alert('Berhasil Mengubah Transaksi Pengadaan Sparepart ');
-          this.$router.replace('/trans_pengadaan');
+          this.alert('Berhasil Mengubah Detail Transaksi Pengadaan Sparepart ');
+          //this.$router.replace('/trans_pengadaan');
+          this.$router.go(-1);
         })
         .catch((resp) =>{
-          if(resp.response.status == 500) alert('Gagal Mengubah Transaksi Pengadaan Sparepart');
+          if(resp.response.status == 500) alert('Gagal Mengubah Detail Transaksi Pengadaan Sparepart');
           this.errors = resp.response.data.errors;
           console.log(resp);
         });
       },
       onlyNumbers: function() {
        this.detailPengadaan.jumlah_pengadaan = this.detailPengadaan.jumlah_pengadaan.replace(/[^0-9]/g,'');
+      },
+      kembali(){
+        this.$router.go(-1);
       }
     }
   }

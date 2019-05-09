@@ -228,7 +228,8 @@ const routes = [
             },
 
             {
-                path:'/detail_trans_sparepart',
+                name: 'showDetailSparepart',
+                path:'/detail_trans_sparepart/:id',
                 component: detailTransSparepartIndex
             },
             {

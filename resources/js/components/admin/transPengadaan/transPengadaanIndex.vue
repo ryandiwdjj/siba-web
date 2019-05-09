@@ -8,7 +8,7 @@
                   </div>
                   <div class="card-tools">
                       <router-link to="/tambah_trans_pengadaanv2" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
-                      <router-link to="/tambah_detail_pengadaan" class="button is-info">Tambah Detail Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/tambah_detail_pengadaan" class="button is-link">Tambah Detail Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">

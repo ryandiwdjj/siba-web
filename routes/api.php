@@ -120,6 +120,8 @@ Route::get('/mobile/kendaraan','kendaraancontroller@indexMobile');
 //////////////////////////////////////////////////////////////////////////////////Trans Penjualan
 Route::get('/trans_penjualan', 'transpenjualancontroller@index');
 Route::get('/trans_penjualan/all','transpenjualancontroller@all');
+Route::get('/trans_penjualan/showDetailJasa/{id}','transpenjualancontroller@showDetailJasa');
+Route::get('/trans_penjualan/showDetailSparepart/{id}','transpenjualancontroller@showDetailSparepart');
 Route::get('/trans_penjualan/SPK/{id}','transpenjualancontroller@show');
 Route::post('/trans_penjualan/store','transpenjualancontroller@store');
 Route::put('/trans_penjualan/update/{id}','transpenjualancontroller@update');
