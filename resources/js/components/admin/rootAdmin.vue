@@ -79,22 +79,22 @@
 
         <div class="navbar-dropdown">
           <a class="navbar-item">
-            <router-link to= "/laporan"  class="navbar-item">Pendapatan Bulanan</router-link>
+            <router-link to= "/laporan/pendapatan_bulanan"  class="navbar-item">Pendapatan Bulanan</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/laporan"  class="navbar-item">Pengeluaran Bulanan</router-link>
+            <router-link to= "/laporan/pengeluaran_bulanan"  class="navbar-item">Pengeluaran Bulanan</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/laporan"  class="navbar-item">Sparepart Terlaris</router-link>
+            <router-link to= "/laporan/sparepart_terlaris"  class="navbar-item">Sparepart Terlaris</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/laporan"  class="navbar-item">Jasa service permotor</router-link>
+            <router-link to= "/laporan/jasa_service"  class="navbar-item">Jasa service permotor</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/laporan"  class="navbar-item">Sisa Stok bulanan</router-link>
+            <router-link to= "/laporan/sisa_stok_bulanan"  class="navbar-item">Sisa Stok bulanan</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/laporan"  class="navbar-item">Pendapatan Tahunan</router-link>
+            <router-link to= "/laporan/pendapatan_tahunan"  class="navbar-item">Pendapatan Tahunan</router-link>
           </a>
         </div>
       </div>

@@ -3850,10 +3850,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3924,8 +3924,6 @@ __webpack_require__.r(__webpack_exports__);
     getResults: function getResults() {
       var app = this;
       axios.get('/api/report/pendapatan_bulanan').then(function (resp) {
-        //app.bulan_trans = resp.data;
-        //app.trans_penjualan = resp.data.data;
         app.transaksiPenjualan = resp.data;
         app.loading = false;
       }).catch(function (resp) {
@@ -14543,10 +14541,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&":
-/*!*****************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& ***!
-  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=template&id=e581a68c&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=template&id=e581a68c& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -14572,7 +14570,7 @@ var render = function() {
                 "router-link",
                 {
                   staticClass: "button is-success",
-                  attrs: { to: "/cetak_pendapatan_bulanan" }
+                  attrs: { to: "/laporan/cetak/pendapatan_bulanan" }
                 },
                 [_vm._v("Cetak")]
               )
@@ -14630,7 +14628,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-header-title" }, [
+      _c("h2", { staticClass: "card-header-title" }, [
         _vm._v("Laporan Pendapatan Bulanan")
       ])
     ])
@@ -14644,7 +14642,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Bulan")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Service")]),
+      _c("th", [_vm._v("Jasa Service")]),
       _vm._v(" "),
       _c("th", [_vm._v("Sparepart")]),
       _vm._v(" "),
@@ -17304,7 +17302,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/laporan" }
+                            attrs: { to: "/laporan/pendapatan_bulanan" }
                           },
                           [_vm._v("Pendapatan Bulanan")]
                         )
@@ -17320,7 +17318,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/laporan" }
+                            attrs: { to: "/laporan/pengeluaran_bulanan" }
                           },
                           [_vm._v("Pengeluaran Bulanan")]
                         )
@@ -17336,7 +17334,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/laporan" }
+                            attrs: { to: "/laporan/sparepart_terlaris" }
                           },
                           [_vm._v("Sparepart Terlaris")]
                         )
@@ -17352,7 +17350,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/laporan" }
+                            attrs: { to: "/laporan/jasa_service" }
                           },
                           [_vm._v("Jasa service permotor")]
                         )
@@ -17368,7 +17366,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/laporan" }
+                            attrs: { to: "/laporan/sisa_stok_bulanan" }
                           },
                           [_vm._v("Sisa Stok bulanan")]
                         )
@@ -17384,7 +17382,7 @@ var render = function() {
                           "router-link",
                           {
                             staticClass: "navbar-item",
-                            attrs: { to: "/laporan" }
+                            attrs: { to: "/laporan/pendapatan_tahunan" }
                           },
                           [_vm._v("Pendapatan Tahunan")]
                         )
@@ -40299,17 +40297,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue":
-/*!****************************************************************************!*\
-  !*** ./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue ***!
-  \****************************************************************************/
+/***/ "./resources/js/components/admin/laporan/PendapatanBulanan.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/admin/laporan/PendapatanBulanan.vue ***!
+  \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& */ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&");
-/* harmony import */ var _LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LaporanPendapatanBulanan.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&");
+/* harmony import */ var _PendapatanBulanan_vue_vue_type_template_id_e581a68c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PendapatanBulanan.vue?vue&type=template&id=e581a68c& */ "./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=template&id=e581a68c&");
+/* harmony import */ var _PendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PendapatanBulanan.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -40319,9 +40317,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PendapatanBulanan_vue_vue_type_template_id_e581a68c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PendapatanBulanan_vue_vue_type_template_id_e581a68c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -40331,38 +40329,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue"
+component.options.__file = "resources/js/components/admin/laporan/PendapatanBulanan.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js& ***!
-  \*****************************************************************************************************/
+/***/ "./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LaporanPendapatanBulanan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PendapatanBulanan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PendapatanBulanan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&":
-/*!***********************************************************************************************************!*\
-  !*** ./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& ***!
-  \***********************************************************************************************************/
+/***/ "./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=template&id=e581a68c&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=template&id=e581a68c& ***!
+  \****************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue?vue&type=template&id=0346751d&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PendapatanBulanan_vue_vue_type_template_id_e581a68c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./PendapatanBulanan.vue?vue&type=template&id=e581a68c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/laporan/PendapatanBulanan.vue?vue&type=template&id=e581a68c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PendapatanBulanan_vue_vue_type_template_id_e581a68c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LaporanPendapatanBulanan_vue_vue_type_template_id_0346751d___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PendapatanBulanan_vue_vue_type_template_id_e581a68c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -42443,7 +42441,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_transPengadaan_CreateTransPengadaanV2_vue__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateTransPengadaanV2.vue */ "./resources/js/components/admin/transPengadaan/CreateTransPengadaanV2.vue");
 /* harmony import */ var _components_admin_transPengadaan_CreateDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/CreateDetailPengadaan.vue");
 /* harmony import */ var _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ../components/admin/transPengadaan/EditDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/EditDetailPengadaan.vue");
-/* harmony import */ var _components_admin_laporan_LaporanPendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../components/admin/laporan/LaporanPendapatanBulanan.vue */ "./resources/js/components/admin/laporan/LaporanPendapatanBulanan.vue");
+/* harmony import */ var _components_admin_laporan_PendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../components/admin/laporan/PendapatanBulanan.vue */ "./resources/js/components/admin/laporan/PendapatanBulanan.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
@@ -42642,8 +42640,8 @@ var routes = [{
     path: '/edit_detail_pengadaan/:id',
     component: _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__["default"]
   }, {
-    path: '/laporan',
-    component: _components_admin_laporan_LaporanPendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__["default"]
+    path: '/laporan/pendapatan_bulanan',
+    component: _components_admin_laporan_PendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
