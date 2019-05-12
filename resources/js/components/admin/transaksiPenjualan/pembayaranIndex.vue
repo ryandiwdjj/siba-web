@@ -6,10 +6,6 @@
                   <div class="card-header">
                     <h3 class="card-header-title">Daftar Transaksi</h3>
                   </div>
-
-                  <div class="card-tools">
-                      <router-link to = "/trans_penjualan" class="button is-warning"> <i class="fas fa-arrow-left"></i></router-link>
-                  </div>
                     
                     <div class="card-body table-responsive p-0">
                     

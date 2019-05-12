@@ -58,10 +58,7 @@ import detailTransPengadaanIndex from '../components/admin/transPengadaan/detail
 import CreateTransPengadaan from '../components/admin/transPengadaan/CreateTransPengadaan.vue'
 import CreateTransPengadaanV2 from '../components/admin/transPengadaan/CreateTransPengadaanV2.vue'
 import CreateDetailPengadaan from '../components/admin/transPengadaan/CreateDetailPengadaan.vue'
-import EditTransPengadaan from '../components/admin/transPengadaan/EditTransPengadaan.vue'
 import EditDetailPengadaan from '../components/admin/transPengadaan/EditDetailPengadaan.vue'
-import KonfirmasiPengirimanIndex from '../components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue'
-import KonfirmasiPengiriman from '../components/admin/transPengadaan/KonfirmasiPengiriman.vue'
 
 import PendapatanBulanan from '../components/admin/laporan/PendapatanBulanan.vue'
 
@@ -262,20 +259,6 @@ const routes = [
             {
                 path:'/tambah_trans_pengadaanv2',
                 component: CreateTransPengadaanV2
-            },
-            {
-                name: 'editTransaksiPengadaan',
-                path:'/edit_trans_pengadaan/:id',
-                component: EditTransPengadaan
-            },
-            {
-                path:'/trans_pengadaan_konfirmasi',
-                component: KonfirmasiPengirimanIndex
-            },
-            {
-                name: 'konfirmasiPengiriman',
-                path:'/trans_pengadaan_konfirm/:id',
-                component: KonfirmasiPengiriman
             },
             {
                 path:'/tambah_detail_pengadaan',

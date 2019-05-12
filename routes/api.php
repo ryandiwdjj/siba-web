@@ -168,8 +168,7 @@ Route::get('/trans_pengadaan/all','transpengadaancontroller@all');
 Route::get('/trans_pengadaan/showDetail/{id}','transpengadaancontroller@showDetail');
 Route::get('/trans_pengadaan/{id}','transpengadaancontroller@show');
 Route::post('/trans_pengadaan/store','transpengadaancontroller@store');
-Route::put('/trans_pengadaan/update/{id}','transpengadaancontroller@update');
-Route::put('/trans_pengadaan/konfirmasi/{id}','transpengadaancontroller@konfirmasiPengiriman');
+//Route::put('/trans_pengadaan/update/{id}','transpengadaancontroller@update');
 Route::delete('/trans_pengadaan/{id}','transpengadaancontroller@destroy');
 
 Route::get('/mobile/trans_pengadaan', 'transpengadaancontroller@indexMobile');

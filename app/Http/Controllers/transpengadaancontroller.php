@@ -78,7 +78,6 @@ class transpengadaancontroller extends Controller
         $transpengadaan->id_cabang = $request->id_cabang;
         $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
         $transpengadaan->total_harga_pengadaan = 0;
-        $transpengadaan->status_pengadaan = "belum";
 
         // $detailTransPengadaan = new detail_trans_pengadaan;
         // $detailTransPengadaan->id_trans_pengadaan = $transpengadaan->id;
@@ -160,75 +159,7 @@ class transpengadaancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $transpengadaan = trans_pengadaan::where('id', $id)->first();
-
-        if (is_null($transpengadaan)) {
-            return response()->json('Transaksi pengadaan not found', 404);
-        }
-
-        else {
-            $transpengadaan->id_supplier = $request->id_supplier;
-            $transpengadaan->id_cabang = $request->id_cabang;
-            $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
-            $transpengadaan->status_pengadaan = $request->status_pengadaan;
-            
-
-            $success = $transpengadaan->save();
-
-            if (!$success) {
-                return response()->json('Error Updating', 500);
-            } else {
-                return response()->json('Success Updating', 200);
-            }
-        }
-    }
-
-    public function konfirmasiPengiriman(Request $request, $id)
-    {
-        $transpengadaan = trans_pengadaan::where('id', $id)->first();
-
-        if (is_null($transpengadaan)) {
-            return response()->json('Transaksi pengadaan not found', 404);
-        }
-
-        else {
-            if($transpengadaan->status_pengadaan == "belum") {
-                return response()->json('Barang belum dikirim', 500);
-            }
-            else{
-               
-                $transpengadaan->status_pengadaan = $request->status_pengadaan;
-                
-                //function untuk penambahan stok sparepart
-                $results = detail_trans_pengadaan::where('id_trans_pengadaan', $id)->get();
-
-                foreach($results as $result) {
-
-                    $sparepart = sparepart::find($result->id_sparepart);
-                    if(is_null($sparepart)) {
-                        return response()->json('Sparepart not found', 404);
-                    }
-
-                    $sparepart->jumlah_stok_sparepart = 
-                    $sparepart->jumlah_stok_sparepart + $result->jumlah_pengadaan;
-
-                    $success_sparepart = $sparepart->save();
-                }
-
-               
-                $success_trans = $transpengadaan->save();
-            
-
-                //$success = $transpenjualan->save();
-
-                if (!$success_sparepart && !$success_trans) {
-                    return response()->json('Error Updating', 500);
-                } else {
-                    return response()->json('Success Updating', 200);
-                }
-            }
-            
-        }
+        //
     }
 
     /**
@@ -331,7 +262,7 @@ class transpengadaancontroller extends Controller
             return response()->json('Transaksi pengadaan not found', 404);
         }
 
-        //function untuk penambahan stok sparepart
+        //function untuk pengurangan stok sparepart
         $results = detail_trans_pengadaan::where('id_trans_pengadaan', $id)->get();
 
         foreach($results as $result) {
