@@ -4,19 +4,17 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi Pengadaan Sparepart</h3>
+                    <h3 class="card-header-title">Konfirmasi Pengiriman Pengadaan Sparepart</h3>
                   </div>
                   <div class="card-tools">
-                      <router-link to="/tambah_trans_pengadaanv2" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
-                      <router-link to="/tambah_detail_pengadaan" class="button is-link">Tambah Detail Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
-                      <router-link to="/trans_pengadaan_konfirmasi" class="button is-dark">Konfirmasi Pengiriman &nbsp; <i class="fas fa-box"></i></router-link>
+                      <router-link to = "/trans_pengadaan" class="button is-warning"> <i class="fas fa-arrow-left"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
                     
                     <div align="right">
                       <i class="fas fa-search"></i> 
-                      <input class = "input is-rounded" type="text" placeholder="cari supplier" v-bind:style="{width: '25%' }" v-model="pencarian" />
+                      <input class = "input is-rounded" type="text" placeholder="cari status sedang dikirim" v-bind:style="{width: '25%' }" v-model="pencarian" />
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -40,20 +38,15 @@
                         <td>{{ trans_pengadaan.status_pengadaan }}</td>
                         <td>
                         <router-link 
-                          :to="{name:'editTransaksiPengadaan' ,params:{id: trans_pengadaan.id}}" 
-                          class="button is-primary">
-                          <i class="fa fa-edit"></i>
+                          :to="{name:'konfirmasiPengiriman' ,params:{id: trans_pengadaan.id}}" 
+                          class="button is-warning">
+                          <i class="fas fa-box"></i>
                        </router-link>
                         <button 
                           class="button is-danger" 
                           v-on:click="konfirmasiHapus(trans_pengadaan.id,index)">
                           <i class="fa fa-trash"></i>
                         </button>
-                        <router-link 
-                          :to="{name:'showDetail' ,params:{id: trans_pengadaan.id}}" 
-                          class="button is-dark">
-                          <i class="fas fa-list"></i>
-                       </router-link>
                         </td>
                       </tr>
                     </tbody>
@@ -92,7 +85,7 @@
     computed: {
        filteredList: function(){
          return this.transaksiPengadaan.filter((trans_pengadaan) => {
-           return trans_pengadaan.supplier.nama_supplier.toLowerCase().match(this.pencarian.toLowerCase());
+           return trans_pengadaan.status_pengadaan.toLowerCase().match(this.pencarian.toLowerCase());
          });
        }
     },

@@ -64352,6 +64352,460 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      transaksiPengadaan: {
+        id_supplier: '',
+        id_cabang: '',
+        tanggal_pengadaan: '',
+        status_pengadaan: ''
+      },
+      suppliers: [],
+      cabangs: [],
+      transPengadaanId: null,
+      errors: [],
+      message: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var app = this;
+    this.transPengadaanId = this.$route.params.id;
+    axios.get('/api/trans_pengadaan/' + this.transPengadaanId).then(function (resp) {
+      _this.transaksiPengadaan = resp.data;
+    }).catch(function (resp) {
+      alert("Gagal memuat transaksi pengadaan");
+    });
+    app.getSuppliers();
+    app.getCabangs();
+  },
+  methods: {
+    alert: function alert(pesan) {
+      this.$swal({
+        title: "Berhasil Mengubah Transaksi Pengadaan",
+        text: pesan,
+        icon: "success"
+      });
+    },
+    getSuppliers: function getSuppliers() {
+      var app = this;
+      axios.get('/api/supplier' + '/all').then(function (resp) {
+        app.suppliers = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getCabangs: function getCabangs() {
+      var app = this;
+      axios.get('/api/cabang' + '/all').then(function (resp) {
+        app.cabangs = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    saveForm: function saveForm() {
+      var _this2 = this;
+
+      var newTransPengadaan = this.transaksiPengadaan;
+      axios.put('/api/trans_pengadaan/update/' + this.transPengadaanId, newTransPengadaan).then(function (resp) {
+        _this2.alert('Berhasil Mengubah Transaksi Pengadaan ');
+
+        _this2.$router.replace('/trans_pengadaan');
+      }).catch(function (resp) {
+        if (resp.response.status == 500) alert('Gagal Mengubah Transaksi Pengadaan');
+        _this2.errors = resp.response.data.errors;
+        console.log(resp);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      transaksiPengadaan: {
+        status_pengadaan: ''
+      },
+      suppliers: [],
+      cabangs: [],
+      transPengadaanId: null,
+      errors: [],
+      message: ''
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    var app = this;
+    this.transPengadaanId = this.$route.params.id;
+    axios.get('/api/trans_pengadaan/' + this.transPengadaanId).then(function (resp) {
+      _this.transaksiPengadaan = resp.data;
+    }).catch(function (resp) {
+      alert("Gagal memuat transaksi pengadaan");
+    });
+    app.getSuppliers();
+    app.getCabangs();
+  },
+  methods: {
+    alert: function alert(pesan) {
+      this.$swal({
+        title: "Transaksi Pengadaan Selesai",
+        text: pesan,
+        icon: "success"
+      });
+    },
+    getSuppliers: function getSuppliers() {
+      var app = this;
+      axios.get('/api/supplier' + '/all').then(function (resp) {
+        app.suppliers = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    getCabangs: function getCabangs() {
+      var app = this;
+      axios.get('/api/cabang' + '/all').then(function (resp) {
+        app.cabangs = resp.data;
+      }).catch(function (resp) {
+        console.log(resp);
+      });
+    },
+    saveForm: function saveForm() {
+      var _this2 = this;
+
+      var newTransPengadaan = this.transaksiPengadaan;
+      axios.put('/api/trans_pengadaan/konfirmasi/' + this.transPengadaanId, newTransPengadaan).then(function (resp) {
+        _this2.alert('Barang sudah sampai tujuan ');
+
+        _this2.$router.replace('/trans_pengadaan_konfirmasi');
+      }).catch(function (resp) {
+        if (resp.response.status == 500) alert('Barang belum dikirim');
+        _this2.errors = resp.response.data.errors;
+        console.log(resp);
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      transaksiPengadaan: [],
+      trans_pengadaanData: {},
+      pencarian: '',
+      loading: true
+    };
+  },
+  mounted: function mounted() {
+    var app = this;
+    app.getResults();
+  },
+  computed: {
+    filteredList: function filteredList() {
+      var _this = this;
+
+      return this.transaksiPengadaan.filter(function (trans_pengadaan) {
+        return trans_pengadaan.status_pengadaan.toLowerCase().match(_this.pencarian.toLowerCase());
+      });
+    }
+  },
+  methods: {
+    getResults: function getResults(page) {
+      var app = this;
+
+      if (typeof page == 'undefined') {
+        page = 1;
+      }
+
+      axios.get('/api/trans_pengadaan?page=' + page).then(function (resp) {
+        app.transaksiPengadaan = resp.data.data;
+        app.trans_pengadaanData = resp.data;
+        app.loading = false;
+      }).catch(function (resp) {
+        console.log(resp);
+        app.loading = false;
+      });
+    },
+    deleteEntry: function deleteEntry(id, index) {
+      var _this2 = this;
+
+      axios.delete('/api/trans_pengadaan/' + id).then(function (resp) {
+        _this2.getResults();
+
+        _this2.alert("Berhasil Menghapus", "Berhasil Menghapus Transaksi Pengadaan ");
+      }).catch(function (resp) {
+        alert("Gagal Menghapus Transaksi Pengadaan");
+        console.log(resp);
+      });
+    },
+    konfirmasiHapus: function konfirmasiHapus(id, index) {
+      var _this3 = this;
+
+      this.$swal({
+        title: "Yakin Ingin Menghapus Transaksi Pengadaan ?",
+        text: "Data yang di hapus tidak akan bisa di kembalikan lagi",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(function (willDelete) {
+        if (willDelete) {
+          _this3.deleteEntry(id, index);
+        }
+      });
+    },
+    alert: function alert(title, pesan) {
+      this.$swal({
+        title: title,
+        text: pesan,
+        icon: "success"
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/detailTransPengadaanIndex.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/detailTransPengadaanIndex.vue?vue&type=script&lang=js& ***!
@@ -64361,6 +64815,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -64509,6 +64965,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -65304,6 +65763,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -78626,6 +79089,753 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=template&id=8ca31144&":
+/*!******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=template&id=8ca31144& ***!
+  \******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Supplier")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.transaksiPengadaan.id_supplier,
+                              expression: "transaksiPengadaan.id_supplier"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.transaksiPengadaan,
+                                "id_supplier",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Supplier")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.suppliers, function(supplier) {
+                            return _c(
+                              "option",
+                              { domProps: { value: supplier.id } },
+                              [_vm._v(_vm._s(supplier.nama_supplier))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_supplier
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_supplier[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Cabang")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.transaksiPengadaan.id_cabang,
+                              expression: "transaksiPengadaan.id_cabang"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.transaksiPengadaan,
+                                "id_cabang",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Cabang")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.cabangs, function(cabang) {
+                            return _c(
+                              "option",
+                              { domProps: { value: cabang.id } },
+                              [_vm._v(_vm._s(cabang.nama_cabang))]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.id_cabang
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.id_cabang[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Tanggal Pengadaan")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.transaksiPengadaan.tanggal_pengadaan,
+                          expression: "transaksiPengadaan.tanggal_pengadaan"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      style: { width: "35%" },
+                      attrs: {
+                        type: "date",
+                        required: "",
+                        placeholder: "",
+                        autofocus: ""
+                      },
+                      domProps: {
+                        value: _vm.transaksiPengadaan.tanggal_pengadaan
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.transaksiPengadaan,
+                            "tanggal_pengadaan",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _vm.errors.tanggal_pengadaan
+                      ? _c("span", { staticClass: "help is-danger" }, [
+                          _vm._v(" " + _vm._s(_vm.errors.tanggal_pengadaan[0]))
+                        ])
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Status Transaksi")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.transaksiPengadaan.status_pengadaan,
+                              expression: "transaksiPengadaan.status_pengadaan"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.transaksiPengadaan,
+                                "status_pengadaan",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Status")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("belum")]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("sudah dikirim")])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.status_pengadaan
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.status_pengadaan[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/trans_pengadaan" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Ubah Transaksi Pengadaan")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "button is-success", attrs: { type: "submit" } },
+      [_vm._v("Ubah    "), _c("i", { staticClass: "fa fa-edit" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.saveForm()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-2 control-label",
+                      attrs: { for: "name" }
+                    },
+                    [_vm._v("Status Pengiriman")]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "select is-primary" }, [
+                    _c("div", { staticClass: "col-md-4" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.transaksiPengadaan.status_pengadaan,
+                              expression: "transaksiPengadaan.status_pengadaan"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.transaksiPengadaan,
+                                "status_pengadaan",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Pilih Status")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", [_vm._v("sudah diterima")])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.errors.status_pengadaan
+                        ? _c("span", { staticClass: "help is-danger" }, [
+                            _vm._v(" " + _vm._s(_vm.errors.status_pengadaan[0]))
+                          ])
+                        : _vm._e()
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c(
+                    "div",
+                    { staticClass: "col-md-4 col-md-offset-2" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "button is-warning",
+                          attrs: { to: "/trans_pengadaan_konfirmasi" }
+                        },
+                        [
+                          _vm._v("Batal    "),
+                          _c("i", { staticClass: "fas fa-window-close" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("br")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Konfirmasi Pengiriman Pengadaan Sparepart")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "button is-info", attrs: { type: "submit" } },
+      [_vm._v("Confirm    "), _c("i", { staticClass: "fas fa-check" })]
+    )
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c&":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c& ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "button is-warning",
+                  attrs: { to: "/trans_pengadaan" }
+                },
+                [_c("i", { staticClass: "fas fa-arrow-left" })]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-body table-responsive p-0" },
+            [
+              _c("div", { attrs: { align: "right" } }, [
+                _c("i", { staticClass: "fas fa-search" }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pencarian,
+                      expression: "pencarian"
+                    }
+                  ],
+                  staticClass: "input is-rounded",
+                  style: { width: "25%" },
+                  attrs: {
+                    type: "text",
+                    placeholder: "cari status sedang dikirim"
+                  },
+                  domProps: { value: _vm.pencarian },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pencarian = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "table",
+                {
+                  staticClass:
+                    "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.filteredList, function(trans_pengadaan, index) {
+                      return _c("tr", { key: trans_pengadaan.id }, [
+                        _c("td", [_vm._v(_vm._s(trans_pengadaan.id))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_pengadaan.supplier.nama_supplier))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_pengadaan.cabang.nama_cabang))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_pengadaan.tanggal_pengadaan))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_pengadaan.total_harga_pengadaan))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_pengadaan.status_pengadaan))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "button is-warning",
+                                attrs: {
+                                  to: {
+                                    name: "konfirmasiPengiriman",
+                                    params: { id: trans_pengadaan.id }
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-box" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "button is-danger",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.konfirmasiHapus(
+                                      trans_pengadaan.id,
+                                      index
+                                    )
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fa fa-trash" })]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _vm.loading ? _c("vue-simple-spinner") : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-footer" },
+            [
+              _c(
+                "pagination",
+                {
+                  staticClass: "card-footer-item",
+                  attrs: { data: _vm.trans_pengadaanData, limit: 4 },
+                  on: { "pagination-change-page": _vm.getResults }
+                },
+                [
+                  _c(
+                    "span",
+                    { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                    [_vm._v("< Previous")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                    [_vm._v("Next >")]
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Konfirmasi Pengiriman Pengadaan Sparepart")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("th", { staticClass: "id-row" }, [_vm._v("ID")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Supplier")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Cabang")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Tanggal Pengadaan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Total Harga Pengadaan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Status Pengadaan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Modify")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/detailTransPengadaanIndex.vue?vue&type=template&id=51728cfd&":
 /*!*************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/transPengadaan/detailTransPengadaanIndex.vue?vue&type=template&id=51728cfd& ***!
@@ -78727,6 +79937,12 @@ var render = function() {
                         _vm._v(_vm._s(detail_trans_pengadaan.jumlah_pengadaan))
                       ]),
                       _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(detail_trans_pengadaan.subtotal_pengadaan)
+                        )
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "td",
                         [
@@ -78798,6 +80014,8 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Jumlah Pengadaan")]),
       _vm._v(" "),
+      _c("th", [_vm._v("Subtotal")]),
+      _vm._v(" "),
       _c("th", [_vm._v("Modify")])
     ])
   }
@@ -78854,6 +80072,18 @@ var render = function() {
                 [
                   _vm._v("Tambah Detail Pengadaan   "),
                   _c("i", { staticClass: "fas fa-plus-circle" })
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "button is-dark",
+                  attrs: { to: "/trans_pengadaan_konfirmasi" }
+                },
+                [
+                  _vm._v("Konfirmasi Pengiriman   "),
+                  _c("i", { staticClass: "fas fa-box" })
                 ]
               )
             ],
@@ -78922,6 +80152,10 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(trans_pengadaan.total_harga_pengadaan))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(trans_pengadaan.status_pengadaan))
                         ]),
                         _vm._v(" "),
                         _c(
@@ -79043,6 +80277,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("Tanggal Pengadaan")]),
       _vm._v(" "),
       _c("th", [_vm._v("Total Harga Pengadaan")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Status Pengadaan")]),
       _vm._v(" "),
       _c("th", [_vm._v("Modify")])
     ])
@@ -79791,7 +81027,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-header-title" }, [_vm._v("Ubah Transaksi")])
+      _c("h3", { staticClass: "card-header-title" }, [
+        _vm._v("Ubah Transaksi Penjualan")
+      ])
     ])
   },
   function() {
@@ -80222,6 +81460,22 @@ var render = function() {
       _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
         _c("div", { staticClass: "card" }, [
           _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "button is-warning",
+                  attrs: { to: "/trans_penjualan" }
+                },
+                [_c("i", { staticClass: "fas fa-arrow-left" })]
+              )
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -99468,6 +100722,213 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _EditTransPengadaan_vue_vue_type_template_id_8ca31144___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditTransPengadaan.vue?vue&type=template&id=8ca31144& */ "./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=template&id=8ca31144&");
+/* harmony import */ var _EditTransPengadaan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditTransPengadaan.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditTransPengadaan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditTransPengadaan_vue_vue_type_template_id_8ca31144___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _EditTransPengadaan_vue_vue_type_template_id_8ca31144___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/transPengadaan/EditTransPengadaan.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTransPengadaan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditTransPengadaan.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTransPengadaan_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=template&id=8ca31144&":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=template&id=8ca31144& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTransPengadaan_vue_vue_type_template_id_8ca31144___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./EditTransPengadaan.vue?vue&type=template&id=8ca31144& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue?vue&type=template&id=8ca31144&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTransPengadaan_vue_vue_type_template_id_8ca31144___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTransPengadaan_vue_vue_type_template_id_8ca31144___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _KonfirmasiPengiriman_vue_vue_type_template_id_857ca3d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4& */ "./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4&");
+/* harmony import */ var _KonfirmasiPengiriman_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KonfirmasiPengiriman.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _KonfirmasiPengiriman_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _KonfirmasiPengiriman_vue_vue_type_template_id_857ca3d4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _KonfirmasiPengiriman_vue_vue_type_template_id_857ca3d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengiriman_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./KonfirmasiPengiriman.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengiriman_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengiriman_vue_vue_type_template_id_857ca3d4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue?vue&type=template&id=857ca3d4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengiriman_vue_vue_type_template_id_857ca3d4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengiriman_vue_vue_type_template_id_857ca3d4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _KonfirmasiPengirimanIndex_vue_vue_type_template_id_5bbbc58c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c& */ "./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c&");
+/* harmony import */ var _KonfirmasiPengirimanIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _KonfirmasiPengirimanIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _KonfirmasiPengirimanIndex_vue_vue_type_template_id_5bbbc58c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _KonfirmasiPengirimanIndex_vue_vue_type_template_id_5bbbc58c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengirimanIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengirimanIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c&":
+/*!*******************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengirimanIndex_vue_vue_type_template_id_5bbbc58c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue?vue&type=template&id=5bbbc58c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengirimanIndex_vue_vue_type_template_id_5bbbc58c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KonfirmasiPengirimanIndex_vue_vue_type_template_id_5bbbc58c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/transPengadaan/detailTransPengadaanIndex.vue":
 /*!************************************************************************************!*\
   !*** ./resources/js/components/admin/transPengadaan/detailTransPengadaanIndex.vue ***!
@@ -100162,11 +101623,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_transPengadaan_CreateTransPengadaan_vue__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateTransPengadaan.vue */ "./resources/js/components/admin/transPengadaan/CreateTransPengadaan.vue");
 /* harmony import */ var _components_admin_transPengadaan_CreateTransPengadaanV2_vue__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateTransPengadaanV2.vue */ "./resources/js/components/admin/transPengadaan/CreateTransPengadaanV2.vue");
 /* harmony import */ var _components_admin_transPengadaan_CreateDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../components/admin/transPengadaan/CreateDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/CreateDetailPengadaan.vue");
-/* harmony import */ var _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ../components/admin/transPengadaan/EditDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/EditDetailPengadaan.vue");
-/* harmony import */ var _components_admin_laporan_PendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../components/admin/laporan/PendapatanBulanan.vue */ "./resources/js/components/admin/laporan/PendapatanBulanan.vue");
+/* harmony import */ var _components_admin_transPengadaan_EditTransPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ../components/admin/transPengadaan/EditTransPengadaan.vue */ "./resources/js/components/admin/transPengadaan/EditTransPengadaan.vue");
+/* harmony import */ var _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../components/admin/transPengadaan/EditDetailPengadaan.vue */ "./resources/js/components/admin/transPengadaan/EditDetailPengadaan.vue");
+/* harmony import */ var _components_admin_transPengadaan_KonfirmasiPengirimanIndex_vue__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ../components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue */ "./resources/js/components/admin/transPengadaan/KonfirmasiPengirimanIndex.vue");
+/* harmony import */ var _components_admin_transPengadaan_KonfirmasiPengiriman_vue__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ../components/admin/transPengadaan/KonfirmasiPengiriman.vue */ "./resources/js/components/admin/transPengadaan/KonfirmasiPengiriman.vue");
+/* harmony import */ var _components_admin_laporan_PendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ../components/admin/laporan/PendapatanBulanan.vue */ "./resources/js/components/admin/laporan/PendapatanBulanan.vue");
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+
+
 
 
 
@@ -100355,15 +101822,26 @@ var routes = [{
     path: '/tambah_trans_pengadaanv2',
     component: _components_admin_transPengadaan_CreateTransPengadaanV2_vue__WEBPACK_IMPORTED_MODULE_43__["default"]
   }, {
+    name: 'editTransaksiPengadaan',
+    path: '/edit_trans_pengadaan/:id',
+    component: _components_admin_transPengadaan_EditTransPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__["default"]
+  }, {
+    path: '/trans_pengadaan_konfirmasi',
+    component: _components_admin_transPengadaan_KonfirmasiPengirimanIndex_vue__WEBPACK_IMPORTED_MODULE_47__["default"]
+  }, {
+    name: 'konfirmasiPengiriman',
+    path: '/trans_pengadaan_konfirm/:id',
+    component: _components_admin_transPengadaan_KonfirmasiPengiriman_vue__WEBPACK_IMPORTED_MODULE_48__["default"]
+  }, {
     path: '/tambah_detail_pengadaan',
     component: _components_admin_transPengadaan_CreateDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_44__["default"]
   }, {
     name: 'editDetailPengadaan',
     path: '/edit_detail_pengadaan/:id',
-    component: _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_45__["default"]
+    component: _components_admin_transPengadaan_EditDetailPengadaan_vue__WEBPACK_IMPORTED_MODULE_46__["default"]
   }, {
     path: '/laporan/pendapatan_bulanan',
-    component: _components_admin_laporan_PendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_46__["default"]
+    component: _components_admin_laporan_PendapatanBulanan_vue__WEBPACK_IMPORTED_MODULE_49__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

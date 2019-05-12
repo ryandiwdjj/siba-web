@@ -22,6 +22,7 @@
                         <th>Nomor Transaksi Pengadaan</th>
                         <th>Sparepart</th>
                         <th>Jumlah Pengadaan</th>
+                        <th>Subtotal</th>
                         <th>Modify</th>
                         
                     </thead>
@@ -30,6 +31,7 @@
                         <td>{{ detail_trans_pengadaan.id_trans_pengadaan }}</td>
                         <td>{{ detail_trans_pengadaan.sparepart.kode_sparepart }}</td>
                         <td>{{ detail_trans_pengadaan.jumlah_pengadaan }}</td>
+                        <td>{{ detail_trans_pengadaan.subtotal_pengadaan }}</td>
                         <td>
                         <router-link 
                           :to="{name:'editDetailPengadaan' ,params:{id: detail_trans_pengadaan.id}}" 
