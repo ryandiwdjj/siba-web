@@ -68,7 +68,7 @@ class detailpengadaancontroller extends Controller
         $transpengadaan->total_harga_pengadaan + $detailTransPengadaan->subtotal_pengadaan;
         
         $success_detail = $detailTransPengadaan->save();
-        $success_trans = $transpengadaan->total_harga_pengadaan->save();
+        $success_trans = $transpengadaan->save();
 
         if (!$success_detail && !$success_trans) {
             return response()->json('Error Saving', 500);
@@ -137,10 +137,7 @@ class detailpengadaancontroller extends Controller
             $transpengadaan->total_harga_pengadaan - $detailTransPengadaan->subtotal_pengadaan;
 
             //input data baru
-            $detailTransPengadaan->jumlah_pengadaan = $request->jumlah_pengadaan;
-
-
-            $detailTransPengadaan->id_trans_pengadaan = $request->id_trans_pengadaan;
+            //$detailTransPengadaan->id_trans_pengadaan = $request->id_trans_pengadaan;
             $detailTransPengadaan->id_sparepart = $request->id_sparepart;
             $detailTransPengadaan->jumlah_pengadaan = $request->jumlah_pengadaan;
 
