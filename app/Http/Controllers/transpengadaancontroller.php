@@ -228,7 +228,7 @@ class transpengadaancontroller extends Controller
         if (!$success) {
             return response()->json('Error Saving', 500);
         } else {
-            return response()->json('Success', 204);
+            return response()->json($transpengadaan, 200);
         }
     }
 

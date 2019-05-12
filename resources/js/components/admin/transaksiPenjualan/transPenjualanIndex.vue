@@ -18,6 +18,8 @@
                     <div align="right">
                       <i class="fas fa-search"></i> 
                       <input class = "input is-rounded" type="text" placeholder="cari berdasarkan plat" v-bind:style="{width: '20%' }" v-model="pencarian" />
+                      <input type="checkbox" id="checkbox" v-model="checked">
+                      <h7>Selesai transaksi</h7>
                     </div>
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
