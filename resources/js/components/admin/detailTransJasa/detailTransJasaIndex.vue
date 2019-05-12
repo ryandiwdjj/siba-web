@@ -4,7 +4,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi Service</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Penjualan Service</h3>
                   </div>
                   <div class="card-tools">
                       <router-link to = "/trans_penjualan" class="button is-warning"> <i class="fas fa-arrow-left"></i></router-link>

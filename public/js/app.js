@@ -3902,11 +3902,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       transaksiPenjualan: [],
-      bulan_trans: {},
+      //bulan_trans: {},
       loading: true
     };
   },
@@ -12536,7 +12537,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-header-title" }, [
-        _vm._v("Daftar Transaksi Service")
+        _vm._v("Daftar Transaksi Penjualan Service")
       ])
     ])
   },
@@ -13266,7 +13267,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-header-title" }, [
-        _vm._v("Daftar Transaksi Sparepart")
+        _vm._v("Daftar Transaksi Penjualan Sparepart")
       ])
     ])
   },
@@ -14600,15 +14601,28 @@ var render = function() {
                       return _c("tr", { key: trans_penjualan.id }, [
                         _c("td", [_vm._v(_vm._s(index + 1))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(trans_penjualan.created_at))]),
+                        _vm._v(" "),
                         _c("td", [
-                          _vm._v(_vm._s(trans_penjualan.status_pembayaran))
+                          _vm._v(
+                            _vm._s(
+                              trans_penjualan.detail_trans_jasa.total_harga_jasa
+                            )
+                          )
                         ]),
                         _vm._v(" "),
                         _c("td", [
-                          _vm._v(_vm._s(trans_penjualan.status_transaksi))
+                          _vm._v(
+                            _vm._s(
+                              trans_penjualan.detail_trans_sparepart
+                                .total_harga_spare
+                            )
+                          )
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(trans_penjualan.created_at))])
+                        _c("td", [
+                          _vm._v(_vm._s(trans_penjualan.total_harga_trans))
+                        ])
                       ])
                     }),
                     0
@@ -21364,7 +21378,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-header-title" }, [
-        _vm._v("Daftar Transaksi Pengadaan")
+        _vm._v("Daftar Transaksi Pengadaan Sparepart")
       ])
     ])
   },
@@ -23042,7 +23056,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-header-title" }, [
-        _vm._v("Daftar Transaksi")
+        _vm._v("Daftar Transaksi Penjualan")
       ])
     ])
   },

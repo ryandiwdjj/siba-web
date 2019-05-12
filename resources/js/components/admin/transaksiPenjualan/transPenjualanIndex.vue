@@ -4,7 +4,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Daftar Transaksi</h3>
+                    <h3 class="card-header-title">Daftar Transaksi Penjualan</h3>
                   </div>
                   <div class="card-tools">
                       <router-link to="/tambah_trans_penjualan" class="button is-success">Tambah Transaksi &nbsp; <i class="fas fa-plus-circle"></i></router-link>
