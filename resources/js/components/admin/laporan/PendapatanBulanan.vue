@@ -52,8 +52,12 @@
                     <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
                   </div> 
                     <br>
+                    <div>
+                      <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+                    </div>
+                    <br>
                     <div align="center">
-                    <button class="button is-success" @click="print">Cetak</button>
+                      <button class="button is-success" @click="print">Cetak</button>
                     </div>
                 </div>     
             </div>
@@ -68,8 +72,24 @@
     data: function() {
       return {
         transaksiPenjualan: {},
+        //total_jasa: {},
+        //total_spare: {},
+        //grand_total: {},
+
         //bulan_trans: {},
-        loading: true
+        loading: true,
+        chartOptions: {
+              chart: {
+              id: 'pendapatan-bulanan'
+              },
+              xaxis: {
+              categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+              }
+        },
+        // series: [{
+        //   name: 'series-1',
+        //   data: [this.transaksiPenjualan]
+        // }] 
       }
     },
     mounted()  {
@@ -79,7 +99,25 @@
     computed: {
        filteredList: function(){
          return this.transaksiPenjualan;
-       }
+       },
+      series: function() {
+      return [{
+           name: 'series-1',
+           data: [this.transaksiPenjualan]
+       }]
+      },
+      // chartOptions: function(){
+      //   return{
+      //       chartOptions: {
+      //         chart: {
+      //         id: 'vuechart-example'
+      //         },
+      //         xaxis: {
+      //         categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+      //         }
+      //       } 
+      //   } 
+      // },
     },
     methods: {
       getResults(){

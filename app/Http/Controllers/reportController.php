@@ -19,7 +19,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '1');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '01');
 		
 		$januari_grand = $januari->sum('grand_total');
 		$januari_jasa = $januari->sum('total_harga_jasa');
@@ -32,7 +32,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '2');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '02');
 		
 		$februari_grand = $februari->sum('grand_total');
 		$februari_jasa = $februari->sum('total_harga_jasa');
@@ -45,7 +45,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '3');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '03');
 		
 		$maret_grand = $maret->sum('grand_total');
 		$maret_jasa = $maret->sum('total_harga_jasa');
@@ -58,7 +58,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '4');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '04');
 		
 		$april_grand = $april->sum('grand_total');
 		$april_jasa = $april->sum('total_harga_jasa');
@@ -71,7 +71,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '5');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '05');
 		
 		$mei_grand = $mei->sum('grand_total');
 		$mei_jasa = $mei->sum('total_harga_jasa');
@@ -84,7 +84,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '6');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '06');
 		
 		$juni_grand = $juni->sum('grand_total');
 		$juni_jasa = $juni->sum('total_harga_jasa');
@@ -97,7 +97,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '7');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '07');
 		
 		$juli_grand = $juli->sum('grand_total');
 		$juli_jasa = $juli->sum('total_harga_jasa');
@@ -110,7 +110,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '8');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '08');
 		
 		$agustus_grand = $agustus->sum('grand_total');
 		$agustus_jasa = $agustus->sum('total_harga_jasa');
@@ -123,7 +123,7 @@ class reportController extends Controller
 		, 'detail_transjasa.total_harga_jasa', 'detail_transsparepart.total_harga_spare')
 		->where('trans_penjualan.status_transaksi', '=', 'sudah')
 		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
-		->whereMonth('trans_penjualan.tanggal_penjualan', '9');
+		->whereMonth('trans_penjualan.tanggal_penjualan', '09');
 		
 		$september_grand = $september->sum('grand_total');
 		$september_jasa = $september->sum('total_harga_jasa');

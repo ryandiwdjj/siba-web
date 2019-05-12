@@ -24,9 +24,11 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.1",
+        "apexcharts": "^3.6.10",
         "buefy": "^0.7.3",
         "bulma": "^0.7.4",
         "laravel-vue-pagination": "^2.3.0",
+        "vue-apexcharts": "^1.3.5",
         "vue-axios": "^2.1.4",
         "vue-html-to-paper": "^1.0.3",
         "vue-router": "^3.0.2",
