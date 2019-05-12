@@ -26,6 +26,7 @@
         "@fortawesome/fontawesome-free": "^5.8.1",
         "buefy": "^0.7.3",
         "bulma": "^0.7.4",
+        "chart.js": "^2.8.0",
         "laravel-vue-pagination": "^2.3.0",
         "vue-axios": "^2.1.4",
         "vue-html-to-paper": "^1.0.3",
