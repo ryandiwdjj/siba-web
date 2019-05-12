@@ -8,16 +8,36 @@
                   </div>
 
                   <div class="card-tools">
+<<<<<<< HEAD
                       <router-link to="/laporan/cetak/pendapatan_bulanan" class="button is-success">Cetak</router-link>
                       <h6 class="card-tools" id="tanggal">Tanggal dan waktu generate</h6>
+=======
+                      
+>>>>>>> 3557624c007ebf65c54aa711411fa8306a14660c
                   </div>
-                    
+                   <div id="printMe"> 
+                       
+                    <div class="center">               
+                      
+                      <img src="../../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
+                      <h1 class="headline">ATMA AUTO</h1>
+                      <p class="hehe" >
+                      MOTORCYCLE SPAREPARTS AND SERVICES<br>
+                      Jl. Babarsari No. 43 Yogyakarta 552181<br>
+                      Telp. (0274)487711<br>
+                      http://www.atmaauto.com
+                      </p>
+                      
+                      <hr>
+                      <br>
+                      <p class="title">LAPORAN PENDAPATAN BULANAN</p>                                       
+                    </div> 
                     <div class="card-body table-responsive p-0">
                     
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
                     <thead>
-                        <th>No</th>
+                        <th class="No-Row">No</th>
                         <th>Bulan</th>
                         <th>Jasa Service</th>
                         <th>Sparepart</th>
@@ -34,9 +54,23 @@
                       </tr>
                     </tbody>
                     </table>     
+<<<<<<< HEAD
                     <vue-simple-spinner v-if="loading"></vue-simple-spinner>     
                     <canvas id="myChart" width="1092" height="400"></canvas>       
                   </div>     
+=======
+                    <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
+                  </div> 
+                    <br>
+                    <div>
+                      <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+                    </div>
+                    <br>
+                    <div align="center">
+                      <button class="button is-success" @click="print">Cetak</button>
+                    </div>
+                </div>     
+>>>>>>> 3557624c007ebf65c54aa711411fa8306a14660c
             </div>
         </div>
     </div>
@@ -48,8 +82,24 @@
     data: function() {
       return {
         transaksiPenjualan: {},
-        bulan_trans: {},
-        loading: true
+        //total_jasa: {},
+        //total_spare: {},
+        //grand_total: {},
+
+        //bulan_trans: {},
+        loading: true,
+        chartOptions: {
+              chart: {
+              id: 'pendapatan-bulanan'
+              },
+              xaxis: {
+              categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+              }
+        },
+        // series: [{
+        //   name: 'series-1',
+        //   data: [this.transaksiPenjualan]
+        // }] 
       }
     },
     function :{
@@ -118,7 +168,25 @@ var myBarChart = new Chart(ctx, {
     computed: {
        filteredList: function(){
          return this.transaksiPenjualan;
-       }
+       },
+      series: function() {
+      return [{
+           name: 'series-1',
+           data: [this.transaksiPenjualan]
+       }]
+      },
+      // chartOptions: function(){
+      //   return{
+      //       chartOptions: {
+      //         chart: {
+      //         id: 'vuechart-example'
+      //         },
+      //         xaxis: {
+      //         categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+      //         }
+      //       } 
+      //   } 
+      // },
     },
     methods: {
       getResults(){
@@ -155,7 +223,10 @@ var myBarChart = new Chart(ctx, {
           text: pesan,
           icon: "success"
         });
-      }
+      },
+      print() {
+        this.$htmlToPaper('printMe');
+      },
     }
   }
   

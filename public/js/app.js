@@ -3904,12 +3904,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       transaksiPenjualan: {},
-      bulan_trans: {},
-      loading: true
+      //total_jasa: {},
+      //total_spare: {},
+      //grand_total: {},
+      //bulan_trans: {},
+      loading: true,
+      chartOptions: {
+        chart: {
+          id: 'pendapatan-bulanan'
+        },
+        xaxis: {
+          categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+        }
+      } // series: [{
+      //   name: 'series-1',
+      //   data: [this.transaksiPenjualan]
+      // }] 
+
     };
   },
   function: {
@@ -3970,7 +4019,25 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     filteredList: function filteredList() {
       return this.transaksiPenjualan;
-    }
+    },
+    series: function series() {
+      return [{
+        name: 'series-1',
+        data: [this.transaksiPenjualan]
+      }];
+    } // chartOptions: function(){
+    //   return{
+    //       chartOptions: {
+    //         chart: {
+    //         id: 'vuechart-example'
+    //         },
+    //         xaxis: {
+    //         categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+    //         }
+    //       } 
+    //   } 
+    // },
+
   },
   methods: {
     getResults: function getResults() {
@@ -4000,6 +4067,9 @@ __webpack_require__.r(__webpack_exports__);
         text: pesan,
         icon: "success"
       });
+    },
+    print: function print() {
+      this.$htmlToPaper('printMe');
     }
   }
 });
@@ -23075,7 +23145,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n    table-layout: fixed;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\ntd{\n    background-color: rgb(209, 209, 209);\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.id-row{\n    width: 4%;\n}\n.row-Modify{\n    width: 15%;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n", ""]);
+exports.push([module.i, "\n.bg{\n    background-color:silver;\n    height: auto;\n}\n.card-tools{\nmargin-top: 10px;\n}\ntable{\n    font-size: small;\n    table-layout: fixed;\n}\nth{\n    background-color: rgb(46, 46, 134);\n    -webkit-text-fill-color: antiquewhite;\n}\ntd{\n    background-color: rgb(209, 209, 209);\n    overflow: hidden;\n    text-overflow: ellipsis;\n}\n.id-row{\n    width: 4%;\n}\n.row-Modify{\n    width: 15%;\n}\n.card{\n    padding: 18px 30px 15px 30px;\n}\n.footer{\n    background-color: black;\n    height: auto;\n}\n.fade-enter,\n.fade-leave-to {\nopacity: 0;\n-webkit-transform: rotateY(50deg);\n        transform: rotateY(50deg);\n}\n.fade-enter-to,\n.fade-leave {\nopacity: 1;\n-webkit-transform: rotateY(0deg);\n        transform: rotateY(0deg);\n}\n.fade-enter-active,\n.fade-leave-active {\ntransition: opacity, -webkit-transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out;\ntransition: opacity, transform 200ms ease-out, -webkit-transform 200ms ease-out;\n}\n.center{\n    text-align: center;\n}\n.hehe{\n    margin-right: 400px;\n}\n.headline{\n    margin-right: 400px;\n}\n/* .left{\n    text-align: left;\n} */\n.No-Row{\n    width: 4%;\n}\nhr { \n    display: block;\n    margin-top: 0.5em;\n    margin-bottom: 0.5em;\n    margin-left: auto;\n    margin-right: auto;\n    border-style: inset;\n    border-width: 1px;\n    border-color:rgb(0, 0, 0);\n} \n", ""]);
 
 // exports
 
@@ -46924,6 +46994,7 @@ var render = function() {
             "div",
             { staticClass: "card-tools" },
             [
+              _vm._v("\r\n<<<<<<< HEAD\r\n                      "),
               _c(
                 "router-link",
                 {
@@ -46937,6 +47008,9 @@ var render = function() {
                 "h6",
                 { staticClass: "card-tools", attrs: { id: "tanggal" } },
                 [_vm._v("Tanggal dan waktu generate")]
+              ),
+              _vm._v(
+                "\r\n=======\r\n                      \r\n>>>>>>> 3557624c007ebf65c54aa711411fa8306a14660c\r\n                  "
               )
             ],
             1
@@ -46944,48 +47018,120 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "card-body table-responsive p-0" },
+            { attrs: { id: "printMe" } },
             [
-              _c("br"),
+              _c("div", { staticClass: "center" }, [
+                _c("img", {
+                  style: {
+                    marginLeft: "200px",
+                    width: "165px",
+                    height: "160px",
+                    float: "left"
+                  },
+                  attrs: { src: __webpack_require__(/*! ../../../../../public/AA_Logo.png */ "./public/AA_Logo.png") }
+                }),
+                _vm._v(" "),
+                _c("h1", { staticClass: "headline" }, [_vm._v("ATMA AUTO")]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", { staticClass: "title" }, [
+                  _vm._v("LAPORAN PENDAPATAN BULANAN")
+                ])
+              ]),
               _vm._v(" "),
               _c(
-                "table",
-                {
-                  staticClass:
-                    "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-                },
+                "div",
+                { staticClass: "card-body table-responsive p-0" },
                 [
-                  _vm._m(1),
+                  _c("br"),
                   _vm._v(" "),
                   _c(
-                    "tbody",
-                    _vm._l(_vm.filteredList, function(trans_penjualan, index) {
-                      return _c("tr", { key: trans_penjualan.id }, [
-                        _c("td", [_vm._v(_vm._s(index + 1))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(trans_penjualan.bulan))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(trans_penjualan.total_jasa))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(trans_penjualan.total_spare))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(trans_penjualan.grand_total))])
-                      ])
-                    }),
-                    0
-                  )
-                ]
+                    "table",
+                    {
+                      staticClass:
+                        "table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filteredList, function(
+                          trans_penjualan,
+                          index
+                        ) {
+                          return _c("tr", { key: trans_penjualan.id }, [
+                            _c("td", [_vm._v(_vm._s(index + 1))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(trans_penjualan.bulan))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(trans_penjualan.total_jasa))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(trans_penjualan.total_spare))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _vm._v(_vm._s(trans_penjualan.grand_total))
+                            ])
+                          ])
+                        }),
+                        0
+                      )
+                    ]
+                  ),
+                  _vm._v("     \r\n<<<<<<< HEAD\r\n                    "),
+                  _vm.loading ? _c("vue-simple-spinner") : _vm._e(),
+                  _vm._v(" "),
+                  _c("canvas", {
+                    attrs: { id: "myChart", width: "1092", height: "400" }
+                  })
+                ],
+                1
               ),
-              _vm._v(" "),
-              _vm.loading ? _c("vue-simple-spinner") : _vm._e(),
-              _vm._v(" "),
-              _c("canvas", {
-                attrs: { id: "myChart", width: "1092", height: "400" }
+              _vm._v("     \r\n=======\r\n                    "),
+              _vm.loading ? _c("vue-simple-spinner") : _vm._e()
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c("apexchart", {
+                attrs: {
+                  width: "500",
+                  type: "bar",
+                  options: _vm.chartOptions,
+                  series: _vm.series
+                }
               })
             ],
             1
-          )
-        ])
+          ),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { attrs: { align: "center" } }, [
+            _c(
+              "button",
+              { staticClass: "button is-success", on: { click: _vm.print } },
+              [_vm._v("Cetak")]
+            )
+          ])
+        ]),
+        _vm._v(
+          "     \r\n>>>>>>> 3557624c007ebf65c54aa711411fa8306a14660c\r\n            "
+        )
       ])
     ])
   ])
@@ -47005,8 +47151,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "hehe" }, [
+      _vm._v("\r\n                      MOTORCYCLE SPAREPARTS AND SERVICES"),
+      _c("br"),
+      _vm._v(
+        "\r\n                      Jl. Babarsari No. 43 Yogyakarta 552181"
+      ),
+      _c("br"),
+      _vm._v("\r\n                      Telp. (0274)487711"),
+      _c("br"),
+      _vm._v(
+        "\r\n                      http://www.atmaauto.com\r\n                      "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("thead", [
-      _c("th", [_vm._v("No")]),
+      _c("th", { staticClass: "No-Row" }, [_vm._v("No")]),
       _vm._v(" "),
       _c("th", [_vm._v("Bulan")]),
       _vm._v(" "),
@@ -71588,7 +71752,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_swal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_swal__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-html-to-paper */ "./node_modules/vue-html-to-paper/index.js");
 /* harmony import */ var vue_html_to_paper__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_4__);
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-apexcharts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js"); //window.axios = require('axios');
+
 
 
 
@@ -71598,8 +71764,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 window.axios = axios__WEBPACK_IMPORTED_MODULE_2___default.a.create();
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 Vue.component('vue-spinner', __webpack_require__(/*! vue-simple-spinner */ "./node_modules/vue-simple-spinner/dist/vue-simple-spinner.js"));
+Vue.component('apexchart', !(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-apexcharts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 Vue.use(vue_swal__WEBPACK_IMPORTED_MODULE_3___default.a);
-Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_4___default.a);
+Vue.use(!(function webpackMissingModule() { var e = new Error("Cannot find module 'vue-apexcharts'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+Vue.use(vue_html_to_paper__WEBPACK_IMPORTED_MODULE_4___default.a, {
+  name: '_blank',
+  specs: ['fullscreen=yes', 'titlebar=yes', 'scrollbars=yes'],
+  styles: ['/css/app.css']
+});
 var app = new Vue({
   el: '#app',
   components: {
