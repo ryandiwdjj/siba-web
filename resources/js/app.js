@@ -14,7 +14,17 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('vue-spinner', require('vue-simple-spinner'));
 
 Vue.use(VueSwal)
-Vue.use(VueHtmlToPaper);
+Vue.use(VueHtmlToPaper, {
+    name: '_blank',
+    specs: [
+        'fullscreen=yes',
+        'titlebar=yes',
+        'scrollbars=yes'
+    ],
+    styles: [
+        '/css/app.css',
+    ],
+});
 
 
 const app = new Vue({

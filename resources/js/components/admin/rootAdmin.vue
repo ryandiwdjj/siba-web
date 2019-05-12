@@ -3,8 +3,8 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a>
-<img src="../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '60px', width: '65px', height: '60px' }">
-</a>
+      <img src="../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '60px', width: '65px', height: '60px' }">
+   </a>
     <a class="navbar-item">
         
         <router-link to= "/" class="button is-dark"> SIBA </router-link>
