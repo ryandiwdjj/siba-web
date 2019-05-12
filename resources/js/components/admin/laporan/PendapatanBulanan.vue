@@ -4,11 +4,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
                   <div class="card-header">
-                    <h3 class="card-header-title">Laporan Pendapatan Bulanan</h3>
+                    <h2 class="card-header-title">Laporan Pendapatan Bulanan</h2>
                   </div>
 
                   <div class="card-tools">
-                      <router-link to="/cetak_pendapatan_bulanan" class="button is-success">Cetak</router-link>
+                      <router-link to="/laporan/cetak/pendapatan_bulanan" class="button is-success">Cetak</router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -18,7 +18,7 @@
                     <thead>
                         <th>No</th>
                         <th>Bulan</th>
-                        <th>Service</th>
+                        <th>Jasa Service</th>
                         <th>Sparepart</th>
                         <th>Total</th>
                         
@@ -26,14 +26,15 @@
                     <tbody>
                       <tr v-for="(trans_penjualan,index) in filteredList" :key ="trans_penjualan.id">
                         <td>{{ index+1 }}</td>
-                        <td>{{ trans_penjualan.status_pembayaran }}</td>
-                        <td>{{ trans_penjualan.status_transaksi }}</td>
-                        <td>{{ trans_penjualan.created_at }}</td>
+                        <td>{{ trans_penjualan.bulan }}</td>
+                        <td>{{ trans_penjualan.total_jasa }}</td>
+                        <td>{{ trans_penjualan.total_spare }}</td>
+                        <td>{{ trans_penjualan.grand_total }}</td>
                       </tr>
                     </tbody>
                     </table>     
                     <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
-                   </div>     
+                  </div>     
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
   export default {
     data: function() {
       return {
-        transaksiPenjualan: [],
+        transaksiPenjualan: {},
         bulan_trans: {},
         loading: true
       }
@@ -64,8 +65,6 @@
         var app = this;
         axios.get('/api/report/pendapatan_bulanan')
         .then(function(resp){
-        //app.bulan_trans = resp.data;
-        //app.trans_penjualan = resp.data.data;
         app.transaksiPenjualan = resp.data;
         app.loading = false;
         })

@@ -256,7 +256,10 @@ class transpenjualancontroller extends Controller
     public function indexMobile()
     {
         $transpenjualans = trans_penjualan::
-        join('pelanggans', 'pelanggans.id', 'trans_penjualan.id_pelanggan')
+        select('trans_penjualan.*'
+        , 'pelanggans.nama_pelanggan', 'pelanggans.alamat_pelanggan', 'pelanggans.no_telp_pelanggan'
+        , 'cabangs.nama_cabang', 'cabangs.alamat_cabang', 'cabangs.no_telp_cabang')
+        ->join('pelanggans', 'pelanggans.id', 'trans_penjualan.id_pelanggan')
         ->join('cabangs', 'cabangs.id', 'trans_penjualan.id_cabang')
         ->latest('trans_penjualan.created_at')
         ->get();
