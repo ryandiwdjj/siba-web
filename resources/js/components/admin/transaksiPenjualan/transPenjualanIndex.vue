@@ -103,7 +103,8 @@
         transaksiPenjualan: [],
         transaksiPenjualanData: {},
         pencarian: '',
-        loading: true
+        loading: true,
+        checked: false
       }
     },
     mounted()  {
@@ -112,6 +113,11 @@
     },
     computed: {
        filteredList: function(){
+         if (this.checked) {
+            return this.transaksiPenjualan.filter((transaksi) => {
+              return transaksi.status_transaksi === 'sudah'
+            })
+         }
          return this.transaksiPenjualan.filter((transaksi) => {
            return transaksi.no_plat_kendaraan.toLowerCase().match(this.pencarian.toLowerCase());
          });
