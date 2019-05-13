@@ -14,9 +14,16 @@ class cabangcontroller extends Controller
      */
     public function index()
     {
-        $cabangs = Cabang::all();
+        $cabangs = Cabang::paginate(10);
 
         return response()->json($cabangs, 200);
+    }
+
+    public function all()
+    {
+        //
+        return Cabang::all();
+        
     }
 
     /**
@@ -37,6 +44,11 @@ class cabangcontroller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'no_telp_cabang' => 'required|unique:cabangs,no_telp_cabang|max:13',
+            
+        ]);
+
         $cabang = new cabang;
         $cabang->nama_cabang = $request->nama_cabang;
         $cabang->alamat_cabang = $request->alamat_cabang;
@@ -57,6 +69,17 @@ class cabangcontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+       
+        $result = Cabang::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByName($nama_cabang)
     {
         //return cabang::where('nama_cabang', $nama_cabang)->first();
@@ -89,6 +112,10 @@ class cabangcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'no_telp_cabang' => 'required|unique:cabangs,no_telp_cabang,'.$id.'|max:13',
+            ]);
+
         $cabang = Cabang::where('id', $id)->first();
 
         if (is_null($cabang)) {
@@ -126,8 +153,9 @@ class cabangcontroller extends Controller
         
         else {
             $success = $cabang->delete();
-            if($success)
+            if($success) {
                 return response()->json('Success Delete', 200);
+            }
             else {
                 return response()->json('Error Delete', 500);
             }

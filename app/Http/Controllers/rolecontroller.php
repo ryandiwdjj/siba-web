@@ -14,9 +14,16 @@ class rolecontroller extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::paginate(10);
 
         return response()->json($roles, 200);
+    }
+
+    public function all()
+    {
+        //
+        return Role::all();
+        
     }
 
     /**
@@ -55,6 +62,16 @@ class rolecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+
+        $result = Role::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByName($nama_role)
     {
         //return role::where('nama_role', $nama_role)->first();

@@ -1,0 +1,149 @@
+<template>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="card">
+                  <div class="card-header">
+                    <h2 class="card-header-title">Laporan Pendapatan Bulanan</h2>
+                  </div>
+
+                  <div class="card-tools">
+                      
+                  </div>
+                   <div id="printMe"> 
+                       
+                    <div class="center">               
+                      
+                      <img src="../../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
+                      <h1 class="headline">ATMA AUTO</h1>
+                      <p class="hehe" >
+                      MOTORCYCLE SPAREPARTS AND SERVICES<br>
+                      Jl. Babarsari No. 43 Yogyakarta 552181<br>
+                      Telp. (0274)487711<br>
+                      http://www.atmaauto.com
+                      </p>
+                      
+                      <hr>
+                      <br>
+                      <p class="title">LAPORAN PENDAPATAN BULANAN</p>                                       
+                    </div> 
+                    <div class="card-body table-responsive p-0">
+                    
+                    <br>
+                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
+                    <thead>
+                        <th class="No-Row">No</th>
+                        <th>Bulan</th>
+                        <th>Jasa Service</th>
+                        <th>Sparepart</th>
+                        <th>Total</th>
+                        
+                    </thead>
+                    <tbody>
+                      <tr v-for="(trans_penjualan,index) in filteredList" :key ="trans_penjualan.id">
+                        <td>{{ index+1 }}</td>
+                        <td>{{ trans_penjualan.bulan }}</td>
+                        <td>{{ trans_penjualan.total_jasa }}</td>
+                        <td>{{ trans_penjualan.total_spare }}</td>
+                        <td>{{ trans_penjualan.grand_total }}</td>
+                      </tr>
+                    </tbody>
+                    </table>     
+                    <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
+                  </div> 
+                    <br>
+                    <div>
+                      <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+                    </div>
+                    <br>
+                    <div align="center">
+                      <button class="button is-success" @click="print">Cetak</button>
+                    </div>
+                </div>     
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+
+<script>
+  export default {
+    data: function() {
+      return {
+        transaksiPenjualan: {},
+        //total_jasa: {},
+        //total_spare: {},
+        //grand_total: {},
+
+        //bulan_trans: {},
+        loading: true,
+        chartOptions: {
+              chart: {
+              id: 'pendapatan-bulanan'
+              },
+              xaxis: {
+              categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+              }
+        },
+        // series: [{
+        //   name: 'series-1',
+        //   data: [this.transaksiPenjualan]
+        // }] 
+      }
+    },
+    mounted()  {
+     var app = this;
+    app.getResults();
+    },
+    computed: {
+       filteredList: function(){
+         return this.transaksiPenjualan;
+       },
+      series: function() {
+      return [{
+           name: 'series-1',
+           data: [this.transaksiPenjualan]
+       }]
+      },
+      // chartOptions: function(){
+      //   return{
+      //       chartOptions: {
+      //         chart: {
+      //         id: 'vuechart-example'
+      //         },
+      //         xaxis: {
+      //         categories: ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus","September","Oktober","November","Desember"]
+      //         }
+      //       } 
+      //   } 
+      // },
+    },
+    methods: {
+      getResults(){
+        var app = this;
+        axios.get('/api/report/pendapatan_bulanan')
+        .then(function(resp){
+        app.transaksiPenjualan = resp.data;
+        app.loading = false;
+        })
+        .catch(function(resp){
+          console.log(resp);
+          app.loading = false;
+         
+        })
+      },
+      alert(title,pesan){
+        this.$swal({
+          title: title,
+          text: pesan,
+          icon: "success"
+        });
+      },
+      print() {
+        this.$htmlToPaper('printMe');
+      },
+    }
+  }
+
+</script>

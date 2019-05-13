@@ -14,9 +14,16 @@ class pelanggancontroller extends Controller
      */
     public function index()
     {
-        $pelanggans = Pelanggan::all();
+        $pelanggans = Pelanggan::paginate(10);
 
         return response()->json($pelanggans, 200);
+    }
+
+    public function all()
+    {
+        //
+        return Pelanggan::all();
+        
     }
 
     /**
@@ -37,6 +44,11 @@ class pelanggancontroller extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan|max:13',
+            
+        ]);
+
         $pelanggan = new pelanggan;
         $pelanggan->nama_pelanggan = $request->nama_pelanggan;
         $pelanggan->alamat_pelanggan = $request->alamat_pelanggan;
@@ -51,12 +63,28 @@ class pelanggancontroller extends Controller
         }
     }
 
+    public function search(Request $request){
+        $pelanggan = Pelanggan::where('nama_pelanggan','LIKE',"%$request->q%")->get();
+        
+        return $pelanggan;
+      }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        
+        $result = Pelanggan::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByNo($no_telp_pelanggan)
     {
         //return pelanggan::where('no_telp_pelanggan', $no_telp_pelanggan)->first();
@@ -68,6 +96,7 @@ class pelanggancontroller extends Controller
         } else
             return response()->json($result, 200);
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -89,6 +118,10 @@ class pelanggancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'no_telp_pelanggan' => 'required|unique:pelanggans,no_telp_pelanggan,'.$id.'|max:13',
+            ]);
+
         $pelanggan = Pelanggan::where('id', $id)->first();
 
         if (is_null($pelanggan)) {
@@ -131,6 +164,24 @@ class pelanggancontroller extends Controller
             else {
                 return response()->json('Error Delete', 500);
             }
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////MOBILE
+    public function indexMobile() {
+        $pelanggan = Pelanggan::all();
+        return response()->json($pelanggan, 202);
+    }
+
+    public function login(Request $request) {
+        $pelanggan = Pelanggan::where('no_telp_pelanggan', $request->no_telp_pelanggan)->first();
+
+        if(is_null($pelanggan)) {
+            return response()->json('Pelanggan Not Found', 404);
+        }
+
+        else {
+            return response()->json($pelanggan, 200);
         }
     }
 }

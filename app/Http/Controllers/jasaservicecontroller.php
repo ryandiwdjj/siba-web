@@ -14,6 +14,13 @@ class jasaservicecontroller extends Controller
      */
     public function index()
     {
+        $jasas = jasa_service::paginate(10);
+
+        return response()->json($jasas, 200);
+    }
+
+    public function all()
+    {
         $jasas = jasa_service::all();
 
         return response()->json($jasas, 200);
@@ -37,6 +44,13 @@ class jasaservicecontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nama_jasa' => 'required|unique:jasa_services,nama_jasa|max:255',
+            'harga_jasa' => 'required|numeric|not_in:0',
+            
+        ]);
+
         $jasa = new jasa_service;
         $jasa->nama_jasa = $request->nama_jasa;
         $jasa->harga_jasa = $request->harga_jasa;
@@ -56,16 +70,29 @@ class jasaservicecontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showByName($nama_jasa)
+    public function show($id)
     {
         //return jasa_service::where('nama_jasa', $nama_jasa)->first();
 
-        $result = jasa_service::where('nama_jasa', 'like', "%".$nama_jasa."%")->get();
+        $result = jasa_service::find($id);
 
         if (is_null($result)) {
             return response()->json('Not Found', 404);
         } else
             return response()->json($result, 200);
+    }
+
+    public function search(Request $request)
+    {
+        //return jasa_service::where('nama_jasa', $nama_jasa)->first();
+        $search = $request->get('q');
+        return jasa_service::where('nama_jasa', 'like', '%'.$search.'%')->get();
+
+
+        // if (is_null($result)) {
+        //     return response()->json('Not Found', 404);
+        // } else
+        //     return response()->json($result, 200);
     }
 
     /**
@@ -88,6 +115,12 @@ class jasaservicecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+            'nama_jasa' => 'required|unique:jasa_services,nama_jasa,'.$id.'|max:255',
+            'harga_jasa' => 'required|numeric|not_in:0',
+            ]);
+
         $jasa = jasa_service::where('id', $id)->first();
 
         if (is_null($jasa)) {
@@ -130,5 +163,14 @@ class jasaservicecontroller extends Controller
                 return response()->json('Error Delete', 500);
             }
         }
+    }
+
+    /////////////////////////////////////////////////////////////////////// MOBILE
+
+    public function indexMobile()
+    {
+        $jasas = jasa_service::all();
+
+        return response()->json($jasas, 200);
     }
 }

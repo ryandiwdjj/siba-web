@@ -14,6 +14,13 @@ class kendaraancontroller extends Controller
      */
     public function index()
     {
+        $kendaraans = Kendaraan::paginate(10);
+
+        return response()->json($kendaraans, 200);
+    }
+
+    public function all()
+    {
         $kendaraans = Kendaraan::all();
 
         return response()->json($kendaraans, 200);
@@ -37,6 +44,12 @@ class kendaraancontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'tipe_kendaraan' => 'required|unique:kendaraans,tipe_kendaraan|max:255',
+            
+        ]);
+
         $kendaraan = new kendaraan;
         $kendaraan->merk_kendaraan = $request->merk_kendaraan;
         $kendaraan->tipe_kendaraan = $request->tipe_kendaraan;
@@ -56,6 +69,17 @@ class kendaraancontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+        
+        $result = Kendaraan::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByMerk($merk_kendaraan)
     {
         //return kendaraan::where('merk_kendaraan', $merk_kendaraan)->first();
@@ -88,6 +112,10 @@ class kendaraancontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'tipe_kendaraan' => 'required|unique:kendaraans,tipe_kendaraan,'.$id.'|max:255',
+            ]);
+
         $kendaraan = Kendaraan::where('id', $id)->first();
 
         if (is_null($kendaraan)) {
@@ -130,5 +158,13 @@ class kendaraancontroller extends Controller
                 return response()->json('Error Delete', 500);
             }
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    public function indexMobile()
+    {
+        $kendaraans = Kendaraan::all();
+
+        return response()->json($kendaraans, 200);
     }
 }

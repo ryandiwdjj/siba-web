@@ -14,6 +14,13 @@ class pegawaicontroller extends Controller
      */
     public function index()
     {
+        $pegawais = Pegawai::with('cabang','role')->paginate(10);
+
+        return response()->json($pegawais, 200);
+    }
+
+    public function all()
+    {
         $pegawais = Pegawai::all();
 
         return response()->json($pegawais, 200);
@@ -37,6 +44,13 @@ class pegawaicontroller extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'no_telp_pegawai' => 'required|unique:pegawais,no_telp_pegawai|min:12|max:13',
+            'password_pegawai' => 'required|unique:pegawais,password_pegawai|min:8|max:16',
+            
+        ]);
+
         $pegawai = new pegawai;
         $pegawai->id_role = $request->id_role;
         $pegawai->nama_pegawai = $request->nama_pegawai;
@@ -61,6 +75,18 @@ class pegawaicontroller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function show($id)
+    {
+        
+
+        $result = Pegawai::find($id);
+
+        if (is_null($result)) {
+            return response()->json('Not Found', 404);
+        } else
+            return response()->json($result, 200);
+    }
     public function showByName($nama_pegawai)
     {
         //return pegawai::where('nama_pegawai', $nama_pegawai)->first();
@@ -93,6 +119,11 @@ class pegawaicontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'no_telp_pegawai' => 'required|unique:pegawais,no_telp_pegawai,'.$id.'|min:12|max:13',
+            'password_pegawai' => 'required|unique:pegawais,password_pegawai,'.$id.'|min:8|max:16',
+            ]);
+
         $pegawai = Pegawai::where('id', $id)->first();
 
         if (is_null($pegawai)) {
@@ -139,6 +170,33 @@ class pegawaicontroller extends Controller
             else {
                 return response()->json('Error Delete', 500);
             }
+        }
+    }
+
+    public function indexMobile()
+    {
+        $pegawais = Pegawai::all();
+        return response()->json($pegawais, 200);
+    }
+    
+    public function login(Request $request) {
+        $no_telp = $request->no_telp_pegawai;
+        $password = $request->password_pegawai;
+        $data = pegawai::where('no_telp_pegawai', $no_telp)->first();
+        if($data) {
+            //no_telp found
+            if(pegawai::where('password_pegawai', $password)->first()) {
+                //return role
+                return response()->json($data, 200);
+            }
+            else {
+                //return fail wrong password
+                return response()->json("Login Failed", 404);
+            }
+        }
+        else {
+            //return fail login not found
+            return response()->json("Login Failed", 404);
         }
     }
 }
