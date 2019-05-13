@@ -148,25 +148,30 @@ class transpenjualancontroller extends Controller
         }
 
         else {
-            $transpenjualan->id_pelanggan = $request->id_pelanggan;
-            $transpenjualan->id_cabang = $request->id_cabang;
-            //$transpenjualan->total_harga_trans = 0;
-            //$transpenjualan->discount_penjualan = 0;
-            //$transpenjualan->grand_total = 0;
-            $transpenjualan->status_transaksi = $request->status_transaksi;
-            //$transpenjualan->status_pembayaran = "belum";
-            $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
-            $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
-            
-
-            $success = $transpenjualan->save();
-
-            if (!$success) {
-                return response()->json('Error Updating', 500);
-            } else {
-                return response()->json('Success Updating', 200);
+            if($transpenjualan->status_pembayaran == "sudah") {
+                return response()->json('Transaksi sudah selesai', 500);
             }
-        }
+            else{
+                $transpenjualan->id_pelanggan = $request->id_pelanggan;
+                $transpenjualan->id_cabang = $request->id_cabang;
+                //$transpenjualan->total_harga_trans = 0;
+                //$transpenjualan->discount_penjualan = 0;
+                //$transpenjualan->grand_total = 0;
+                $transpenjualan->status_transaksi = $request->status_transaksi;
+                //$transpenjualan->status_pembayaran = "belum";
+                $transpenjualan->no_plat_kendaraan = $request->no_plat_kendaraan;
+                $transpenjualan->tanggal_penjualan = $request->tanggal_penjualan;
+                
+    
+                $success = $transpenjualan->save();
+    
+                if (!$success) {
+                    return response()->json('Error Updating', 500);
+                } else {
+                    return response()->json('Success Updating', 200);
+                }
+            } 
+        }      
     }
 
     public function pembayaranWeb(Request $request, $id)

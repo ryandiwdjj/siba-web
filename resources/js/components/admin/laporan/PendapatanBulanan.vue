@@ -8,7 +8,7 @@
                   </div>
 
                   <div class="card-tools">
-                      <router-link to="/laporan/cetak/pendapatan_bulanan" class="button is-success">Cetak</router-link>
+                      
                       <h6 class="card-tools" id="tanggal">Tanggal dan waktu generate</h6>
                   </div>
                    <div id="printMe"> 
@@ -72,9 +72,9 @@
     data: function() {
       return {
         transaksiPenjualan: {},
-        //total_jasa: {},
-        //total_spare: {},
-        //grand_total: {},
+        total_jasa: {},
+        total_spare: {},
+        grand_total: {},
 
         //bulan_trans: {},
         loading: true,
@@ -161,9 +161,17 @@ var myBarChart = new Chart(ctx, {
        },
       series: function() {
       return [{
-           name: 'series-1',
-           data: [this.transaksiPenjualan]
-       }]
+           name: 'service',
+           data: [this.total_jasa]
+      },
+      {
+           name: 'sparepart',
+           data: [this.total_spare]
+      },
+      {
+          name: 'total',
+           data: [this.grand_total]
+      }]
       },
       // chartOptions: function(){
       //   return{
@@ -184,6 +192,13 @@ var myBarChart = new Chart(ctx, {
         axios.get('/api/report/pendapatan_bulanan')
         .then(function(resp){
         app.transaksiPenjualan = resp.data;
+        app.total_jasa = resp.data;
+        app.total_spare = resp.data;
+        app.grand_total = resp.data;
+        this.total_jasa = parseFloat(this.total_jasa);
+        this.total_spare = parseFloat(this.total_spare);
+        this.grand_total = parseFloat(this.grand_total);
+        //this.transaksiPenjualan = parseInt(this.transaksiPenjualan);
         app.loading = false;
         // console.log(app.transaksiPenjualan);
         })

@@ -9,6 +9,7 @@
                   <div class="card-tools">
                       <router-link to="/tambah_trans_pengadaanv2" class="button is-success">Tambah Transaksi Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
                       <router-link to="/tambah_detail_pengadaan" class="button is-link">Tambah Detail Pengadaan &nbsp; <i class="fas fa-plus-circle"></i></router-link>
+                      <router-link to="/trans_pengadaan_konfirmasi" class="button is-dark">Konfirmasi Pengiriman &nbsp; <i class="fas fa-box"></i></router-link>
                   </div>
                     
                     <div class="card-body table-responsive p-0">
@@ -25,6 +26,7 @@
                         <th>Cabang</th>
                         <th>Tanggal Pengadaan</th>
                         <th>Total Harga Pengadaan</th>
+                        <th>Status Pengadaan</th>
                         <th>Modify</th>
                         
                     </thead>
@@ -35,6 +37,7 @@
                         <td>{{ trans_pengadaan.cabang.nama_cabang }}</td>
                         <td>{{ trans_pengadaan.tanggal_pengadaan }}</td>
                         <td>{{ trans_pengadaan.total_harga_pengadaan }}</td>
+                        <td>{{ trans_pengadaan.status_pengadaan }}</td>
                         <td>
                         <router-link 
                           :to="{name:'editTransaksiPengadaan' ,params:{id: trans_pengadaan.id}}" 
