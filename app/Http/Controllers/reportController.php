@@ -449,11 +449,80 @@ class reportController extends Controller
 		return response()->json($results, 200);
 	}
 
-	public function tahunan_perCabang($branch, $year) {
-		$results = trans_penjualan::whereYear('created_at', $year)
-					->where('id_cabang', '=', $branch)
-					->get();
+	public function tahunan_perCabang() {
+		// $results = trans_penjualan::whereYear('created_at', $year)
+		// 			->where('id_cabang', '=', $branch)
+		// 			->get();
 
-		return response()->json($results, 200);
+		// return response()->json($results, 200);
+
+		$tahun2016 = trans_penjualan::
+		join('cabangs', 'cabangs.id', '=', 'trans_penjualan.id_cabang')
+		->select('trans_penjualan.grand_total','trans_penjualan.id_cabang')
+		->where('trans_penjualan.status_transaksi', '=', 'sudah')
+		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
+		->whereYear('trans_penjualan.tanggal_penjualan', '2016');
+		
+		$tahun2016_total = $tahun2016->sum('trans_penjualan.grand_total');
+		$tahun2016_cabang = $tahun2016->select('trans_penjualan.cabang.nama_cabang');
+
+		$tahun2017 = trans_penjualan::
+		join('cabangs', 'cabangs.id', '=', 'trans_penjualan.id_cabang')
+		->select('trans_penjualan.grand_total','trans_penjualan.id_cabang')
+		->where('trans_penjualan.status_transaksi', '=', 'sudah')
+		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
+		->whereYear('trans_penjualan.tanggal_penjualan', '2017');
+		
+		$tahun2017_total = $tahun2017->sum('trans_penjualan.grand_total');
+		$tahun2017_cabang = $tahun2017->select('trans_penjualan.cabang.nama_cabang');
+
+		$tahun2018 = trans_penjualan::
+		join('cabangs', 'cabangs.id', '=', 'trans_penjualan.id_cabang')
+		->select('trans_penjualan.grand_total','trans_penjualan.id_cabang')
+		->where('trans_penjualan.status_transaksi', '=', 'sudah')
+		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
+		->whereYear('trans_penjualan.tanggal_penjualan', '2018');
+		
+		$tahun2018_total = $tahun2018->sum('trans_penjualan.grand_total');
+		$tahun2018_cabang = $tahun2018->select('trans_penjualan.cabang.nama_cabang');
+
+		$tahun2019 = trans_penjualan::
+		join('cabangs', 'cabangs.id', '=', 'trans_penjualan.id_cabang')
+		->select('trans_penjualan.grand_total','trans_penjualan.id_cabang')
+		->where('trans_penjualan.status_transaksi', '=', 'sudah')
+		->where('trans_penjualan.status_pembayaran', '=', 'sudah')
+		->whereYear('trans_penjualan.tanggal_penjualan', '2019');
+		
+		$tahun2019_total = $tahun2019->sum('trans_penjualan.grand_total');
+		$tahun2019_cabang = $tahun2019->select('trans_penjualan.cabang.nama_cabang');
+
+
+		$tahun2016_json = [
+			'tahun' => "2016",
+			'cabang' => $tahun2016_cabang,
+			'grand_total' => $tahun2016_total];
+
+		$tahun2017_json = [
+			'tahun' => "2017",
+			'cabang' => $tahun2017_cabang,
+			'grand_total' => $tahun2017_total];
+			
+		$tahun2018_json = [
+			'tahun' => "2018",
+			'cabang' => $tahun2018_cabang,
+			'grand_total' => $tahun2018_total];
+
+		$tahun2019_json = [
+			'tahun' => "2019",
+			'cabang' => $tahun2019_cabang,
+			'grand_total' => $tahun2019_total];
+
+
+			return response()->json([
+				$tahun2016_json,
+				$tahun2017_json,
+				$tahun2018_json,
+				$tahun2019_json,
+				]);
 	}
 }

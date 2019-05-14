@@ -196,4 +196,4 @@ Route::get('/report/pengeluaran_bulanan', 'reportController@pengeluaran_bul');
 Route::get('/report/spare_terlaris/{month}', 'reportController@lap_spare_terlaris');
 Route::get('/report/jumlah_jasa_permotor/{motor}', 'reportController@jumlah_jasa_perMotor');
 Route::get('/report/sisa_stok_bulanan', 'reportController@sisa_stok_bulanan');
-Route::get('/report/tahunan_percabang/{month}', 'reportController@tahunan_perCabang');
+Route::get('/report/tahunan_percabang', 'reportController@tahunan_perCabang');

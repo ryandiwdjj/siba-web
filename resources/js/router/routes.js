@@ -65,6 +65,10 @@ import KonfirmasiPengiriman from '../components/admin/transPengadaan/KonfirmasiP
 
 import PendapatanBulanan from '../components/admin/laporan/PendapatanBulanan.vue'
 import PengeluaranBulanan from '../components/admin/laporan/PengeluaranBulanan.vue'
+import PendapatanTahunan from '../components/admin/laporan/PendapatanTahunan.vue'
+import JumlahJasaService from '../components/admin/laporan/JumlahJasaService.vue'
+import SisaStokBulanan from '../components/admin/laporan/SisaStokBulanan.vue'
+import SparepartTerlaris from '../components/admin/laporan/SparepartTerlaris.vue'
 
 
 
@@ -296,7 +300,22 @@ const routes = [
                 path:'/laporan/pengeluaran_bulanan',
                 component: PengeluaranBulanan
             },
-           
+            {
+                path:'/laporan/pendapatan_tahunan',
+                component: PendapatanTahunan
+            },
+            {
+                path:'/laporan/jasa_service',
+                component: JumlahJasaService
+            },
+            {
+                path:'/laporan/sisa_stok_bulanan',
+                component: SisaStokBulanan
+            },
+            {
+                path:'/laporan/sparepart_terlaris',
+                component: SparepartTerlaris
+            },
         ]
     }
     
