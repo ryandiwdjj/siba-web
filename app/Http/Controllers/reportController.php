@@ -264,10 +264,157 @@ class reportController extends Controller
 	//     return response()->json($results, 200);
 	// }
 
-	public function pengeluaran_bul($month) {
-		$results = trans_pengadaan::whereMonth('created_at', $month)->get();
+	public function pengeluaran_bul() {
+		// $results = trans_pengadaan::whereMonth('created_at', $month)->get();
 
-		return response()->json($results, 200);
+		// return response()->json($results, 200);
+
+		$januari = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '01');
+		
+		$januari_total = $januari->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$februari = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '02');
+		
+		$februari_total = $februari->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$maret = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '03');
+		
+		$maret_total = $maret->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$april = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '04');
+		
+		$april_total = $april->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$mei = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '05');
+		
+		$mei_total = $mei->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$juni = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '06');
+		
+		$juni_total = $juni->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$juli = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '07');
+		
+		$juli_total = $juli->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$agustus = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '08');
+		
+		$agustus_total = $agustus->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$september = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '09');
+		
+		$september_total = $september->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$oktober = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '10');
+		
+		$oktober_total = $oktober->sum('trans_pengadaan.total_harga_pengadaan');
+		
+		$november = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '11');
+		
+		$november_total = $november->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$desember = trans_pengadaan::
+		select('trans_pengadaan.total_harga_pengadaan')
+		->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+		->whereMonth('trans_pengadaan.tanggal_pengadaan', '12');
+		
+		$desember_total = $desember->sum('trans_pengadaan.total_harga_pengadaan');
+
+		$januari_json = [
+			'bulan' => "Januari",
+			'total_harga_pengadaan' => $januari_total];
+
+		$februari_json = [
+			'bulan' => "Februari",
+			'total_harga_pengadaan' => $februari_total];
+			
+		$maret_json = [
+			'bulan' => "Maret",
+			'total_harga_pengadaan' => $maret_total];
+
+		$april_json = [
+			'bulan' => "April",
+			'total_harga_pengadaan' => $april_total];
+
+		$mei_json = [
+			'bulan' => "Mei",
+			'total_harga_pengadaan' => $mei_total];
+
+		$juni_json = [
+			'bulan' => "Juni",
+			'total_harga_pengadaan' => $juni_total];
+			
+		$juli_json = [
+			'bulan' => "Juli",
+			'total_harga_pengadaan' => $juli_total];
+		$agustus_json = [
+			'bulan' => "Agustus",
+			'total_harga_pengadaan' => $agustus_total];
+
+		$september_json = [
+			'bulan' => "September",
+			'total_harga_pengadaan' => $september_total];
+			
+		$oktober_json = [
+			'bulan' => "Oktober",
+			'total_harga_pengadaan' => $oktober_total];
+
+		$november_json = [
+			'bulan' => "November",
+			'total_harga_pengadaan' => $november_total];
+			
+		$desember_json = [
+			'bulan' => "Desember",
+			'total_harga_pengadaan' => $desember_total];
+	
+
+			return response()->json([
+				$januari_json,
+				$februari_json,
+				$maret_json,
+				$april_json,
+				$mei_json,
+				$juni_json,
+				$juli_json,
+				$agustus_json,
+				$september_json,
+				$oktober_json,
+				$november_json,
+				$desember_json
+				]);
 	}
 
 	public function spare_terlaris($month) {

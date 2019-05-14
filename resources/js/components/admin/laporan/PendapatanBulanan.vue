@@ -9,7 +9,7 @@
 
                   <div class="card-tools">
                       
-                      <h6 class="card-tools" id="tanggal">Tanggal dan waktu generate</h6>
+                      <h6 class="card-tools" id="tanggal"></h6>
                   </div>
                    <div id="printMe"> 
                       

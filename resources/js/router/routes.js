@@ -64,6 +64,7 @@ import KonfirmasiPengirimanIndex from '../components/admin/transPengadaan/Konfir
 import KonfirmasiPengiriman from '../components/admin/transPengadaan/KonfirmasiPengiriman.vue'
 
 import PendapatanBulanan from '../components/admin/laporan/PendapatanBulanan.vue'
+import PengeluaranBulanan from '../components/admin/laporan/PengeluaranBulanan.vue'
 
 
 
@@ -290,6 +291,10 @@ const routes = [
             {
                 path:'/laporan/pendapatan_bulanan',
                 component: PendapatanBulanan
+            },
+            {
+                path:'/laporan/pengeluaran_bulanan',
+                component: PengeluaranBulanan
             },
            
         ]

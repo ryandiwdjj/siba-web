@@ -192,7 +192,7 @@ Route::delete('/mobile/trans_pengadaan/detail/{id}','detailpengadaancontroller@d
 
 /////////////////////////////////////////////////////////////////////////////////////////////REPORT
 Route::get('/report/pendapatan_bulanan/', 'reportController@pendapatan_bul');
-Route::get('/report/pengeluaran_bulanan/{month}', 'reportController@pengeluaran_bul');
+Route::get('/report/pengeluaran_bulanan', 'reportController@pengeluaran_bul');
 Route::get('/report/spare_terlaris/{month}', 'reportController@lap_spare_terlaris');
 Route::get('/report/jumlah_jasa_permotor/{motor}', 'reportController@jumlah_jasa_perMotor');
 Route::get('/report/sisa_stok_bulanan', 'reportController@sisa_stok_bulanan');
