@@ -72747,16 +72747,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", { staticClass: "hehe" }, [
-      _vm._v("\r\n                      MOTORCYCLE SPAREPARTS AND SERVICES"),
+      _vm._v("\n                      MOTORCYCLE SPAREPARTS AND SERVICES"),
+      _c("br"),
+      _vm._v("\n                      Jl. Babarsari No. 43 Yogyakarta 552181"),
+      _c("br"),
+      _vm._v("\n                      Telp. (0274)487711"),
       _c("br"),
       _vm._v(
-        "\r\n                      Jl. Babarsari No. 43 Yogyakarta 552181"
-      ),
-      _c("br"),
-      _vm._v("\r\n                      Telp. (0274)487711"),
-      _c("br"),
-      _vm._v(
-        "\r\n                      http://www.atmaauto.com\r\n                      "
+        "\n                      http://www.atmaauto.com\n                      "
       )
     ])
   },
@@ -75572,7 +75570,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "navbar-link" }, [
       _c("i", { staticClass: "fas fa-database" }),
-      _vm._v("   Kelola Data\r\n      ")
+      _vm._v("   Kelola Data\n      ")
     ])
   },
   function() {
@@ -75581,7 +75579,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "navbar-link" }, [
       _c("i", { staticClass: "fas fa-money-check-alt" }),
-      _vm._v("   Transaksi\r\n      ")
+      _vm._v("   Transaksi\n      ")
     ])
   },
   function() {
@@ -75590,7 +75588,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "navbar-link" }, [
       _c("i", { staticClass: "fas fa-clipboard-list" }),
-      _vm._v("   Laporan\r\n          ")
+      _vm._v("   Laporan\n          ")
     ])
   },
   function() {
@@ -75601,7 +75599,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "navbar-item" }, [
         _c("div", { staticClass: "buttons" }, [
           _c("a", { staticClass: "button is-light" }, [
-            _vm._v("\r\n            Log Out\r\n          ")
+            _vm._v("\n            Log Out\n          ")
           ])
         ])
       ])
@@ -81371,7 +81369,7 @@ var render = function() {
                         }
                       }
                     }),
-                    _vm._v("%\r\n                        "),
+                    _vm._v("%\n                        "),
                     _vm.errors.discount_penjualan
                       ? _c("span", { staticClass: "help is-danger" }, [
                           _vm._v(" " + _vm._s(_vm.errors.discount_penjualan[0]))
@@ -101870,8 +101868,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Git\siba-web\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Git\siba-web\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
