@@ -3,9 +3,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                  <div class="card-header">
-                    <h2 class="card-header-title">Laporan Pendapatan Tahunan</h2>
-                  </div>
+                  
 
                   <div class="card-tools">
                       

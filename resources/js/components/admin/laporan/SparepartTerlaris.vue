@@ -3,9 +3,6 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                  <div class="card-header">
-                    <h2 class="card-header-title">Laporan Sparepart Terlaris</h2>
-                  </div>
 
                   <div class="card-tools">
                       
@@ -40,11 +37,12 @@
                         
                     </thead>
                     <tbody>
-                      <tr v-for="(trans_penjualan,index) in filteredList" :key ="trans_penjualan.id">
+                      <tr v-for="(sparepart,index) in filteredList" :key ="sparepart.id">
                         <td>{{ index+1 }}</td>
-                        <td>{{ trans_penjualan.tahun }}</td>
-                        <td>{{ trans_penjualan.cabang }}</td>
-                        <td>{{ trans_penjualan.grand_total }}</td>
+                        <td>{{ sparepart.bullan }}</td>
+                        <td>{{ sparepart.nama }}</td>
+                        <td>{{ sparepart.tipe }}</td>
+                        <td>{{ sparepart.jumlah_penjualan }}</td>
                       </tr>
                     </tbody>
                     </table>     
@@ -67,7 +65,7 @@
   export default {
     data: function() {
       return {
-        transaksiPenjualan: {},
+        sparepart: {},
         loading: true,
       }
     },
@@ -77,7 +75,7 @@
     },
     computed: {
        filteredList: function(){
-         return this.transaksiPenjualan;
+         return this.sparepart;
        }
     },
     methods: {
@@ -85,7 +83,7 @@
         var app = this;
         axios.get('/api/report/spare_terlaris')
         .then(function(resp){
-        app.transaksiPenjualan = resp.data;
+        app.sparepart = resp.data;
         app.loading = false;
         })
         .catch(function(resp){

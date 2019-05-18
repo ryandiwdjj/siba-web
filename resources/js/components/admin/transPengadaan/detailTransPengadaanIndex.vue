@@ -20,7 +20,9 @@
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
                         <th>Nomor Transaksi Pengadaan</th>
-                        <th>Sparepart</th>
+                        <th>Kode Sparepart</th>
+                        <th>Nama Sparepart</th>
+                        <th>Jumlah Stok</th>
                         <th>Jumlah Pengadaan</th>
                         <th>Subtotal</th>
                         <th>Modify</th>
@@ -30,6 +32,8 @@
                       <tr v-for="(detail_trans_pengadaan,index) in filteredList" :key ="detail_trans_pengadaan.id">
                         <td>{{ detail_trans_pengadaan.id_trans_pengadaan }}</td>
                         <td>{{ detail_trans_pengadaan.sparepart.kode_sparepart }}</td>
+                        <td>{{ detail_trans_pengadaan.sparepart.nama_sparepart }}</td>
+                        <td>{{ detail_trans_pengadaan.sparepart.jumlah_stok_sparepart }}</td>
                         <td>{{ detail_trans_pengadaan.jumlah_pengadaan }}</td>
                         <td>{{ detail_trans_pengadaan.subtotal_pengadaan }}</td>
                         <td>

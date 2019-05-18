@@ -3,9 +3,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                  <div class="card-header">
-                    <h2 class="card-header-title">Laporan Penjualan Jasa</h2>
-                  </div>
+                  
 
                   <div class="card-tools">
                       
@@ -45,6 +43,7 @@
                         <td>{{ trans_penjualan.tahun }}</td>
                         <td>{{ trans_penjualan.cabang }}</td>
                         <td>{{ trans_penjualan.grand_total }}</td>
+                        <td>{{ trans_penjualan.jumlah_penjualan }}</td>
                       </tr>
                     </tbody>
                     </table>     

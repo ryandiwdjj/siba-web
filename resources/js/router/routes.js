@@ -70,7 +70,8 @@ import JumlahJasaService from '../components/admin/laporan/JumlahJasaService.vue
 import SisaStokBulanan from '../components/admin/laporan/SisaStokBulanan.vue'
 import SparepartTerlaris from '../components/admin/laporan/SparepartTerlaris.vue'
 
-
+import RootPelanggan from '../components/start/rootPelanggan.vue'
+import HomePelanggan from '../components/start/welcomePelanggan.vue'
 
 const routes = [
     {
@@ -317,7 +318,20 @@ const routes = [
                 component: SparepartTerlaris
             },
         ]
+    },
+    
+    {
+        path: '/customer',
+        component: RootPelanggan,
+        children : [
+            {
+                path: '/customer',
+                component: HomePelanggan
+            }
+        ]
     }
+    
+
     
         
     
