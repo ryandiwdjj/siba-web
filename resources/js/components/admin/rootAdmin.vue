@@ -21,7 +21,7 @@
   <div id="navbarBasicExample" class="navbar-menu">
    <div class="navbar-start">
     <div class="navbar-item has-dropdown is-hoverable">
-      <a class="navbar-link">
+      <a class="navbar-link" id="keloladata">
         <i class="fas fa-database"></i> &nbsp; Kelola Data
       </a>
       
@@ -39,7 +39,7 @@
             <router-link to= "/sparepart"  class="navbar-item">Sparepart</router-link>
           </a>
           <a class="navbar-item">
-            <router-link to= "/supplier"  class="navbar-item">Supplier</router-link>
+            <router-link to= "/supplier"  class="navbar-item" id="supplier">Supplier</router-link>
           </a>
           <a class="navbar-item">
             <router-link to= "/pelanggan"  class="navbar-item">Pelanggan</router-link>
