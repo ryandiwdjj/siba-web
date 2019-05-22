@@ -67,7 +67,7 @@
     mounted()  {
      var app = this;
      this.pelangganId = this.$route.params.id;
-     axios.get('/api/pelanggan/'+this.pelangganId)
+     axios.get('./api/pelanggan/'+this.pelangganId)
      .then((resp) => {
        this.pelanggan =  resp.data;
      })
@@ -85,7 +85,7 @@
       },
       saveForm(){
         var newPelanggan = this.pelanggan;
-        axios.put('/api/pelanggan/update/' + this.pelangganId ,newPelanggan)
+        axios.put('./api/pelanggan/update/' + this.pelangganId ,newPelanggan)
         .then((resp) => {
           this.alert('Berhasil Mengubah Pelanggan ');
           this.$router.replace('/pelanggan');

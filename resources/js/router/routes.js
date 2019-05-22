@@ -337,5 +337,5 @@ const routes = [
     
 ]
 
-const router = new VueRouter({mode: 'history', routes: routes});
+const router = new VueRouter({base: '/siba-web/public',mode: 'history', routes: routes});
 export default router

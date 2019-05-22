@@ -3,7 +3,7 @@
    
                 <div class="center">               
                       
-                      <img src="../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
+                      <img src="AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
                       <h1 class="headline">ATMA AUTO</h1>
                       <p class="hehe" >
                       MOTORCYCLE SPAREPARTS AND SERVICES<br>
@@ -17,13 +17,13 @@
 
             <hooper :settings="hooperSettings" :progress="true" :autoPlay="true" :playSpeed="2000">
                 <slide>
-                    <img src="../../../../public/honda-logo.jpg">
+                    <img src="honda-logo.jpg">
                 </slide>
                 <slide>
-                    <img src="../../../../public/Yamaha-logo.jpg">
+                    <img src="Yamaha-logo.jpg">
                 </slide>
                 <slide>
-                    <img src="../../../../public/yokohama-logo.png">
+                    <img src="yokohama-logo.png">
                 </slide>
             </hooper>
      

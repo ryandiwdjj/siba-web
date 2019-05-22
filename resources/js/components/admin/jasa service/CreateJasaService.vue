@@ -69,7 +69,7 @@
       },
       saveForm(){
         var newJasa = this.jasa;
-        axios.post('/api/jasa_service/store',newJasa)
+        axios.post('./api/jasa_service/store',newJasa)
         .then((resp) => {
           this.alert('Berhasil Menambah Jasa Service ' + this.jasa.nama_jasa );
           this.$router.replace('/jasa_service');

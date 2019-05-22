@@ -69,7 +69,7 @@
       },
       saveForm(){
         var newKendaraan = this.kendaraan;
-        axios.post('/api/kendaraan/store',newKendaraan)
+        axios.post('./api/kendaraan/store',newKendaraan)
         .then((resp) => {
           this.alert('Berhasil Menambah Kendaraan ' + this.kendaraan.merk_kendaraan );
           this.$router.replace('/kendaraan');

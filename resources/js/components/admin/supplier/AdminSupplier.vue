@@ -91,7 +91,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/suppliers?page=' + page)
+        axios.get('./api/suppliers?page=' + page)
         .then(function(resp){
           app.suppliers = resp.data.data;
           app.suppliersData = resp.data;
@@ -109,7 +109,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/supplier/search?q='+app.pencarian+'&page=' + page)
+        axios.get('./api/supplier/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.suppliers = resp.data.data;
           app.suppliersData = resp.data;
@@ -122,7 +122,7 @@
         })
       },
       deleteEntry(id,index,namaSupplier){
-          axios.delete('/api/supplier/' + id)
+          axios.delete('./api/supplier/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Supplier " + namaSupplier);

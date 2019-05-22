@@ -89,7 +89,7 @@
     methods: {
       getResults(){
         this.detailTransJasaId = this.$route.params.id;
-        axios.get('/api/trans_penjualan/showDetailJasa/'+this.detailTransJasaId)
+        axios.get('./api/trans_penjualan/showDetailJasa/'+this.detailTransJasaId)
           .then((resp) => {
             this.detail_transjasa =  resp.data;
         })
@@ -99,7 +99,7 @@
       },
       
       deleteEntry(id,index){
-          axios.delete('/api/trans_penjualan/detail_jasa/' + id)
+          axios.delete('./api/trans_penjualan/detail_jasa/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Detail Transaksi Jasa ");

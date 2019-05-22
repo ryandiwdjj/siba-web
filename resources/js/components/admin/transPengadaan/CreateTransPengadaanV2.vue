@@ -98,7 +98,7 @@
       },
       getSuppliers(){
         var app = this;
-        axios.get('/api/supplier' + '/all')
+        axios.get('./api/supplier' + '/all')
         .then(function(resp){
           app.suppliers = resp.data;
         })
@@ -108,7 +108,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('/api/cabang' + '/all')
+        axios.get('./api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })
@@ -118,7 +118,7 @@
       },
       saveForm(){
         var newTransPengadaan = this.transaksiPengadaan;
-        axios.post('/api/trans_pengadaan/store',newTransPengadaan)
+        axios.post('./api/trans_pengadaan/store',newTransPengadaan)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Pengadaan ');
           this.$router.replace('/trans_pengadaan');

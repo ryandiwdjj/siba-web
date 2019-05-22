@@ -76,7 +76,7 @@
     mounted()  {
      var app = this;
     //  this.transPengadaanId = this.$route.params.id;
-    //  axios.get('/api/trans_pengadaan/showDetail/'+this.transPengadaanId)
+    //  axios.get('./api/trans_pengadaan/showDetail/'+this.transPengadaanId)
     //  .then((resp) => {
     //    this.detail_pengadaan =  resp.data;
     //  })
@@ -95,7 +95,7 @@
     methods: {
       getResults(){
         this.transPengadaanId = this.$route.params.id;
-        axios.get('/api/trans_pengadaan/showDetail/'+this.transPengadaanId)
+        axios.get('./api/trans_pengadaan/showDetail/'+this.transPengadaanId)
           .then((resp) => {
             this.detail_pengadaan =  resp.data;
         })
@@ -105,7 +105,7 @@
       },
       
       deleteEntry(id,index){
-          axios.delete('/api/detail_trans_pengadaan/' + id)
+          axios.delete('./api/detail_trans_pengadaan/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Detail Transaksi Pengadaan ");

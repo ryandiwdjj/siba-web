@@ -101,7 +101,7 @@
       },
       getTransaksiPenjualan(){
         var app = this;
-        axios.get('/api/trans_penjualan' + '/all')
+        axios.get('./api/trans_penjualan' + '/all')
         .then(function(resp){
           app.transaksiPenjualan = resp.data;
         })
@@ -111,7 +111,7 @@
       },
       getSpareparts(){
         var app = this;
-        axios.get('/api/sparepart' + '/all')
+        axios.get('./api/sparepart' + '/all')
         .then(function(resp){
           app.spareparts = resp.data;
         })
@@ -121,7 +121,7 @@
       },
       saveForm(){
         var newDetailTransSparepart = this.detail_trans_sparepart;
-        axios.post('/api/trans_penjualan/detail_spare/store',newDetailTransSparepart)
+        axios.post('./api/trans_penjualan/detail_spare/store',newDetailTransSparepart)
         .then((resp) => {
           this.alert('Berhasil Menambah Transaksi Sparepart ');
           this.$router.replace('/tambah_trans_sparepart');

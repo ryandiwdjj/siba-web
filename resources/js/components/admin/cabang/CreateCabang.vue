@@ -76,7 +76,7 @@
       },
       saveForm(){
         var newCabang = this.cabang;
-        axios.post('/api/cabang/store',newCabang)
+        axios.post('./api/cabang/store',newCabang)
         .then((resp) => {
           this.alert('Berhasil Menambah Cabang ' + this.cabang.nama_cabang );
           this.$router.replace('/cabang');

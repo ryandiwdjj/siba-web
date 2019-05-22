@@ -84,7 +84,7 @@
     methods: {
       getResults(){
         this.detailTransSparepartId = this.$route.params.id;
-        axios.get('/api/trans_penjualan/showDetailSparepart/'+this.detailTransSparepartId)
+        axios.get('./api/trans_penjualan/showDetailSparepart/'+this.detailTransSparepartId)
           .then((resp) => {
             this.detail_transsparepart =  resp.data;
         })
@@ -94,7 +94,7 @@
       },
       
       deleteEntry(id,index){
-          axios.delete('/api/trans_penjualan/detail_spare/' + id)
+          axios.delete('./api/trans_penjualan/detail_spare/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Detail Transaksi Sparepart ");

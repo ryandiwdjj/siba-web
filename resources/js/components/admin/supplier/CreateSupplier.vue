@@ -84,7 +84,7 @@
       },
       saveForm(){
         var newSupplier = this.supplier;
-        axios.post('/api/supplier/store',newSupplier)
+        axios.post('./api/supplier/store',newSupplier)
         .then((resp) => {
           this.alert('Berhasil Menambah Supplier ' + this.supplier.nama_supplier );
           this.$router.replace('/supplier');

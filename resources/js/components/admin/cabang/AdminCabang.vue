@@ -89,7 +89,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/cabang?page=' + page)
+        axios.get('./api/cabang?page=' + page)
         .then(function(resp){
           app.cabangs = resp.data.data;
           app.cabangsData = resp.data;
@@ -107,7 +107,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/cabang/search?q='+app.pencarian+'&page=' + page)
+        axios.get('./api/cabang/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.cabangs = resp.data.data;
           app.cabangsData = resp.data;
@@ -120,7 +120,7 @@
         })
       },
       deleteEntry(id,index,namaCabang){
-          axios.delete('/api/cabang/' + id)
+          axios.delete('./api/cabang/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Cabang " + namaCabang);

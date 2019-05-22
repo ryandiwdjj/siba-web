@@ -37,7 +37,7 @@
                         <td>{{ sparepart.nama_sparepart }}</td>
                         <td>{{ sparepart.merk_sparepart }}</td>
                         <td>{{ sparepart.tipe_sparepart }}</td>
-                        <td><img :src="'/images/sparepart/' + sparepart.gambar_sparepart" v-bind:style="{width: '100px', height: '100px' }"></td>
+                        <td><img :src="'images/sparepart/' + sparepart.gambar_sparepart" v-bind:style="{width: '100px', height: '100px' }"></td>
                         <td>{{ sparepart.jumlah_stok_sparepart }}</td>
                         <td>{{ sparepart.harga_beli_sparepart }}</td>
                         <td>{{ sparepart.harga_jual_sparepart }}</td>
@@ -101,7 +101,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/sparepart?page=' + page)
+        axios.get('./api/sparepart?page=' + page)
         .then(function(resp){
           app.spareparts = resp.data.data;
           app.sparepartsData = resp.data;
@@ -119,7 +119,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/spaarepart/search?q='+app.pencarian+'&page=' + page)
+        axios.get('./api/spaarepart/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.spareparts = resp.data.data;
           app.sparepartsData = resp.data;
@@ -132,7 +132,7 @@
         })
       },
       deleteEntry(id,index,namaSparepart){
-          axios.delete('/api/sparepart/' + id)
+          axios.delete('./api/sparepart/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Sparepart " + namaSparepart);

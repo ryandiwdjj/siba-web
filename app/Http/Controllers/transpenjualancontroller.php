@@ -273,13 +273,14 @@ class transpenjualancontroller extends Controller
     }
 
     public function getHistoryById($id) {
-        $transpenjualan = trans_penjualan::select('trans_penjualan.*'
+        $transpenjualan = trans_penjualan::
+        select('trans_penjualan.*'
         , 'pelanggans.nama_pelanggan', 'pelanggans.alamat_pelanggan', 'pelanggans.no_telp_pelanggan'
         , 'cabangs.nama_cabang', 'cabangs.alamat_cabang', 'cabangs.no_telp_cabang')
         ->join('pelanggans', 'pelanggans.id', 'trans_penjualan.id_pelanggan')
         ->join('cabangs', 'cabangs.id', 'trans_penjualan.id_cabang')
         ->latest('trans_penjualan.created_at')
-        ->where('trans_penjualan.status_penjualan', 'sudah')
+        ->where('trans_penjualan.status_transaksi', 'sudah')
         ->where('trans_penjualan.status_pembayaran', 'sudah')
         ->where('pelanggans.id', $id)
         ->get();
@@ -303,7 +304,7 @@ class transpenjualancontroller extends Controller
         ->where('trans_penjualan.status_pembayaran', 'belum')
         ->where('pelanggans.id', $id)
         ->get();
-
+        
         if(is_null($transpenjualan)) {
             return response()->json('Transaksi Penjualan Not Found', 404);
         }

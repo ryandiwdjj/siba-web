@@ -60,7 +60,7 @@
     mounted()  {
      var app = this;
      this.jasaId = this.$route.params.id;
-     axios.get('/api/jasa_service/'+this.jasaId)
+     axios.get('./api/jasa_service/'+this.jasaId)
      .then((resp) => {
        this.jasa =  resp.data;
      })
@@ -78,7 +78,7 @@
       },
       saveForm(){
         var newJasa = this.jasa;
-        axios.put('/api/jasa_service/update/' + this.jasaId ,newJasa)
+        axios.put('./api/jasa_service/update/' + this.jasaId ,newJasa)
         .then((resp) => {
           this.alert('Berhasil Mengubah Jasa Service ');
           this.$router.replace('/jasa_service');

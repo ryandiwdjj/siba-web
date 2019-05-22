@@ -60,7 +60,7 @@
     mounted()  {
      var app = this;
      this.kendaraanId = this.$route.params.id;
-     axios.get('/api/kendaraan/'+this.kendaraanId)
+     axios.get('./api/kendaraan/'+this.kendaraanId)
      .then((resp) => {
        this.kendaraan =  resp.data;
      })
@@ -78,7 +78,7 @@
       },
       saveForm(){
         var newKendaraan = this.kendaraan;
-        axios.put('/api/kendaraan/update/' + this.kendaraanId ,newKendaraan)
+        axios.put('./api/kendaraan/update/' + this.kendaraanId ,newKendaraan)
         .then((resp) => {
           this.alert('Berhasil Mengubah Kendaraan ');
           this.$router.replace('/kendaraan');

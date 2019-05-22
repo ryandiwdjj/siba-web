@@ -52,7 +52,7 @@
     mounted()  {
      var app = this;
      this.roleId = this.$route.params.id;
-     axios.get('/api/role/'+this.roleId)
+     axios.get('./api/role/'+this.roleId)
      .then((resp) => {
        this.role =  resp.data;
      })
@@ -70,7 +70,7 @@
       },
       saveForm(){
         var newRole = this.role;
-        axios.put('/api/role/update/' + this.roleId ,newRole)
+        axios.put('./api/role/update/' + this.roleId ,newRole)
         .then((resp) => {
           this.alert('Berhasil Mengubah Role ');
           this.$router.replace('/role');

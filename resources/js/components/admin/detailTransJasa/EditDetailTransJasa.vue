@@ -108,7 +108,7 @@
     mounted()  {
      var app = this;
      this.transJasaId = this.$route.params.id;
-     axios.get('/api/trans_penjualan/detail_jasa/'+this.transJasaId)
+     axios.get('./api/trans_penjualan/detail_jasa/'+this.transJasaId)
      .then((resp) => {
        this.detail_trans_jasa =  resp.data;
      })
@@ -131,7 +131,7 @@
       },
       getTransaksiPenjualan(){
         var app = this;
-        axios.get('/api/trans_penjualan' + '/all')
+        axios.get('./api/trans_penjualan' + '/all')
         .then(function(resp){
           app.transaksiPenjualan = resp.data;
         })
@@ -141,7 +141,7 @@
       },
       getJasas(){
         var app = this;
-        axios.get('/api/jasa_service' + '/all')
+        axios.get('./api/jasa_service' + '/all')
         .then(function(resp){
           app.jasa_services = resp.data;
         })
@@ -151,7 +151,7 @@
       },
       getPegawais(){
         var app = this;
-        axios.get('/api/pegawai' + '/all')
+        axios.get('./api/pegawai' + '/all')
         .then(function(resp){
           app.pegawais = resp.data;
         })
@@ -161,7 +161,7 @@
       },
       getKendaraans(){
         var app = this;
-        axios.get('/api/kendaraan' + '/all')
+        axios.get('./api/kendaraan' + '/all')
         .then(function(resp){
           app.kendaraans = resp.data;
         })
@@ -171,7 +171,7 @@
       },
       saveForm(){
         var newDetailTransJasa = this.detail_trans_jasa;
-        axios.put('/api/trans_penjualan/detail_jasa/update/' + this.transJasaId ,newDetailTransJasa)
+        axios.put('./api/trans_penjualan/detail_jasa/update/' + this.transJasaId ,newDetailTransJasa)
         .then((resp) => {
           this.alert('Berhasil Mengubah Transaksi Service ');
           //this.$router.replace('/detail_trans_jasa');

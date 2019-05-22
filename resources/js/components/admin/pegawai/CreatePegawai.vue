@@ -130,7 +130,7 @@
       },
       getRoles(){
         var app = this;
-        axios.get('/api/role' + '/all')
+        axios.get('./api/role' + '/all')
         .then(function(resp){
           app.roles = resp.data;
         })
@@ -140,7 +140,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('/api/cabang' + '/all')
+        axios.get('./api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })
@@ -150,7 +150,7 @@
       },
       saveForm(){
         var newPegawai = this.pegawai;
-        axios.post('/api/pegawai/store',newPegawai)
+        axios.post('./api/pegawai/store',newPegawai)
         .then((resp) => {
           this.alert('Berhasil Menambah Pegawai ' + this.pegawai.nama_pegawai );
           this.$router.replace('/pegawai');

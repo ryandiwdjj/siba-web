@@ -106,7 +106,7 @@
     mounted()  {
      var app = this;
      this.transPengadaanId = this.$route.params.id;
-     axios.get('/api/trans_pengadaan/'+this.transPengadaanId)
+     axios.get('./api/trans_pengadaan/'+this.transPengadaanId)
      .then((resp) => {
        this.transaksiPengadaan =  resp.data;
      })
@@ -127,7 +127,7 @@
       },
       getSuppliers(){
         var app = this;
-        axios.get('/api/supplier' + '/all')
+        axios.get('./api/supplier' + '/all')
         .then(function(resp){
           app.suppliers = resp.data;
         })
@@ -137,7 +137,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('/api/cabang' + '/all')
+        axios.get('./api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })
@@ -147,7 +147,7 @@
       },
       saveForm(){
         var newTransPengadaan = this.transaksiPengadaan;
-        axios.put('/api/trans_pengadaan/update/' + this.transPengadaanId ,newTransPengadaan)
+        axios.put('./api/trans_pengadaan/update/' + this.transPengadaanId ,newTransPengadaan)
         .then((resp) => {
           this.alert('Berhasil Mengubah Transaksi Pengadaan ');
           this.$router.replace('/trans_pengadaan');

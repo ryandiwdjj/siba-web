@@ -121,7 +121,7 @@
     mounted()  {
      var app = this;
      this.sparepartId = this.$route.params.id;
-     axios.get('/api/sparepart/'+this.sparepartId)
+     axios.get('./api/sparepart/'+this.sparepartId)
      .then((resp) => {
        this.sparepart =  resp.data;
      })
@@ -139,7 +139,7 @@
       },
       saveForm(){
         var newSparepart = this.sparepart;
-        axios.put('/api/sparepart/update/' + this.sparepartId ,newSparepart)
+        axios.put('./api/sparepart/update/' + this.sparepartId ,newSparepart)
         .then((resp) => {
           this.alert('Berhasil Mengubah Sparepart ');
           this.$router.replace('/sparepart');

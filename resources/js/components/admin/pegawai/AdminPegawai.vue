@@ -97,7 +97,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/pegawai?page=' + page)
+        axios.get('./api/pegawai?page=' + page)
         .then(function(resp){
           app.pegawais = resp.data.data;
           app.pegawaisData = resp.data;
@@ -115,7 +115,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/pegawai/search?q='+app.pencarian+'&page=' + page)
+        axios.get('./api/pegawai/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.pegawais = resp.data.data;
           app.pegawaisData = resp.data;
@@ -128,7 +128,7 @@
         })
       },
       deleteEntry(id,index,namaPegawai){
-          axios.delete('/api/pegawai/' + id)
+          axios.delete('./api/pegawai/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Pegawai " + namaPegawai);
