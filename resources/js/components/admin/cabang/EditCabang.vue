@@ -67,7 +67,7 @@
     mounted()  {
      var app = this;
      this.cabangId = this.$route.params.id;
-     axios.get('/api/cabang/'+this.cabangId)
+     axios.get('./api/cabang/'+this.cabangId)
      .then((resp) => {
        this.cabang =  resp.data;
      })
@@ -85,7 +85,7 @@
       },
       saveForm(){
         var newCabang = this.cabang;
-        axios.put('/api/cabang/update/' + this.cabangId ,newCabang)
+        axios.put('./api/cabang/update/' + this.cabangId ,newCabang)
         .then((resp) => {
           this.alert('Berhasil Mengubah Cabang ');
           this.$router.replace('/cabang');

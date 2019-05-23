@@ -87,7 +87,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/kendaraan?page=' + page)
+        axios.get('./api/kendaraan?page=' + page)
         .then(function(resp){
           app.kendaraans = resp.data.data;
           app.kendaraansData = resp.data;
@@ -105,7 +105,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/kendaraan/search?q='+app.pencarian+'&page=' + page)
+        axios.get('./api/kendaraan/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.kendaraans = resp.data.data;
           app.kendaraansData = resp.data;
@@ -118,7 +118,7 @@
         })
       },
       deleteEntry(id,index,merkKendaraan){
-          axios.delete('/api/kendaraan/' + id)
+          axios.delete('./api/kendaraan/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Kendaraan " + merkKendaraan);

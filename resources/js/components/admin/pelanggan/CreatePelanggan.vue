@@ -76,7 +76,7 @@
       },
       saveForm(){
         var newPelanggan = this.pelanggan;
-        axios.post('/api/pelanggan/store',newPelanggan)
+        axios.post('./api/pelanggan/store',newPelanggan)
         .then((resp) => {
           this.alert('Berhasil Menambah Pelanggan ' + this.pelanggan.nama_pelanggan );
           this.$router.replace('/pelanggan');

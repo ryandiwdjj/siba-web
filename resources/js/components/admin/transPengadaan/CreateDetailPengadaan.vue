@@ -112,7 +112,7 @@
       },
       getSpareparts(){
         var app = this;
-        axios.get('/api/sparepart' + '/all')
+        axios.get('./api/sparepart' + '/all')
         .then(function(resp){
           app.spareparts = resp.data;
         })
@@ -122,7 +122,7 @@
       },
       getTransPengadaan(){
         var app = this;
-        axios.get('/api/trans_pengadaan' + '/all')
+        axios.get('./api/trans_pengadaan' + '/all')
         .then(function(resp){
           app.transPengadaan = resp.data;
         })
@@ -132,7 +132,7 @@
       },
       saveForm(){
         var newDetailTransPengadaan = this.detailPengadaan;
-        axios.post('/api/detail_trans_pengadaan/store',newDetailTransPengadaan)
+        axios.post('./api/detail_trans_pengadaan/store',newDetailTransPengadaan)
         .then((resp) => {
           this.alert('Berhasil Menambah Detail Transaksi Pengadaan ');
           this.$router.replace('/tambah_detail_pengadaan');

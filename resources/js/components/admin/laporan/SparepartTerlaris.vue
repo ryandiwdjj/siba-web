@@ -11,7 +11,7 @@
                        
                     <div class="center">               
                       
-                      <img src="../../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
+                      <img src="AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
                       <h1 class="headline">ATMA AUTO</h1>
                       <p class="hehe" >
                       MOTORCYCLE SPAREPARTS AND SERVICES<br>
@@ -81,7 +81,7 @@
     methods: {
       getResults(){
         var app = this;
-        axios.get('/api/report/spare_terlaris')
+        axios.get('./api/report/spare_terlaris')
         .then(function(resp){
         app.sparepart = resp.data;
         app.loading = false;

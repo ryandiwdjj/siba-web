@@ -89,7 +89,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/pelanggan?page=' + page)
+        axios.get('./api/pelanggan?page=' + page)
         .then(function(resp){
           app.pelanggans = resp.data.data;
           app.pelanggansData = resp.data;
@@ -107,7 +107,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/pelanggan/search?q='+app.pencarian+'&page=' + page)
+        axios.get('./api/pelanggan/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.pelanggans = resp.data.data;
           app.pelanggansData = resp.data;
@@ -120,7 +120,7 @@
         })
       },
       deleteEntry(id,index,namaPelanggan){
-          axios.delete('/api/pelanggan/' + id)
+          axios.delete('./api/pelanggan/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Pelanggan " + namaPelanggan);

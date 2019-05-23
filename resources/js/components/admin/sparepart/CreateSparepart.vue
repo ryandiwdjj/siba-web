@@ -131,7 +131,7 @@
       },
       saveForm(){
         var newSparepart = this.sparepart;
-        axios.post('/api/sparepart/store',newSparepart)
+        axios.post('./api/sparepart/store',newSparepart)
         .then((resp) => {
           this.alert('Berhasil Menambah Sparepart ' + this.sparepart.nama_sparepart );
           this.$router.replace('/sparepart');

@@ -267,7 +267,7 @@ class reportController extends Controller
 		for($i = 0; $i<=12; $i++) {
 			$bulanan = trans_pengadaan::
 			select('trans_pengadaan.total_harga_pengadaan')
-			->where('trans_pengadaan.status_pengadaan', '=', 'sudah diterima')
+			->where('trans_pengadaan.status_pengadaan', '=', 'sudah')
 			->whereMonth('trans_pengadaan.tanggal_pengadaan', $i);
 			$bulanan_total = $bulanan->sum('trans_pengadaan.total_harga_pengadaan');
 
@@ -396,7 +396,8 @@ class reportController extends Controller
 		->whereYear('trans_penjualan.tanggal_penjualan', '2016');
 		
 		$tahun2016_total = $tahun2016->sum('trans_penjualan.grand_total');
-		$tahun2016_cabang = $tahun2016->select('cabangs.alamat_cabang');
+		$tahun2016_cabang = $tahun2016->get();
+		// ->select('cabangs.alamat_cabang')
 
 		$tahun2017 = trans_penjualan::
 		join('cabangs', 'cabangs.id', '=', 'trans_penjualan.id_cabang')
@@ -426,7 +427,7 @@ class reportController extends Controller
 		->whereYear('trans_penjualan.tanggal_penjualan', '2019');
 		
 		$tahun2019_total = $tahun2019->sum('trans_penjualan.grand_total');
-		$tahun2019_cabang = $tahun2019->select('cabangs.nama_cabang');
+		$tahun2019_cabang = $tahun2019->select('cabangs.nama_cabang')->get();
 
 
 		$tahun2016_json = [

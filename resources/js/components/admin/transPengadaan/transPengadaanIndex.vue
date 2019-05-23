@@ -102,7 +102,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('/api/trans_pengadaan?page=' + page)
+        axios.get('./api/trans_pengadaan?page=' + page)
         .then(function(resp){
           app.transaksiPengadaan = resp.data.data;
           app.trans_pengadaanData = resp.data;
@@ -116,7 +116,7 @@
       },
       
       deleteEntry(id,index){
-          axios.delete('/api/trans_pengadaan/' + id)
+          axios.delete('./api/trans_pengadaan/' + id)
           .then((resp) => {
             this.getResults();
             this.alert("Berhasil Menghapus","Berhasil Menghapus Transaksi Pengadaan ");

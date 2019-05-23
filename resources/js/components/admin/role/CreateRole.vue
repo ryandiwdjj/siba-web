@@ -61,7 +61,7 @@
       },
       saveForm(){
         var newRole = this.role;
-        axios.post('/api/role/store',newRole)
+        axios.post('./api/role/store',newRole)
         .then((resp) => {
           this.alert('Berhasil Menambah Role ' + this.role.nama_role );
           this.$router.replace('/role');

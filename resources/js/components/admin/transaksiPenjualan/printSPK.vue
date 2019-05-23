@@ -99,7 +99,7 @@
     mounted()  {
      var app = this;
      this.transId = this.$route.params.id;
-     axios.get('/api/trans_penjualan/SPK/'+this.transId)
+     axios.get('./api/trans_penjualan/SPK/'+this.transId)
      .then((resp) => {
        this.transaksiPenjualan =  resp.data;
      })
@@ -121,7 +121,7 @@
       },
       getDetailTransJasa(){
         var app = this;
-        axios.get('/api/trans_penjualan/detail_jasa' + '/all')
+        axios.get('./api/trans_penjualan/detail_jasa' + '/all')
         .then(function(resp){
           app.detail_trans_jasa = resp.data;
         })
@@ -131,7 +131,7 @@
       },
        getDetailTransSparepart(){
         var app = this;
-        axios.get('/api/trans_penjualan/detail_spare' + '/all')
+        axios.get('./api/trans_penjualan/detail_spare' + '/all')
         .then(function(resp){
           app.detail_trans_sparepart = resp.data;
         })
@@ -141,7 +141,7 @@
       },
       getJasas(){
         var app = this;
-        axios.get('/api/jasa_service' + '/all')
+        axios.get('./api/jasa_service' + '/all')
         .then(function(resp){
           app.jasa_services = resp.data;
         })
@@ -151,7 +151,7 @@
       },
       getPegawais(){
         var app = this;
-        axios.get('/api/pegawai' + '/all')
+        axios.get('./api/pegawai' + '/all')
         .then(function(resp){
           app.pegawais = resp.data;
         })
@@ -161,7 +161,7 @@
       },
       getKendaraans(){
         var app = this;
-        axios.get('/api/kendaraan' + '/all')
+        axios.get('./api/kendaraan' + '/all')
         .then(function(resp){
           app.kendaraans = resp.data;
         })
@@ -171,7 +171,7 @@
       },
       getSpareparts(){
         var app = this;
-        axios.get('/api/sparepart' + '/all')
+        axios.get('./api/sparepart' + '/all')
         .then(function(resp){
           app.spareparts = resp.data;
         })
@@ -181,7 +181,7 @@
       },
       getPelanggans(){
         var app = this;
-        axios.get('/api/pelanggan' + '/all')
+        axios.get('./api/pelanggan' + '/all')
         .then(function(resp){
           app.pelanggans = resp.data;
         })

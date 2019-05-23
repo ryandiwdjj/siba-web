@@ -75,7 +75,7 @@
     mounted()  {
      var app = this;
      this.supplierId = this.$route.params.id;
-     axios.get('/api/supplier/'+this.supplierId)
+     axios.get('./api/supplier/'+this.supplierId)
      .then((resp) => {
        this.supplier =  resp.data;
      })
@@ -93,7 +93,7 @@
       },
       saveForm(){
         var newSupplier = this.supplier;
-        axios.put('/api/supplier/update/' + this.supplierId ,newSupplier)
+        axios.put('./api/supplier/update/' + this.supplierId ,newSupplier)
         .then((resp) => {
           this.alert('Berhasil Mengubah Supplier ');
           this.$router.replace('/supplier');

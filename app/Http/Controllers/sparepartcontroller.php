@@ -309,9 +309,8 @@ class sparepartcontroller extends Controller
             $dir = 'images/sparepart/';
             $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
             $fileName = str_random() . '.' . $extension;
-            $file = $this->photo_path . $fileName;
             $request->file('gambar_sparepart')->move($dir, $fileName);
-            $sparepart->gambar_sparepart = $file;
+            $sparepart->gambar_sparepart = $fileName;
         }
         
         $success = $sparepart->save();
@@ -342,9 +341,8 @@ class sparepartcontroller extends Controller
                 // $path = 'http://10.53.10.70:8000/images/sparepart/'; //sesuai path yang dipake
                 $extension = strtolower($request->file('gambar_sparepart')->getClientOriginalExtension());
                 $fileName = str_random() . '.' . $extension;
-                $file = $this->photo_path . $fileName;
                 $request->file('gambar_sparepart')->move($dir, $fileName);
-                $sparepart->gambar_sparepart = $file;
+                $sparepart->gambar_sparepart = $fileName;
             }
             $success = $sparepart->save();
             if (!$success) {
