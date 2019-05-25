@@ -12,7 +12,7 @@
                       
                     <div class="center">               
                       
-                      <img src="AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
+                      <img src="../../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
                       <h1 class="headline">ATMA AUTO</h1>
                       <p class="hehe" >
                       MOTORCYCLE SPAREPARTS AND SERVICES<br>
@@ -186,7 +186,7 @@ var myBarChart = new Chart(ctx, {
     methods: {
       getResults(){
         var app = this;
-        axios.get('./api/report/pendapatan_bulanan')
+        axios.get('/api/report/pendapatan_bulanan')
         .then(function(resp){
         app.transaksiPenjualan = resp.data;
         app.total_jasa = resp.data;
@@ -207,7 +207,7 @@ var myBarChart = new Chart(ctx, {
       },
       getGrandTotalChartData(month){
         var app = this;
-        axios.get('./api/report/pendapatan_bulanan')
+        axios.get('../api/report/pendapatan_bulanan')
         .then(function(resp){
         app.grand_total_trans = resp.data[month].grand_total;
         app.loading = false;

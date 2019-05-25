@@ -212,6 +212,19 @@ class detailpengadaancontroller extends Controller
         return response()->json($detail_trans_pengadaan, 200);
     }
 
+    public function getDetailById($id) {
+        $detail_trans_pengadaan = detail_trans_pengadaan::
+            join('spareparts', 'spareparts.id', 'id_sparepart')
+            ->where('detail_pengadaan.id_trans_pengadaan', '=', $id)
+            ->get();
+
+            if(is_null($detail_trans_pengadaan)) 
+                return response()->json('detail trans not found', 404);
+            
+            else
+                return response()->json($detail_trans_pengadaan, 200);
+    }
+
     public function storeMobile(Request $request)
     {
 
