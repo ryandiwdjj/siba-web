@@ -307,6 +307,17 @@ class transpengadaancontroller extends Controller
         }
 
         else {
+
+            //delete data detail yang udah ada
+            $results = detail_trans_pengadaan::
+            where('id_trans_pengadaan', $transpengadaan->id)->get();
+
+            if(!$results->count() === 0) { //masuk sini kalo detail trans pengadaannya ada isi
+                foreach($results as $result) { //result == data detail trans pengadaan
+                    $result->delete();
+                }
+            }
+
             $transpengadaan->id_supplier = $request->id_supplier;
             $transpengadaan->id_cabang = $request->id_cabang;
             $transpengadaan->tanggal_pengadaan = $request->tanggal_pengadaan;
