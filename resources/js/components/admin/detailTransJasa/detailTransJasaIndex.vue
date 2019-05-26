@@ -89,7 +89,7 @@
     methods: {
       getResults(){
         this.detailTransJasaId = this.$route.params.id;
-        axios.get('./api/trans_penjualan/showDetailJasa/'+this.detailTransJasaId)
+        axios.get('/siba-web/public/api/trans_penjualan/showDetailJasa/'+this.detailTransJasaId)
           .then((resp) => {
             this.detail_transjasa =  resp.data;
         })

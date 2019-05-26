@@ -115,7 +115,7 @@
     mounted()  {
      var app = this;
      this.transId = this.$route.params.id;
-     axios.get('./api/trans_penjualan/SPK/'+this.transId)
+     axios.get('/siba-web/public/api/trans_penjualan/SPK/'+this.transId)
      .then((resp) => {
        this.transaksiPenjualan =  resp.data;
      })
@@ -136,7 +136,7 @@
       },
       getPelanggans(){
         var app = this;
-        axios.get('./api/pelanggan' + '/all')
+        axios.get('/siba-web/public/api/pelanggan' + '/all')
         .then(function(resp){
           app.pelanggans = resp.data;
         })
@@ -146,7 +146,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('./api/cabang' + '/all')
+        axios.get('/siba-web/public/api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })

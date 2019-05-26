@@ -72,7 +72,7 @@
     mounted()  {
      var app = this;
      this.transSparepartId = this.$route.params.id;
-     axios.get('./api/trans_penjualan/detail_spare/'+this.transSparepartId)
+     axios.get('/siba-web/public/api/trans_penjualan/detail_spare/'+this.transSparepartId)
      .then((resp) => {
        this.detail_trans_sparepart =  resp.data;
      })
@@ -93,7 +93,7 @@
       },
       getTransaksiPenjualan(){
         var app = this;
-        axios.get('./api/trans_penjualan' + '/all')
+        axios.get('/siba-web/public/api/trans_penjualan' + '/all')
         .then(function(resp){
           app.transaksiPenjualan = resp.data;
         })
@@ -103,7 +103,7 @@
       },
       getSpareparts(){
         var app = this;
-        axios.get('./api/sparepart' + '/all')
+        axios.get('/siba-web/public/api/sparepart' + '/all')
         .then(function(resp){
           app.spareparts = resp.data;
         })

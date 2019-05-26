@@ -67,7 +67,7 @@
     mounted()  {
      var app = this;
      this.cabangId = this.$route.params.id;
-     axios.get('./api/cabang/'+this.cabangId)
+     axios.get('/siba-web/public/api/cabang/'+this.cabangId)
      .then((resp) => {
        this.cabang =  resp.data;
      })

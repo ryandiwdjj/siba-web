@@ -80,7 +80,7 @@
     methods: {
       getResults(){
         var app = this;
-        axios.get('./api/report/sisa_stok_bulanan')
+        axios.get('/siba-web/public/api/report/sisa_stok_bulanan')
         .then(function(resp){
         app.transaksiPenjualan = resp.data;
         app.loading = false;

@@ -130,7 +130,7 @@
       },
       getRoles(){
         var app = this;
-        axios.get('./api/role' + '/all')
+        axios.get('/siba-web/public/api/role' + '/all')
         .then(function(resp){
           app.roles = resp.data;
         })
@@ -140,7 +140,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('./api/cabang' + '/all')
+        axios.get('/siba-web/public/api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })

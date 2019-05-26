@@ -3,16 +3,15 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-
-                  <div class="card-tools">
-                      
-                      <h6 class="card-tools" id="tanggal"></h6>
+                  <div class="card-header">
+                    <h3 class="card-header-title">Laporan Pendapatan Bulanan</h3>
                   </div>
-                   <div id="printMe"> 
+
+                  <div id="printMe"> 
                       
                     <div class="center">               
                       
-                      <img src="../../../../../public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
+                      <img src="siba-web/public/AA_Logo.png" v-bind:style="{ marginLeft: '200px', width: '165px', height: '160px',float:'left' }">
                       <h1 class="headline">ATMA AUTO</h1>
                       <p class="hehe" >
                       MOTORCYCLE SPAREPARTS AND SERVICES<br>
@@ -30,9 +29,9 @@
                     <br>
                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" >
                     <thead>
-                        <th class="No-Row">No</th>
+                        <th>No</th>
                         <th>Bulan</th>
-                        <th>Jasa Service</th>
+                        <th>Service</th>
                         <th>Sparepart</th>
                         <th>Total</th>
                         
@@ -47,17 +46,15 @@
                       </tr>
                     </tbody>
                     </table>     
-                    <vue-simple-spinner v-if="loading"></vue-simple-spinner>            
-                  </div> 
-                    <br>
+                    <vue-simple-spinner v-if="loading"></vue-simple-spinner>     
                     <div>
                       <apexchart width="500" type="bar" :options="chartOptions" :series="series"></apexchart>
+                   </div>
                     </div>
-                    <br>
-                    <div align="center">
+                   <div class="card-tools" align="center">
                       <button class="button is-success" @click="print">Cetak</button>
-                    </div>
-                </div>     
+                  </div>    
+                  </div>    
             </div>
         </div>
     </div>
@@ -65,6 +62,7 @@
 </template>
 
 <script>
+
   export default {
     data: function() {
       return {
@@ -186,7 +184,7 @@ var myBarChart = new Chart(ctx, {
     methods: {
       getResults(){
         var app = this;
-        axios.get('/api/report/pendapatan_bulanan')
+        axios.get('/siba-web/public/api/report/pendapatan_bulanan')
         .then(function(resp){
         app.transaksiPenjualan = resp.data;
         app.total_jasa = resp.data;
@@ -207,7 +205,7 @@ var myBarChart = new Chart(ctx, {
       },
       getGrandTotalChartData(month){
         var app = this;
-        axios.get('../api/report/pendapatan_bulanan')
+        axios.get('/siba-web/public/api/report/pendapatan_bulanan')
         .then(function(resp){
         app.grand_total_trans = resp.data[month].grand_total;
         app.loading = false;

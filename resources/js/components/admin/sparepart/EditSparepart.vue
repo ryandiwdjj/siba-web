@@ -121,7 +121,7 @@
     mounted()  {
      var app = this;
      this.sparepartId = this.$route.params.id;
-     axios.get('./api/sparepart/'+this.sparepartId)
+     axios.get('/siba-web/public/api/sparepart/'+this.sparepartId)
      .then((resp) => {
        this.sparepart =  resp.data;
      })

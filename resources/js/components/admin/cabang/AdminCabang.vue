@@ -89,7 +89,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/cabang?page=' + page)
+        axios.get('/siba-web/public/api/cabang?page=' + page)
         .then(function(resp){
           app.cabangs = resp.data.data;
           app.cabangsData = resp.data;
@@ -107,7 +107,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/cabang/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/cabang/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.cabangs = resp.data.data;
           app.cabangsData = resp.data;

@@ -80,7 +80,7 @@
     methods: {
       getResults(){
         var app = this;
-        axios.get('./api/report/tahunan_percabang')
+        axios.get('/siba-web/public/api/report/tahunan_percabang')
         .then(function(resp){
         app.transaksiPenjualan = resp.data;
         app.loading = false;

@@ -89,7 +89,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/pelanggan?page=' + page)
+        axios.get('/siba-web/public/api/pelanggan?page=' + page)
         .then(function(resp){
           app.pelanggans = resp.data.data;
           app.pelanggansData = resp.data;
@@ -107,7 +107,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/pelanggan/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/pelanggan/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.pelanggans = resp.data.data;
           app.pelanggansData = resp.data;

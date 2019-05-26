@@ -82,7 +82,7 @@
     methods: {
       getResults(){
         var app = this;
-        axios.get('./api/report/jumlah_jasa_permotor')
+        axios.get('/siba-web/public/api/report/jumlah_jasa_permotor')
         .then(function(resp){
         app.transaksiPenjualan = resp.data;
         app.loading = false;

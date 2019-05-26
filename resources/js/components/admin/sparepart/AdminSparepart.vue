@@ -101,7 +101,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/sparepart?page=' + page)
+        axios.get('/siba-web/public/api/sparepart?page=' + page)
         .then(function(resp){
           app.spareparts = resp.data.data;
           app.sparepartsData = resp.data;
@@ -119,7 +119,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/spaarepart/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/spaarepart/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.spareparts = resp.data.data;
           app.sparepartsData = resp.data;

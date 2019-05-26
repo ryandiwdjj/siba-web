@@ -60,7 +60,7 @@
     mounted()  {
      var app = this;
      this.kendaraanId = this.$route.params.id;
-     axios.get('./api/kendaraan/'+this.kendaraanId)
+     axios.get('/siba-web/public/api/kendaraan/'+this.kendaraanId)
      .then((resp) => {
        this.kendaraan =  resp.data;
      })

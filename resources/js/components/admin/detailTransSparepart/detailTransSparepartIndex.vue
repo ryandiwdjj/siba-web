@@ -84,7 +84,7 @@
     methods: {
       getResults(){
         this.detailTransSparepartId = this.$route.params.id;
-        axios.get('./api/trans_penjualan/showDetailSparepart/'+this.detailTransSparepartId)
+        axios.get('/siba-web/public/api/trans_penjualan/showDetailSparepart/'+this.detailTransSparepartId)
           .then((resp) => {
             this.detail_transsparepart =  resp.data;
         })

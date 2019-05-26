@@ -60,7 +60,7 @@
     mounted()  {
      var app = this;
      this.jasaId = this.$route.params.id;
-     axios.get('./api/jasa_service/'+this.jasaId)
+     axios.get('/siba-web/public/api/jasa_service/'+this.jasaId)
      .then((resp) => {
        this.jasa =  resp.data;
      })

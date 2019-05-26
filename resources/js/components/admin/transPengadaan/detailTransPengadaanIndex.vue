@@ -76,7 +76,7 @@
     mounted()  {
      var app = this;
     //  this.transPengadaanId = this.$route.params.id;
-    //  axios.get('./api/trans_pengadaan/showDetail/'+this.transPengadaanId)
+    //  axios.get('/siba-web/public/api/trans_pengadaan/showDetail/'+this.transPengadaanId)
     //  .then((resp) => {
     //    this.detail_pengadaan =  resp.data;
     //  })
@@ -95,7 +95,7 @@
     methods: {
       getResults(){
         this.transPengadaanId = this.$route.params.id;
-        axios.get('./api/trans_pengadaan/showDetail/'+this.transPengadaanId)
+        axios.get('/siba-web/public/api/trans_pengadaan/showDetail/'+this.transPengadaanId)
           .then((resp) => {
             this.detail_pengadaan =  resp.data;
         })

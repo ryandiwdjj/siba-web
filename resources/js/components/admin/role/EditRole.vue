@@ -51,7 +51,7 @@
     mounted()  {
      var app = this;
      this.roleId = this.$route.params.id;
-     axios.get('./api/role/'+this.roleId)
+     axios.get('/siba-web/public/api/role/'+this.roleId)
      .then((resp) => {
        this.role =  resp.data;
      })

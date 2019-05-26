@@ -101,7 +101,7 @@
       },
       getTransaksiPenjualan(){
         var app = this;
-        axios.get('./api/trans_penjualan' + '/all')
+        axios.get('/siba-web/public/api/trans_penjualan' + '/all')
         .then(function(resp){
           app.transaksiPenjualan = resp.data;
         })
@@ -111,7 +111,7 @@
       },
       getSpareparts(){
         var app = this;
-        axios.get('./api/sparepart' + '/all')
+        axios.get('/siba-web/public/api/sparepart' + '/all')
         .then(function(resp){
           app.spareparts = resp.data;
         })

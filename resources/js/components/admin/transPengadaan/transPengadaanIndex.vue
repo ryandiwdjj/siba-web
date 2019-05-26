@@ -102,7 +102,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/trans_pengadaan?page=' + page)
+        axios.get('/siba-web/public/api/trans_pengadaan?page=' + page)
         .then(function(resp){
           app.transaksiPengadaan = resp.data.data;
           app.trans_pengadaanData = resp.data;

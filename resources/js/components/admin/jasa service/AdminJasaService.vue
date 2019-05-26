@@ -87,7 +87,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/jasa_service?page=' + page)
+        axios.get('/siba-web/public/api/jasa_service?page=' + page)
         .then(function(resp){
           app.jasa_services = resp.data.data;
           app.jasaservicesData = resp.data;
@@ -105,7 +105,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/jasa_service/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/jasa_service/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.jasa_services = resp.data.data;
           app.jasaservicesData = resp.data;

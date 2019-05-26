@@ -91,7 +91,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/suppliers?page=' + page)
+        axios.get('/siba-web/public/api/suppliers?page=' + page)
         .then(function(resp){
           app.suppliers = resp.data.data;
           app.suppliersData = resp.data;
@@ -109,7 +109,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/supplier/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/supplier/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.suppliers = resp.data.data;
           app.suppliersData = resp.data;

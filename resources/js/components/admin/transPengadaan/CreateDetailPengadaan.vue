@@ -112,7 +112,7 @@
       },
       getSpareparts(){
         var app = this;
-        axios.get('./api/sparepart' + '/all')
+        axios.get('/siba-web/public/api/sparepart' + '/all')
         .then(function(resp){
           app.spareparts = resp.data;
         })
@@ -122,7 +122,7 @@
       },
       getTransPengadaan(){
         var app = this;
-        axios.get('./api/trans_pengadaan' + '/all')
+        axios.get('/siba-web/public/api/trans_pengadaan' + '/all')
         .then(function(resp){
           app.transPengadaan = resp.data;
         })

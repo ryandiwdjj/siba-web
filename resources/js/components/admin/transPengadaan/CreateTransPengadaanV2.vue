@@ -98,7 +98,7 @@
       },
       getSuppliers(){
         var app = this;
-        axios.get('./api/supplier' + '/all')
+        axios.get('/siba-web/public/api/supplier' + '/all')
         .then(function(resp){
           app.suppliers = resp.data;
         })
@@ -108,7 +108,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('./api/cabang' + '/all')
+        axios.get('/siba-web/public/api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })

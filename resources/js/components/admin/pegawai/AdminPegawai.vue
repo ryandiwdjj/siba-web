@@ -97,7 +97,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/pegawai?page=' + page)
+        axios.get('/siba-web/public/api/pegawai?page=' + page)
         .then(function(resp){
           app.pegawais = resp.data.data;
           app.pegawaisData = resp.data;
@@ -115,7 +115,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/pegawai/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/pegawai/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.pegawais = resp.data.data;
           app.pegawaisData = resp.data;

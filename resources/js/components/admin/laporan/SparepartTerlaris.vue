@@ -81,7 +81,7 @@
     methods: {
       getResults(){
         var app = this;
-        axios.get('./api/report/spare_terlaris')
+        axios.get('/siba-web/public/api/report/spare_terlaris')
         .then(function(resp){
         app.sparepart = resp.data;
         app.loading = false;

@@ -119,7 +119,7 @@
     mounted()  {
      var app = this;
      this.pegawaiId = this.$route.params.id;
-     axios.get('./api/pegawai/'+this.pegawaiId)
+     axios.get('/siba-web/public/api/pegawai/'+this.pegawaiId)
      .then((resp) => {
        this.pegawai =  resp.data;
      })
@@ -140,7 +140,7 @@
       },
       getRoles(){
         var app = this;
-        axios.get('./api/role' + '/all')
+        axios.get('/siba-web/public/api/role' + '/all')
         .then(function(resp){
           app.roles = resp.data;
         })
@@ -150,7 +150,7 @@
       },
       getCabangs(){
         var app = this;
-        axios.get('./api/cabang' + '/all')
+        axios.get('/siba-web/public/api/cabang' + '/all')
         .then(function(resp){
           app.cabangs = resp.data;
         })

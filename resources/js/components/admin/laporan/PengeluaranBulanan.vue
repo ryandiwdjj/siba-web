@@ -179,7 +179,7 @@ var myBarChart = new Chart(ctx, {
     methods: {
       getResults(){
         var app = this;
-        axios.get('./api/report/pengeluaran_bulanan')
+        axios.get('/siba-web/public/api/report/pengeluaran_bulanan')
         .then(function(resp){
         app.transaksiPengadaan = resp.data;
         let transaksiPengadaanData = [];
@@ -199,7 +199,7 @@ var myBarChart = new Chart(ctx, {
       },
       getGrandTotalChartData(month){
         var app = this;
-        axios.get('./api/report/pendapatan_bulanan')
+        axios.get('/siba-web/public/api/report/pendapatan_bulanan')
         .then(function(resp){
         app.grand_total_trans = resp.data[month].grand_total;
         app.loading = false;

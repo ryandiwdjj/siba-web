@@ -75,7 +75,7 @@
     mounted()  {
      var app = this;
      this.supplierId = this.$route.params.id;
-     axios.get('./api/supplier/'+this.supplierId)
+     axios.get('/siba-web/public/api/supplier/'+this.supplierId)
      .then((resp) => {
        this.supplier =  resp.data;
      })

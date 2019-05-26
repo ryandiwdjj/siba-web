@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\trans_pengadaan;
 use App\detail_trans_pengadaan;
 use App\sparepart;
-
+use App\detailpengadaancontroller;
 
 class transpengadaancontroller extends Controller
 {
@@ -363,14 +363,38 @@ class transpengadaancontroller extends Controller
         if(is_null($transpengadaan)) {
             return response()->json('Transaksi Pengadaan Not Found', 404);
         }
-        
+    
         else {
-            $success = $transpengadaan->delete();
-            if($success)
-                return response()->json('Success Delete', 200);
-            else {
-                return response()->json('Error Delete', 500);
+
+            $results = detail_trans_pengadaan::
+            where('id_trans_pengadaan', $transpengadaan->id)->get();
+            
+
+            if($results->count() === 0) { //masuk sini kalo detail trans pengadaannya kosong
+
+                $success = $transpengadaan->delete();
+                if($success)
+                    return response()->json('Success Delete', 204);
+                else {
+                    return response()->json('Error Delete', 500);
+                }
             }
+
+            else { //masuk ini kalo ada detail trans pengadaan
+
+                foreach($results as $result) { //result == data detail trans pengadaan
+                    $success = $result->delete();
+                }
+
+                $success = $transpengadaan->delete();
+
+                if($success)
+                    return response()->json('Success Delete All', 204);
+                else {
+                    return response()->json('Error Delete All', 500);
+                }
+            }
+            
         }
     }
 }

@@ -139,7 +139,7 @@
       },
       getTransaksiPenjualan(){
         var app = this;
-        axios.get('./api/trans_penjualan' + '/all')
+        axios.get('/siba-web/public/api/trans_penjualan' + '/all')
         .then(function(resp){
           app.transaksiPenjualan = resp.data;
         })
@@ -149,7 +149,7 @@
       },
       getJasas(){
         var app = this;
-        axios.get('./api/jasa_service' + '/all')
+        axios.get('/siba-web/public/api/jasa_service' + '/all')
         .then(function(resp){
           app.jasa_services = resp.data;
         })
@@ -159,7 +159,7 @@
       },
       getPegawais(){
         var app = this;
-        axios.get('./api/pegawai' + '/all')
+        axios.get('/siba-web/public/api/pegawai' + '/all')
         .then(function(resp){
           app.pegawais = resp.data;
         })
@@ -169,7 +169,7 @@
       },
       getKendaraans(){
         var app = this;
-        axios.get('./api/kendaraan' + '/all')
+        axios.get('/siba-web/public/api/kendaraan' + '/all')
         .then(function(resp){
           app.kendaraans = resp.data;
         })

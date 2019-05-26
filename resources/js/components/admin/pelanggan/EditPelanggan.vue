@@ -67,7 +67,7 @@
     mounted()  {
      var app = this;
      this.pelangganId = this.$route.params.id;
-     axios.get('./api/pelanggan/'+this.pelangganId)
+     axios.get('/siba-web/public/api/pelanggan/'+this.pelangganId)
      .then((resp) => {
        this.pelanggan =  resp.data;
      })

@@ -85,7 +85,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/role?page=' + page)
+        axios.get('/siba-web/public/api/role?page=' + page)
         .then(function(resp){
           app.roles = resp.data.data;
           app.rolesData = resp.data;
@@ -103,7 +103,7 @@
         if(typeof page == 'undefined'){
           page = 1;
         }
-        axios.get('./api/role/search?q='+app.pencarian+'&page=' + page)
+        axios.get('/siba-web/public/api/role/search?q='+app.pencarian+'&page=' + page)
         .then(function(resp){
           app.roles = resp.data.data;
           app.rolesData = resp.data;
